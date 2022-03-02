@@ -1,0 +1,15 @@
+
+#conteudo-principal-new{
+    DISPLAY: FLEX;
+
+}
+
+#filtro{
+    margin: 13vw;
+}
+
+
+#produtos-principal{
+    display: flex;
+    flex-wrap: wrap
+}
