@@ -1,5 +1,5 @@
 <header>
-    <div>   
+    <div id="conteudo-menu">   
         <div id="menuzinho">
             <div class="texto-menu"> 
                 <ul>
@@ -31,6 +31,11 @@
                         <li>Pesquisa</li>
                         <li>Favoritos</li>
                         <li>Carrinho </li>
+                    <% if(estaLogado) { %>
+                        <li><a href="/logout"><% nomeUsuario %> (Fazer logout) </a></li>
+                    <% } else { %> 
+                        <li><a href="/login">login</a></li>
+                        <% } %>
                     </ul>
                 </div>
 

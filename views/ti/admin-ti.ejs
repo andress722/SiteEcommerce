@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos-ti</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/brand-admin.css">
+</head>
+
+<body>
+    <%- include("../partials/header") %>
+    <main>        
+
+
+      <table >
+        <tr>
+            <th>ID</th>
+            <th >nome</th>
+            <th >descricao</th>
+            <th >valor</th>
+            <th >acos</th>
+        </tr>
+    
+
+          
+            <% ti.forEach(function (tis){ %> 
+            <tr>
+              <td><%= tis.id  %> </td>
+              <td><%= tis.nome  %>  </td>
+              <td><%= tis.descricao  %></td>
+              <td><%= tis.valor  %></td>
+              <td>
+                <a href="/admin/produtos/<%= tis.id %>/editar">Editar</a>
+                <a href="/admin/produtos/<%= tis.id %>/remover">Remover</a>
+              </td>
+            </tr>
+          </div>
+        <% }) %>
+      </table> 
+          
+      </section>
+  </main>
+              <a href="/admin/ti/criar">Novo Ti</a>
+          </div>
+
+    <%- include("../partials/footer") %>
+</body>
+
+</html>

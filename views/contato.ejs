@@ -13,14 +13,23 @@
   <body>
 
     <%- include("./partials/header")%>
-
+    <section class="section-body">
         <h1>Olá  <%= nomeUsuario %> </h1>
         <form action="/confirmacontato" method="get"> 
+
+            <label for="nome">nome</label>
             <input type="text" name="nome" id="">
+
+            <label for="email">email</label>
             <input type="email" name="email" id="">
+
+            <label for="descricao">descricao</label>
+            <textarea name="descricao" id="" cols="30" rows="10"></textarea>
+
+
             <button type="submit">enviar</button>
         </form>
-
+      </section>
 
 
 

@@ -2,7 +2,9 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser')
 var logger = require('morgan');
+var session = require('express-session')
 
 
 var app = express();
@@ -11,15 +13,31 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(session({
+  secret: '102030',
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(bodyParser.urlencoded({extended:true}))
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Esse middleware serve para adicionar os dados do login de forma que esteja acessivel em todos os arquivo EJS
+app.use(function adicionaUserNoRender(req, res, next){
+  res.locals.estaLogado = req.session.estaLogado
+  res.locals.nomeUsuario = req.session.nomeUsuario
+  next()
+})
+
+
 app.use('/', require('./routes/index'));
-app.use('/new', require('./routes/new-in'))
-app.use('/brand', require('./routes/brand'))
 app.use('/admin', require('./routes/admin'))
 
 // catch 404 and forward to error handler

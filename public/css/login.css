@@ -1,0 +1,65 @@
+body{
+    margin: 0px;
+    max-width: 1440px;
+    Height:753.82px
+}
+
+#divisao{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.imagem-login{
+    position: absolute;
+width: 720px;
+height: 753.82px;
+
+}
+
+.contato{
+    position: absolute;
+    width: 350px;
+    height: 215px;
+    left: 883px;
+    top: 212px;
+
+
+}
+
+  #footer-sociais img{
+    width: 13%;
+  }
+  
+  #organiazar-sociais{
+    display: flex;
+    width: 13vw;
+    text-align: center;
+    align-items: center;
+  }
+  
+  
+  
+  #footer-sociais .facebook a img{
+    width: 75%;
+  }
+  
+  #footer-sociais .instagram a img{
+    width: 98%;
+    margin-left: -1.4vw;
+  }
+  
+  #footer-sociais .github a img{
+    width: 59%;
+    margin-left: -4.4vw;
+  }
+
+li {
+    text-decoration: none;
+    list-style-type: none;
+    text-decoration: none;
+    list-style-type: none;
+  }
+
+#footer-sociais{
+    margin-left: 3%;
+}

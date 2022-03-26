@@ -23,17 +23,29 @@
       </div>
       <div id="conteudo-baloes">
           <div class="baloes">
-            <img src="imagens/13160112901226.jpg" alt="">
+            <div id="produtos-principal-index">
+              <% produtos.forEach(function(produto) { %> 
+                <div id="produtos2">
+                    <div class="produto2">
+                        <img src="/imagens/roupa1.jpg" alt="">
+                    </div>
+                    <div id="nome-produto2">
+                      <h3 class="descricao-nome2"><%= produto.nome  %></h3> 
+                    </div>
+                    <div id="valores2">
+                        <div class="valor2">
+                            <h4>R$ <%= produto.valor %> </h4>
+                        </div>
+                        <div class="button">
+                             adicionar ao carrinho
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+              </div>
+            </div>
           </div>
-          <div class="baloes">
-            <img src="imagens/13160112901226.jpg" alt="">
-          </div>
-          <div class="baloes">
-            <img src="imagens/13160112901226.jpg" alt="">
-          </div>
-          <div class="baloes">
-            <img src="imagens/13160112901226.jpg" alt="">
-          </div>
+
         </div>
       </div>
 

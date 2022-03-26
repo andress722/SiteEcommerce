@@ -1,12 +1,20 @@
 body{ 
-   max-width: 1440px;
+  max-width: 1522px;
+  width: 100%;
    margin: 0px;
    font-family: 'Josefin Sans', sans-serif;
    font-size: 1.3vw;
 }
 
+#conteudo-menu{
+  max-width: 1522px;
+  width: 100%;
+}
+
 header #menuzinho{
-  max-width: 1440px;
+  max-width: 1522px;
+  width: 100%;
+
   Height: 24px;
   background-color: black;
 }
@@ -74,6 +82,26 @@ header .texto-menu-principal a{
 header .conteudo-menu-principal-3 ul{
   display: flex;
     justify-content: space-evenly;
+}
+
+table{
+  display: flex;
+  /* margin-left: 62px; */
+  margin-top: 35px;
+  justify-content: center;
+
+   width: 100%;
+}
+table {
+  width: 100%;
+}
+
+th {
+  height: 50px;
+}
+
+tbody{
+  border: solid;
 }
 
 .banner img{
@@ -254,9 +282,61 @@ footer .texto-footer{
 
 #produzido{
   text-align: center;
+  max-width: 100%;
   background-color: rgb(194, 193, 193);
   margin: 0px;
 }
 #produzido h3{
   margin: 0px;
 }
+
+#produtos-principal-index{
+  display: flex;
+}
+
+#produtos2{
+  display: flex;
+  align-content: flex-end;
+  flex-wrap: wrap;
+}
+#valores2{
+  display: flex;
+  align-items: center;
+  margin-top: -34px;
+}
+
+.button {
+  border-top: 1px solid gray;
+   background: gray;
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 15px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   width: 133px;    
+   }
+.button:hover {
+   border-top-color: #4d585f;
+   background: #515355;
+   color: #ccc;
+   }
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+   #conteudo-principal-brand{
+     DISPLAY: FLEX;
+ 
+ }
+ #nome-produto2{
+  margin-top: -14px;
+  margin-bottom: -5px;
+ }

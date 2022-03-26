@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>brand-admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/brand-admin.css">
+</head>
+
+<body>
+    <%- include("../partials/header") %>
+    <main>        
+
+
+      <table >
+        <tr border ='1'>
+            <th>ID</th>
+            <th >nome</th>
+            <th >descricao</th>
+            <th >valor</th>
+            <th >acos</th>
+        </tr>
+    
+
+        <% roupas.forEach(function (roupa){ %> 
+          <tr>
+            <td><%= roupa.id  %> </td>
+            <td><%= roupa.nome  %>  </td>
+            <td><%= roupa.descricao  %></td>
+            <td><%= roupa.valor  %></td>
+            <td>
+              <a href="/admin/brand/<%= roupa.id %>/editar">Editar</a>
+              <a href="/admin/brand/<%= roupa.id %>/remover">Remover</a>
+            </td>
+          </tr>
+        </table>
+
+      <% }) %>  
+    </div>
+      </table>          
+                
+          <a href="/admin/brand/criar">Novo serviço</a>
+      </section>
+  </main>
+
+    <%- include("../partials/footer") %>
+</body>
+
+</html>
