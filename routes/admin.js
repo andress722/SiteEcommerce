@@ -3,7 +3,7 @@ const router = express.Router()
 const multer = require('multer')
 //const ModelControllerBrand = require('../models/brand')
 const res = require('express/lib/response');
-const { Usuario, Produto} = require('../models')
+const { Usuario, Produto, Categoria} = require('../models')
 
 
 
@@ -28,26 +28,9 @@ router.use(verificaLogin)
 
 
 
-//--- CONTROLE ADMIN --- //
-
-router.get('/', function(req,res){
-    res.render('controle-admin')
-})
 
 
-//--- BRAND --- //
-
-/*router.get('/brand', function(req,res){
-    const obj = {
-        roupas: ModelControllerBrand.listaProdutos()
-    }
-    res.render('brand/brand-admin', obj)
-})
-
-router.get('/brand/criar', function(req,res){
-    res.render('brand/form-brand')
-})
-
+//validação de Cadastro de Produtos//
 
 function validaCadastrodeProduto(req, res, next){
 
@@ -73,6 +56,148 @@ function validaCadastrodeProduto(req, res, next){
     }
     next()
 }
+
+
+//--- CONTROLE ADMIN --- //
+
+router.get('/', function(req,res){
+    res.render('controle-admin')
+})
+
+
+router.get('/produtos', async function(req, res){
+    
+    const obj = {
+        calca: await Produto.findAll()
+    }
+    res.render('produtos/admin-produtos', obj)
+})
+
+router.get('/produtos/criar', async function(req,res){
+
+    res.render('produtos/form-produtos',)
+})
+
+router.post('/produtos/criar', uploads.single('imagemServico'), async function(req,res){
+
+    req.body.imagem =  req.file.filename
+    
+    await Produto.create(req.body) 
+
+    res.render('enviado')
+
+})
+
+router.get('/produtos/:idProduto/remover', async function(req,res){
+    console.log('removendo produto')
+
+    const idProduto = req.params.idProduto
+    await Produto.destroy({
+        where: {
+            id: idProduto
+        }
+         
+    })
+
+    res.redirect('/admin/produtos')
+})  
+
+
+router.get('/produtos/:idProduto/edit', async function(req,res){
+
+    const idProduto = req.params.idProduto
+    const calcas = await Produto.findByPk(idProduto, {
+        include: {
+        model: Categoria,
+        as: 'categorias'
+        }
+    })
+    console.log(calcas)
+    if(!calcas){
+        res.render('form-servico-erro', {mensagemErro: 'Produto não existe'})
+    }
+
+        const obj = {
+        calcas: calcas
+    }
+    res.render('produtos/editar-produto',obj)
+})
+
+
+router.post('/produtos/:idProduto/edit', async function(req,res){
+
+    const idProduto = req.params.idProduto
+
+    await Produto.update(req.body, {
+        where: {
+            id: idProduto
+        }
+         
+    })
+
+    res.redirect('/admin/produtos')
+})
+
+
+
+router.get('/categoria', async function(req,res){
+    const obj = {
+        categorias: await Categoria.findAll()
+      }
+    res.render('categorias/admin-categorias',obj)
+})
+
+
+router.get('/categoria/criar', function(req,res){
+    res.render('categorias/form-categorias')
+})
+
+
+router.post('/categoria/criar', async function(req,res){
+    await Categoria.create(req.body)
+    console.log(req.body)
+    res.redirect('/admin/categoria')
+})
+
+router.get('/categoria/:idCategoria', async function(req,res){
+    const idCategoria = req.params.idCategoria
+    const obj = {
+        categoria: await Categoria.findByPk(idCategoria,{
+            include: {
+                model: Produto,
+                as: 'produtos'
+            }
+        })
+    }
+    res.render('editar-produto', obj)
+})
+
+router.get('/categoria/:idCategoria/edit', async function(req,res){
+    const idCategoria = req.params.idCategoria
+
+    const produto = await Categoria.findByPk(idCategoria )
+    const obj = {
+        produto:produto
+    }
+
+    res.render('categorias/editar-categorias',obj)
+})
+
+//--- BRAND --- //
+
+/*router.get('/brand', function(req,res){
+    const obj = {
+        roupas: ModelControllerBrand.listaProdutos()
+    }
+    res.render('brand/brand-admin', obj)
+})
+
+router.get('/brand/criar', function(req,res){
+    res.render('brand/form-brand')
+})
+
+
+
 
 router.post('/brand/criar', uploads.single('imagemServico'),  validaCadastrodeProduto, function(req,res){
     console.log(req.body)
@@ -172,80 +297,4 @@ router.post('/ti/:idTi/editar', function(req,res){
 
 //--- PRODUTOS/CALÇAS --- //
 
-router.get('/produtos', async function(req, res){
-    
-
-    const obj = {
-        calca: await Produto.findAll()
-    }
-    res.render('produtos/admin-produtos', obj)
-})
-
-router.get('/produtos/criar', async function(req,res){
-    const categorias = await Categorias.findAll()
-
-    res.render('produtos/form-produtos', {categorias: categorias})
-})
-
-router.post('/produtos/criar', uploads.single('imagemServico'), async function(req,res){
-
-    req.body.imagem =  req.file.filename
-    
-    await Produto.create(req.body) 
-
-    res.render('enviado')
-
-})
-
-router.get('/produtos/:idProduto/remover', function(req,res){
-    console.log('removendo produto')
-
-    const idProduto = req.params.idProduto
-
-    modelControllerCalca.removeCalcaViaId(idProduto)
-
-    res.redirect('/admin/produtos')
-})  
-
-
-router.get('/produtos/:idProduto/edit', async function(req,res){
-
-
-    const idProduto = req.params.idProduto
-    const calcas = await Produto.findByPk(idProduto)
-
-        const obj = {
-        calcas: calcas
-    }
-    res.render('produtos/editar-produto',obj)
-})
-
-
-router.post('/produtos/:idProduto/edit', function(req,res){
-
-    const idProduto = req.params.idProduto
-
-    console.log(req.body)
-
-    modelControllerCalca.alteraCalcaViaId(idProduto, req.body)
-
-    res.redirect('/admin/produtos')
-})
-
-router.get('/login', function(req,res){
-    res.render('login')
-  })
-  
-  
-  router.post('/login', function(req,res){
-    const usuarioLogin = modelUsuarios.buscaUsuarioViaEmail(req.body.email)
-    console.log(usuarioLogin)
-    if(usuarioLogin.senha == req.body.senha){
-        req.session.estaLogado = true
-        res.redirect('/admin')
-    }else{
-        res.render('form-servico-erro', { mensagemErro: 'Senha Invalida'})
-    }
-  })
-
-module.exports = router
+module.exports = router 

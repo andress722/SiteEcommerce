@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Esse middleware serve para adicionar os dados do login de forma que esteja acessivel em todos os arquivo EJS
 app.use(function adicionaUserNoRender(req, res, next){
   res.locals.estaLogado = req.session.estaLogado
-  res.locals.nomeUsuario = req.session.nomeUsuario
+  res.locals.usuarioLogado = req.session.usuarioLogado
   next()
 })
 

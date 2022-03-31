@@ -17,15 +17,41 @@ router.get('/contato', function(req,res,next){
   res. render('contato')
 })
 
-router.get('/login', function(req,res,next){
+router.get('/login', function(req,res){
   res.render('login')
 })
 
 
-function middlewareContato(req, res,next){
-  console.log('Rodando middle do /contato')
-  next()
-}
+router.post('/login', async function(req,res){
+  const usuarioLogin = await Usuario.findOne({
+    where: {
+      email: req.body.email
+    }
+  })
+  console.log(usuarioLogin)
+  if(usuarioLogin && usuarioLogin.senha == req.body.senha){
+      
+    req.session.estaLogado = true
+    req.session.usuarioLogado = usuarioLogin
+      
+      res.redirect('/admin')
+
+  }else{
+      res.render('form-servico-erro', { mensagemErro: 'Senha Invalida'})
+  }
+})
+
+router.get('/cadastro', function(req,res){
+  res.render('form-usuario')
+})
+
+router.post('/cadastro', async function(req,res){
+
+
+  await Usuario.create(req.body)
+
+  res.redirect('/login')
+})
 
 
 module.exports = router;
