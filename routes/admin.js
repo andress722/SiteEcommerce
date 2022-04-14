@@ -144,6 +144,7 @@ router.post('/produtos/:idProduto/edit', async function(req,res){
 
 
 
+
 router.get('/categoria', async function(req,res){
     const obj = {
         categorias: await Categoria.findAll()
@@ -208,6 +209,7 @@ router.get('/favoritos', async function(req,res){
             as: 'favoritos'
         }
     })
+    console.log(usuario.favoritos)
     console.log(usuario)
     res.render('favoritos', {
         favoritos: usuario.favoritos
@@ -231,9 +233,10 @@ router.get('/favoritos', async function(req,res){
  })
 
 
-  router.get('/favoritos/:idProdutos/remover', async function(req, res){
+  router.get('/favoritos/:idProdutos/:idUsuario/remover', async function(req, res){
+      console.log(req.params)
       const idProdutos = req.params.idProdutos
-      const idUsuario = req.params.usuarioLogado.id
+      const idUsuario = req.params.idUsuario
 
       await ProdutoFavoritoUsuario.destroy({
           produto_id: idProdutos,
