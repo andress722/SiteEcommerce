@@ -20,6 +20,7 @@
       <table class="table" >
         <tbody>
         <tr class="table-active">
+            <th>categoria</th>
             <th>ID</th>
             <th >nome</th>
             <th >descricao</th>
@@ -29,6 +30,7 @@
         
             <% calca.forEach(function (calcas){ %> 
             <tr>
+              <td><%= calcas.categoria_id %> </td>
               <td><%= calcas.id  %> </td>
               <td><%= calcas.nome  %>  </td>
               <td><%= calcas.descricao  %></td>
@@ -36,10 +38,15 @@
               <td>
                 <a href="/admin/produtos/<%= calcas.id %>/edit">Editar</a>
                 <a href="/admin/produtos/<%= calcas.id %>/remover">Remover</a>
+
+                <% if(calcas) { %> 
+                <a href="/admin/produtos/<%= calcas.id %>/favoritar" style="text-decoration: none;">⭐</a>
+                
               </td>
             </tr>
           </div>
-        <% }) %>
+        <% } 
+      }) %>
         </tbody>
       </table> 
           

@@ -22,9 +22,7 @@
         <tr class="table-active">
             <th>ID</th>
             <th >nome</th>
-            <th >descricao</th>
-            <th >valor</th>
-            <th >acos</th>
+            <th >açoes</th>
         </tr>
         
             <% categorias.forEach(function(produto){ %> 
@@ -35,6 +33,7 @@
               <td>
                 <a href="/admin/categoria/<%= produto.id %>/edit">Editar</a>
                 <a href="/admin/categoria/<%= produto.id %>/remover">Remover</a>
+                <a href="/admin/categoria/<%= produto.id %>">ver categoria</a>
               </td>
             </tr>
           </div>

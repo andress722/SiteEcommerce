@@ -3,7 +3,7 @@ const router = express.Router()
 const multer = require('multer')
 //const ModelControllerBrand = require('../models/brand')
 const res = require('express/lib/response');
-const { Usuario, Produto, Categoria} = require('../models')
+const { Usuario, Produto, Categoria, ProdutoFavoritoUsuario} = require('../models')
 
 
 
@@ -74,13 +74,16 @@ router.get('/produtos', async function(req, res){
 })
 
 router.get('/produtos/criar', async function(req,res){
+    const obj = {
+        categorias: await Categoria.findAll()
+    }
 
-    res.render('produtos/form-produtos',)
+    res.render('produtos/form-produtos',obj)
 })
 
 router.post('/produtos/criar', uploads.single('imagemServico'), async function(req,res){
 
-    req.body.imagem =  req.file.filename
+    req.body.imagem =  req?.file?.filename
     
     await Produto.create(req.body) 
 
@@ -106,19 +109,20 @@ router.get('/produtos/:idProduto/remover', async function(req,res){
 router.get('/produtos/:idProduto/edit', async function(req,res){
 
     const idProduto = req.params.idProduto
-    const calcas = await Produto.findByPk(idProduto, {
-        include: {
+    const produto = await Produto.findByPk(idProduto, {
+      include: {
         model: Categoria,
-        as: 'categorias'
-        }
+        as: 'categoria'
+      }
     })
-    console.log(calcas)
-    if(!calcas){
-        res.render('form-servico-erro', {mensagemErro: 'Produto não existe'})
+  
+    if(!produto) {
+      res.render('erro-validacao', { mensagemErro: 'Produto não existe' })
+      return
     }
-
-        const obj = {
-        calcas: calcas
+  
+    const obj = {
+      produto: produto
     }
     res.render('produtos/editar-produto',obj)
 })
@@ -148,7 +152,8 @@ router.get('/categoria', async function(req,res){
 })
 
 
-router.get('/categoria/criar', function(req,res){
+router.get('/categoria/criar', async function(req,res){
+
     res.render('categorias/form-categorias')
 })
 
@@ -162,14 +167,14 @@ router.post('/categoria/criar', async function(req,res){
 router.get('/categoria/:idCategoria', async function(req,res){
     const idCategoria = req.params.idCategoria
     const obj = {
-        categoria: await Categoria.findByPk(idCategoria,{
-            include: {
-                model: Produto,
-                as: 'produtos'
-            }
-        })
+      categorias: await Categoria.findByPk(idCategoria, {
+        include: {
+          model: Produto,
+          as: 'produtos'
+        }
+      })
     }
-    res.render('editar-produto', obj)
+    res.render('categorias/ver-categoria', obj)
 })
 
 router.get('/categoria/:idCategoria/edit', async function(req,res){
@@ -183,6 +188,60 @@ router.get('/categoria/:idCategoria/edit', async function(req,res){
     res.render('categorias/editar-categorias',obj)
 })
 
+router.get('/categoria/:idCategoria/remover', async function(req,res){
+    const idCategoria = req.params.idCategoria
+    await Categoria.destroy({
+        where: {
+            id: idCategoria
+        }
+         
+    })
+    res.redirect('/admin/categoria')
+})
+
+
+router.get('/favoritos', async function(req,res){
+
+    const usuario = await Usuario.findByPk(req.session.usuarioLogado.id, {
+        include:{
+            model: Produto,
+            as: 'favoritos'
+        }
+    })
+    console.log(usuario)
+    res.render('favoritos', {
+        favoritos: usuario.favoritos
+    })
+  })
+
+  router.get('/produtos/:idProdutos/favoritar', async function(req, res){
+      const idProdutos = req.params.idProdutos
+      const idUsuario = req.session.usuarioLogado.id
+      try {
+        await ProdutoFavoritoUsuario.create({
+            produto_id: idProdutos,
+            usuario_id: idUsuario
+        })
+        res.redirect('/admin/favoritos')
+      } catch (error) {
+        console.log(error) 
+        res.redirect('/admin/favoritos')
+      }  
+
+ })
+
+
+  router.get('/favoritos/:idProdutos/remover', async function(req, res){
+      const idProdutos = req.params.idProdutos
+      const idUsuario = req.params.usuarioLogado.id
+
+      await ProdutoFavoritoUsuario.destroy({
+          produto_id: idProdutos,
+          usuario_id: idUsuario
+      })
+
+      res.redirect('/admin/favoritos')
+  })
 //--- BRAND --- //
 
 /*router.get('/brand', function(req,res){

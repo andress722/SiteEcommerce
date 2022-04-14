@@ -30,6 +30,12 @@ module.exports = (connection, DataTypes) => {
             as: 'categoria'
         })
 
+        model.belongsToMany(models.Usuario, {
+            through: models.ProdutoFavoritoUsuario,
+            foreignKey: 'produto_id',
+            as: 'favoritador'
+        })
+
         model.sync({alter:true})
     }
 
