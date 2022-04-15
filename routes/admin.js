@@ -109,22 +109,35 @@ router.get('/produtos/:idProduto/remover', async function(req,res){
 router.get('/produtos/:idProduto/edit', async function(req,res){
 
     const idProduto = req.params.idProduto
-    const produto = await Produto.findByPk(idProduto, {
-      include: {
-        model: Categoria,
-        as: 'categoria'
-      }
-    })
-  
-    if(!produto) {
-      res.render('erro-validacao', { mensagemErro: 'Produto não existe' })
-      return
+  const produto = await Produto.findByPk(idProduto, {
+    include: {
+      model: Categoria,
+      as: 'categoria'
     }
-  
-    const obj = {
-      produto: produto
+  })
+
+  if(!produto) {
+    res.render('erro-validacao', { mensagemErro: 'Produto não existe' })
+    return
+  }
+
+  const obj = {
+    produto: produto
+  }
+
+  res.render('produtos/editar-produto', obj)
+})
+
+router.post('/produtos/:idProduto/editar', async function(req, res) {
+
+  const idProduto = req.params.idProduto
+
+  await Produto.update(req.body, {
+    where: {
+      id: idProduto
     }
-    res.render('produtos/editar-produto',obj)
+  })
+ res.redirect('admin/produtos')
 })
 
 
@@ -180,13 +193,18 @@ router.get('/categoria/:idCategoria', async function(req,res){
 
 router.get('/categoria/:idCategoria/edit', async function(req,res){
     const idCategoria = req.params.idCategoria
-
-    const produto = await Categoria.findByPk(idCategoria )
-    const obj = {
-        produto:produto
-    }
+    try{
+        const produto = await Categoria.findByPk(idCategoria )
+        const obj = {
+            produto:produto
+         }
 
     res.render('categorias/editar-categorias',obj)
+
+    }catch (error){
+        res.render('categorias/editar-categorias',obj)
+    }
+    
 })
 
 router.get('/categoria/:idCategoria/remover', async function(req,res){
@@ -212,7 +230,8 @@ router.get('/favoritos', async function(req,res){
     console.log(usuario.favoritos)
     console.log(usuario)
     res.render('favoritos', {
-        favoritos: usuario.favoritos
+        favoritos: usuario.favoritos,
+        usuario: req.session.usuarioLogado.id
     })
   })
 
@@ -233,18 +252,20 @@ router.get('/favoritos', async function(req,res){
  })
 
 
-  router.get('/favoritos/:idProdutos/:idUsuario/remover', async function(req, res){
-      console.log(req.params)
-      const idProdutos = req.params.idProdutos
-      const idUsuario = req.params.idUsuario
+    router.get('/favoritos/:idProdutos/remover', async function(req, res){
+        const idProdutos = req.params.idProdutos
+        const idUsuario = req.session.usuarioLogado.id
+        
+        await ProdutoFavoritoUsuario.destroy({
+            where: {
+                produto_id: idProdutos,
+                usuario_id: idUsuario
+            }
 
-      await ProdutoFavoritoUsuario.destroy({
-          produto_id: idProdutos,
-          usuario_id: idUsuario
-      })
+        })
 
-      res.redirect('/admin/favoritos')
-  })
+        res.redirect('/admin/favoritos')
+    })
 //--- BRAND --- //
 
 /*router.get('/brand', function(req,res){
