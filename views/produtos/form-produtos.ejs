@@ -20,10 +20,10 @@
     <%- include("../partials/header") %>
         <section class="contato">
             <div class="container">
-                <h1>Cadastro de serviço</h1>
+                <h1>Cadastro de produtos</h1>
 
                 <div class="align-row">
-                    <form method="POST" enctype="multipart/form-data">
+                    <form  class="formulario-principal" method="POST" enctype="multipart/form-data">
 
                         <label for="imagemServico">Envie uma imagem</label>
                         <input type="file" name="imagemServico">
@@ -35,6 +35,9 @@
                                 <% }) %> 
                         </select>
 
+                        <label for="usuario_id">Usuario</label>
+                        <input type="text" id="usuario_id" name="usuario_id" value="<%= usuario.id %>" readonly=“true”>
+
                         <label for="nome">nome</label>
                         <input type="text" id="nome" name="nome" >
 
@@ -43,12 +46,13 @@
 
                         <label for="valor">valor</label>
                         <input type="number" id="valor" name="valor" >
-                        <button type="submit" class="btn btn-primary">enviar</button>
+                        <hr style="width: 96%;">
+                        <button type="submit" style="min-width: 14% ; max-width: 17%;" class="btn btn-primary">enviar</button>
                     </form>
                 </div>
             </div>
         </section>
-    
+    <hr>    
     <%- include("../partials/footer") %>
 </body>
 

@@ -22,36 +22,45 @@
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Pagina Inicial</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/admin/favoritos">favoritos</a>
-                      </li>
+                    
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           produtos
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Calças</a></li>
+                          <li><a class="dropdown-item" href="#">Camisas</a></li>
                           <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          <li><a class="dropdown-item" href="#">Favoritos</a></li>
                         </ul>
                       </li>
                       
+                    </div>
                     </ul>
-                    <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                      </svg></button>
-                    </form>
-                    <ul>
-                    <% if(estaLogado) { %>
-                      <li><a href="/admin"><%= usuarioLogado.nome %></a></li>
-                      <li><a href="/logout">Logout</a></li>
-                    <% } else { %>
-                      <li><a href="/login">Login</a></li>
-                    <% } %>
-                  </ul>
+
+                    
+
+                   <div class="organizar-search-login">
+                    <div id="carrinho-logo">
+                      <a href="nav-link active"><img class="carrinho" src="/imagens/carrinho.jpg"  alt=""></a>
+                    </div>
+                    <form class="d-flex-search">
+                      <div id="search">
+                        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg></button>
+                    </div>
+                    </form>                  
+                      <ul id="ul-login">
+                      <% if(estaLogado) { %>
+                        <li id="logado" ><a class="li-login" href="/admin"><img src="/imagens/logado.png" style="width: 30px;" alt=""><%= usuarioLogado.nome %></a></li>
+                        <li id="logout"><a class="li-login" href="/logout">Logout</a></li>
+                      <% } else { %>
+                        <li id="logado"><a class="li-login" href="/login"><img src="/imagens/login.jpg" style="width: 30px;" alt="">Login</a></li>
+                      <% } %>
+                    </ul>
+                </div> 
                   </div>
                 </div>
               </nav>

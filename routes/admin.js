@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const multer = require('multer')
-//const ModelControllerBrand = require('../models/brand')
 const res = require('express/lib/response');
 const { Usuario, Produto, Categoria, ProdutoFavoritoUsuario} = require('../models')
+const {check} = require('express-validator')
 
 
 
@@ -58,24 +58,39 @@ function validaCadastrodeProduto(req, res, next){
 }
 
 
-//--- CONTROLE ADMIN --- //
+//--- CONTROLE ADMIN PRODUTO --- //
 
 router.get('/', function(req,res){
-    res.render('controle-admin')
+    res.render('produtos/controle-admin')
 })
 
 
 router.get('/produtos', async function(req, res){
-    
-    const obj = {
-        calca: await Produto.findAll()
+    const usuario = req.session.usuarioLogado.id
+
+
+
+    try{
+
+        const calca = await Produto.findAll()
+
+    let obj = {
+        calca: calca,
+        usuario: await Usuario.findByPk(usuario),
+        favorito: await ProdutoFavoritoUsuario.findAll()
     }
     res.render('produtos/admin-produtos', obj)
+}catch (error){
+    res.render('produtos/admin-produtos', obj)
+}
 })
 
 router.get('/produtos/criar', async function(req,res){
+
+    const usuario = req.session.usuarioLogado.id
     const obj = {
-        categorias: await Categoria.findAll()
+        categorias: await Categoria.findAll(),
+        usuario: await Usuario.findByPk(usuario)
     }
 
     res.render('produtos/form-produtos',obj)
@@ -109,6 +124,7 @@ router.get('/produtos/:idProduto/remover', async function(req,res){
 router.get('/produtos/:idProduto/edit', async function(req,res){
 
     const idProduto = req.params.idProduto
+    const usuario = req.session.usuarioLogado.id
   const produto = await Produto.findByPk(idProduto, {
     include: {
       model: Categoria,
@@ -122,24 +138,12 @@ router.get('/produtos/:idProduto/edit', async function(req,res){
   }
 
   const obj = {
-    produto: produto
+    produto: produto,
+    usuario: await Usuario.findByPk(usuario)
   }
 
   res.render('produtos/editar-produto', obj)
 })
-
-router.post('/produtos/:idProduto/editar', async function(req, res) {
-
-  const idProduto = req.params.idProduto
-
-  await Produto.update(req.body, {
-    where: {
-      id: idProduto
-    }
-  })
- res.redirect('admin/produtos')
-})
-
 
 router.post('/produtos/:idProduto/edit', async function(req,res){
 
@@ -179,6 +183,7 @@ router.post('/categoria/criar', async function(req,res){
 })
 
 router.get('/categoria/:idCategoria', async function(req,res){
+    console.log('chamaou :idCategoria')
     const idCategoria = req.params.idCategoria
     const obj = {
       categorias: await Categoria.findByPk(idCategoria, {
@@ -192,19 +197,31 @@ router.get('/categoria/:idCategoria', async function(req,res){
 })
 
 router.get('/categoria/:idCategoria/edit', async function(req,res){
+    console.log('chamaou :idCategoria/edit')
     const idCategoria = req.params.idCategoria
     try{
-        const produto = await Categoria.findByPk(idCategoria )
+        const produto = await Categoria.findByPk(idCategoria)
         const obj = {
             produto:produto
          }
 
-    res.render('categorias/editar-categorias',obj)
+        res.render('categorias/editar-categorias',obj)
 
     }catch (error){
         res.render('categorias/editar-categorias',obj)
     }
     
+})
+
+router.post('/categoria/:idCategoria/edit', async function(req,res){
+    const idCategoria = req.params.idCategoria
+    console.log('chhamou edição')
+    await Categoria.update(req.body, {
+        where: {
+            id: idCategoria
+        }
+    })
+    res.redirect('/admin/categoria')
 })
 
 router.get('/categoria/:idCategoria/remover', async function(req,res){
@@ -227,8 +244,6 @@ router.get('/favoritos', async function(req,res){
             as: 'favoritos'
         }
     })
-    console.log(usuario.favoritos)
-    console.log(usuario)
     res.render('favoritos', {
         favoritos: usuario.favoritos,
         usuario: req.session.usuarioLogado.id
@@ -252,20 +267,20 @@ router.get('/favoritos', async function(req,res){
  })
 
 
-    router.get('/favoritos/:idProdutos/remover', async function(req, res){
-        const idProdutos = req.params.idProdutos
-        const idUsuario = req.session.usuarioLogado.id
-        
-        await ProdutoFavoritoUsuario.destroy({
-            where: {
-                produto_id: idProdutos,
-                usuario_id: idUsuario
-            }
+router.get('/favoritos/:idProdutos/remover', async function(req, res){
+    const idProdutos = req.params.idProdutos
+    const idUsuario = req.session.usuarioLogado.id
+    
+    await ProdutoFavoritoUsuario.destroy({
+        where: {
+            produto_id: idProdutos,
+            usuario_id: idUsuario
+        }
 
-        })
-
-        res.redirect('/admin/favoritos')
     })
+
+    res.redirect('/admin/favoritos')
+})
 //--- BRAND --- //
 
 /*router.get('/brand', function(req,res){

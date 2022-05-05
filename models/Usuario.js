@@ -28,6 +28,16 @@ module.exports = (connection, DataTypes) => {
           as: 'favoritos'
         })
 
+       
+
+        model.belongsTo(models.SuperUsuario, {
+          through: models.SuperUsuario,
+          foreignKey: 's_usuario_id',
+          as: 'superusuarios'
+        })
+        
+        
+
         model.sync({alter:true})
 
       }

@@ -4,6 +4,7 @@ var router = express.Router();
 const bodyParser = require('body-parser')
 const { Usuario, Produto} = require('../models')
 const axios = require('axios').default
+const {check} = require('express-validator')
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -13,9 +14,36 @@ router.get('/', async function(req, res, next) {
   res.render('index', obj);
 });
 
+let validaRegistro = [
+  check('nome')
+      .notEmpty().withMessage('Deve preencher este campo').bail()
+]
 
-router.get('/contato', function(req,res,next){
-  res. render('contato')
+
+router.get('/contato', async function(req,res){
+  
+
+  try{
+    const usuario = req.session.usuarioLogado.id
+  const obj = {
+    usuario: await Usuario.findByPk(usuario),
+  }
+
+  res. render('contato', obj)
+  }catch(error){
+    res. render('contato')
+  }
+})
+
+router.get('/produtos', async function(req,res){
+  try {      
+      const obj = {
+        produtos: await Produto.findAll()
+    }
+    res.render('produtos', obj)
+  } catch (error) {
+    res.render('produtos')
+  }
 })
 
 router.get('/login', function(req,res){
@@ -32,7 +60,6 @@ router.post('/login', async function(req,res){
         email: req.body.email
       }
     })
-    console.log(usuarioLogin)
     if(usuarioLogin && usuarioLogin.senha == req.body.senha){
         
       req.session.estaLogado = true
@@ -52,12 +79,18 @@ router.get('/cadastro', function(req,res){
   res.render('form-usuario')
 })
 
-router.post('/cadastro', async function(req,res){
+router.post('/cadastro', validaRegistro, async function(req,res){
 
 
-  await Usuario.create(req.body)
+    const emailReq = req.body.email
 
-  res.redirect('/login')
+    const email = await Usuario.findOne({ where: { email: emailReq } });
+    if (!email) {
+      await Usuario.create(req.body)
+      res.redirect('/login')
+  } else {
+      res.render('form-servico-erro', {mensagemErro: 'Email já cadastrado'})
+}
 })
 
 
