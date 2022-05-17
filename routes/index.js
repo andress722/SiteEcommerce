@@ -46,6 +46,15 @@ router.get('/produtos', async function(req,res){
   }
 })
 
+router.get('/produtos/:idProduto', async function(req,res){
+  const idProduto = req.params.idProduto
+  const obj = {
+      produtos: await Produto.findByPk(idProduto)
+  }
+  res.render('visualizar-produto', obj)
+})
+
+
 router.get('/login', function(req,res){
   res.render('login')
 })
@@ -92,7 +101,6 @@ router.post('/cadastro', validaRegistro, async function(req,res){
       res.render('form-servico-erro', {mensagemErro: 'Email já cadastrado'})
 }
 })
-
 
 router.get('/logout', function(req, res, next) {
   req.session.destroy()

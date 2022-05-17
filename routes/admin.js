@@ -29,39 +29,20 @@ router.use(verificaLogin)
 
 
 
-
 //validação de Cadastro de Produtos//
 
-function validaCadastrodeProduto(req, res, next){
 
-    if (!req.body.nome || !req.body.descricao || !req.body.valor ){
-        res.render('form-servico-erro', { mensagemErro: 'Preencha todos os campos'})
-        return
-    }
-
-    if (req.body.nome.length <= 3){
-        res.render('form-servico-erro', { mensagemErro: 'Campo nome tem que ser maior do que 3'})
-        return
-    }
-
-
-    if (req.body.descricao.length <= 10){
-        res.render('form-servico-erro', { mensagemErro: 'Descrição deve ter mais de 10 caracteres'})
-        return
-    }
-
-    if (isNaN(req.body.valor)){
-        res.render('form-servico-erro', { mensagemErro: 'Valor deve ser um numero'})
-        return
-    }
-    next()
-}
 
 
 //--- CONTROLE ADMIN PRODUTO --- //
 
-router.get('/', function(req,res){
-    res.render('produtos/controle-admin')
+router.get('/', async function(req,res){
+    const usuario = req.session.usuarioLogado.id
+    
+    const obj = {
+        usuario: await Usuario.findByPk(usuario)
+    }
+    res.render('produtos/admin', obj)
 })
 
 
@@ -139,6 +120,7 @@ router.get('/produtos/:idProduto/edit', async function(req,res){
 
   const obj = {
     produto: produto,
+    categorias: await Categoria.findAll(),
     usuario: await Usuario.findByPk(usuario)
   }
 
@@ -158,7 +140,6 @@ router.post('/produtos/:idProduto/edit', async function(req,res){
 
     res.redirect('/admin/produtos')
 })
-
 
 
 

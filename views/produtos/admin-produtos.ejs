@@ -26,6 +26,7 @@
             <th >descricao</th>
             <th >valor</th>
             <th >acos</th>
+            <th>favorito</th>
         </tr>
           
             <% calca.forEach(function (calcas){ %>
@@ -40,24 +41,24 @@
               <td>
                 <a href="/admin/produtos/<%= calcas.id %>/edit">Editar</a>
                 <a href="/admin/produtos/<%= calcas.id %>/remover">Remover</a>
+                <a href="/produtos/<%= calcas.id %>">Ver produto</a>
 
-              <% if(!calca.id == favorito.produto_id) { %> 
-                <a class='favorito' href="/admin/produtos/<%= calcas.id %>/favoritar" style="text-decoration: none;">⭐</a>
-              <% }else{ %>
-                <a class='favorito' href="/admin/produtos/<%= calcas.id %>/favoritar" style="text-decoration: none;"></a>
-              <% } %>
-              <% } %> 
+               
+                <td><a class='favorito' href="/admin/produtos/<%= calcas.id %>/favoritar" style="text-decoration: none;">⭐</a></td>
+              
+              <% }}) %> 
               
               </td>
             </tr>
           </div>
-          <% })   %>
+      
         </tbody>
       </table> 
         
       </section>
  
-  <a href="/admin/produtos/criar">Novo serviço</a>
+  <a href="/admin/produtos/criar">Novo produto</a>
+  <a href="/admin/categoria/criar">Nova categoria</a>
 </main>
     <%- include("../partials/footer") %>
 </body>
