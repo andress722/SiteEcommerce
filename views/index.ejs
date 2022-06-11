@@ -24,9 +24,27 @@
   <main>
     <section>
       <section class="produtos">
-        <div class="container">
-            <h2>Produtos em destaque</h2>
+        <div class="container-fluid w-100 p-0 bg-dark d-flex justify-content-center" style="height:100px; border-radius: 0px 0px 10px 10px;">
+          <div class="w-100 p-3">
+            <ul class="ul-categorias">  
+              <% categoria.forEach(function(categorias){ %> 
+                <li >
+                  <div class="categoria-bar">
+                    <img style="width: 55px; border: solid #eee; border-radius: 41px;" 
+                         src="/uploads/<%= categorias.imagem %> " alt="">
+                    
+                        <p><%= categorias.nome %> </p>
+                  </div>
+                  
+                </li>
+              <% }) %> 
+            </ul>
+          </div>
+        </div>
+        <div id="section-produtos" class="container">
             <div class="items">
+
+              
 
               
               <% produtos.forEach(function(produto) { %>
@@ -61,7 +79,8 @@
         </div>
     </section>
   </main>
-
-        <%- include("./partials/footer")%>
+    
+    <%- include("./partials/footer")%>
   </body>
+  
 </html>

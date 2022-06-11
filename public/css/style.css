@@ -106,7 +106,7 @@ main{
 .descricao{
   display: flex;
   /* margin-left: 43px; */
-  margin-top: -12px;
+  margin-top: 12px;
   flex-direction: column;
   align-items: baseline;
 }
@@ -115,13 +115,12 @@ header #menuzinho{
   max-width: auto;
   width: 100%;
   Height: 24px;
-  background-color: black;
 }
 
 header .texto-menu{
   Width: 159px;
   Height: 13px;
-  Top: 6px;
+
   Left: 120px;
   color:white
 }
@@ -129,7 +128,7 @@ header .texto-menu{
 header .texto-menu ul{
     margin: 0;
     display: flex;
-
+    margin-top: -5px;
     list-style: none;
     
 }
@@ -137,7 +136,7 @@ header .texto-menu ul{
 header .texto-menu li{
   justify-content: space-between;
   margin-right: 8vh;
-  Width: 37px;
+  Width: 55px;
   Height:  13px
 }
 
@@ -157,9 +156,6 @@ header .texto-menu li{
   min-height: 100px;
 }
 
-.section.produtos {
-  background-color: #E5E5E5;
-}
 
 .botao-compra{
   display: flex;
@@ -170,12 +166,55 @@ section.produtos .container {
   flex-direction: column;
 }
 
+#categoria-grade{
+  background-color: black;
+  height: 120px;
+  margin-bottom: 30px;  
+  color: white;
+  display: flex;
+}
+
+.categorias-produtos{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ul-categorias{
+ 
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none
+
+}
+.categorias-produtos li{
+  justify-content: space-around;
+  display: flex;
+}
+
 section.produtos .items {
   width: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  margin-top: 40px;
+  margin-left: -20px;
 }
+
+.conteudo{
+  display: flex;
+}
+.conteudo-descricao{
+  margin: 0px;
+}
+
+.categoria-bar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 
 section.produtos .items .thumb {
@@ -279,8 +318,8 @@ section.produtos .items .thumb {
 }
 
 #produto1{
-  width: 180px;;
-  height: 150px;
+  width: 200px;
+  height: 200px
 }
 
 #produto1-detalhe{
@@ -374,7 +413,11 @@ width: 95%;
 .formulario-principal{
   display: flex;
   flex-direction: column;
+
 }
+
+
+
 
 footer{
   background-color: #0d0d0e;

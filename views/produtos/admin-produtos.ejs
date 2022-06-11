@@ -15,8 +15,6 @@
 <body>
     <%- include("../partials/header") %>
     <main>        
-
-
       <table class="table" >
         <tbody>
         <tr class="table-active">
@@ -39,12 +37,12 @@
               <td><%= calcas.valor  %></td>
                
               <td>
-                <a href="/admin/produtos/<%= calcas.id %>/edit">Editar</a>
-                <a href="/admin/produtos/<%= calcas.id %>/remover">Remover</a>
-                <a href="/produtos/<%= calcas.id %>">Ver produto</a>
+                <a href="/superadmin/produtos/<%= calcas.id %>/edit">Editar</a>
+                <a href="/superadmin/produtos/<%= calcas.id %>/remover">Remover</a>
+                <a href="/superadmin/produtos/<%= calcas.id %>">Ver produto</a>
 
                
-                <td><a class='favorito' href="/admin/produtos/<%= calcas.id %>/favoritar" style="text-decoration: none;">⭐</a></td>
+                <td><a class='favorito' href="/superadmin/produtos/<%= calcas.id %>/favoritar" style="text-decoration: none;">⭐</a></td>
               
               <% }}) %> 
               
@@ -57,8 +55,10 @@
         
       </section>
  
-  <a href="/admin/produtos/criar">Novo produto</a>
-  <a href="/admin/categoria/criar">Nova categoria</a>
+  <a href="/superadmin/produtos/criar">Novo produto</a>
+  <a href="/superadmin/categorias/criar">Nova categoria</a>
+
+      
   
 </main>
     <%- include("../partials/footer") %>

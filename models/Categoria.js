@@ -5,7 +5,10 @@ module.exports = (connection, DataTypes) => {
             primaryKey: true,
               autoIncrement: true
         },
-        nome: {
+            nome: {
+            type: DataTypes.STRING(100)
+        },
+            imagem:{
             type: DataTypes.STRING(100)
         }
     }, {

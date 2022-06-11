@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser')
 var logger = require('morgan');
 var session = require('express-session')
+const passport = require('passport')
+
+
 
 
 var app = express();
@@ -14,11 +17,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({
-  secret: '102030',
+  secret: '1212',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }))
 
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(bodyParser.urlencoded({extended:true}))
 
 
@@ -37,9 +42,8 @@ app.use(function adicionaUserNoRender(req, res, next){
 })
 
 
-app.use('/', require('./routes/index'));
-app.use('/admin', require('./routes/admin'))
-app.use('/api', require('./routes/api'))
+app.use('/', require('./routes/usuario'));
+app.use('/superadmin', require('./routes/superadmin'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -9,7 +9,14 @@ module.exports = (connection, DataTypes) => {
         usuario_id:  DataTypes.INTEGER
         
     })
-        model.sync({ alter:true })
-        
+        model.associate = models => {
+ 
+    
+    
+            
+           
+            model.sync({alter:true})
+        }
+    
         return model
-}
+    }

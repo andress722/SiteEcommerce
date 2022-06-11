@@ -9,6 +9,9 @@ module.exports = (connection, DataTypes) => {
         nome: {
           type: DataTypes.STRING(100)
         },
+        superusuario: {
+          type: DataTypes.STRING(100)
+        },
         email: {
           type: DataTypes.STRING(100)
         },
