@@ -5,7 +5,7 @@ module.exports = (connection, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        status:DataTypes.STRING,
+            status:DataTypes.STRING,
             fk_usuario: DataTypes.INTEGER
     },
         {   timestamp: false,
@@ -14,7 +14,7 @@ module.exports = (connection, DataTypes) => {
 
         model.associate = models => {
             model.belongsToMany(models.Produto, {
-                throught: models.ItemPedido,
+                through: models.ItemPedido,
                 foreignKey: 'fk_produto',
                 as: 'itensPedido'
             })

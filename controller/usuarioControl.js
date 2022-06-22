@@ -17,15 +17,7 @@ const usuario = {
       return res.render('usuariocomum/admin-comprador', obj)
     },
 
-    carrinho: async(req,res)=> {
-      const usuario = req.session.usuarioLogado.id
-      const produtos = await Produtos.findAll()
-      const obj = {
-        usuario: await UsuarioComum.findByPk(usuario),
-        produtos: produtos
 
-      }
-    },
     index: async function(req, res, next) {
         const obj = {
           produtos: await Produto.findAll(),

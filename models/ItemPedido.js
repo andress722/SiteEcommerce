@@ -9,14 +9,13 @@ module.exports = (connection, DataTypes) => {
             fk_produto: DataTypes.INTEGER
     },
         {   timestamp: false,
-            tableName: 'pedidos'
+            tableName: 'itenspedidos'
         })
 
         model.associate = models => {
-            model.hasMany(models.Produto, {
-                foreignKey: 'categoria_id',
-                as: 'item_pedidos'
-            })
+            
+
+            
             model.sync({alter:true})
         }
         
