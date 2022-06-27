@@ -28,5 +28,9 @@
     "sequelize": "^6.17.0",
     "sequelize-cli": "^6.4.1",
     "uuidv4": "^6.2.12"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/andress722/SiteEcommerce.git",
+  "author": "andress722 <andrecidre@hotmail.com>",
+  "license": "MIT"
 }

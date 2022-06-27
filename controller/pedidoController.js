@@ -47,27 +47,12 @@ const pedidoController = {
       
 
       vercarrinho: async function(req,res){
-            const produtos = await Carrinho.findAll({
-        
-                include: {
-                  model: Produto,
-                  as: 'addcarrinhos'
-                },
-              
-              })
-              const obj = {
-                produtos:produtos
-            }
-            return res.render('carrinho',obj)
+        const listaP = await Produto.findAll()
+  
+            return res.render('carrinho',{listaP})
        },
 
-       carrinho: async function(req,res){
-        const produtos = await Produto.findAll()
-          const obj = {
-            produtos:produtos
-        }
-        return res.render('carrinho-teste',obj)
-   },
+      
     }
 
       module.exports = pedidoController

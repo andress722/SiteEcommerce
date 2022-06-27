@@ -37,7 +37,7 @@
                         <p>vendido por: </p>
                     </div>
                     <div class="container-fluid" style="background-color: rgb(250, 246, 19); Height: 95px">
-                       <button onclick="addCarrinhos('<%= produtos.nome %>', document.getElementById('qtd').value, '<%= produtos.valor %>','<%= produtos.id %>')">Adicionar ao Carrinho</button>
+                       <button onclick="addProduto('<%= produtos.nome %>', document.getElementById('qtd').value, '<%= produtos.valor %>','<%= produtos.id %>')">Adicionar ao Carrinho</button>
                         <div>
                             <p>qtd: </p>
                              <input type="number" value="1" min="1" max="10" id="qtd">
@@ -53,4 +53,5 @@
 </body>
 <script src="/js/apiCepProduto.js"></script>
 <script src="/js/carrinho.js"></script>
+<script src="/js/adi.js"></script>
 </html>

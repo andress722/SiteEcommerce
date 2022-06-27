@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/carrinho.css">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -24,9 +25,15 @@
           </div>
         </div>
         
+      
       </div>
       <div style="height: 300px; text-align: center;" class="container border w-70">
-        <h3>Valor do pedido</h3>
+        
+        <div >
+          <h3>Valor do pedido</h3>
+          <div id="total"></div>
+        </div>
+        
       </div>
 
 
@@ -43,38 +50,149 @@
    
   
 
-        let produtos = localStorage.getItem('produtos')
-        let produtoObj = JSON.parse(produtos)        
-        
+        var product = JSON.parse(localStorage.getItem("produtos"))
         var ul = document.createElement('ul')
-
-        var contador = 0
-        var novo = [{
-          nome: 'Andre'
-        }]
-        function array(){
-          produtoObj.map(e=> novo.push(e))
-
-          console.log('puxou ' + novo)
-        }
-
-        window.addEventListener('load', array)
+        ul.setAttribute('class', 'container')
+        ul.setAttribute('class', 'lista-produtos')
         
-        produtoObj.map((e)=>{
+
+        var comP = product.map(items=> {
+                          items.produto = items.produto
+                          items.quantidade = parseInt(items.quantidade)
+                          items.valor = parseInt(items.valor)
+                          items.id = parseInt(items.id)
+                          return items
+        })
+        function deletar(id){
+          alert('deletar '+id)
+          for(let i=0; i<comP.length; i++ ){
+            if(comP[i].id === id){
+              comP.splice(i,1)
+            }
+          }
+        }
+               
+        comP.map((e)=>{
           console.log(e)   
       
+      
           var li = document.createElement('li')
-          var qtd = document.createTextNode(e.quantidade + 'x ')
-          li.appendChild(qtd)
-          var nome = document.createTextNode(e.nomeProduto + ' ')
+          var btn = document.createElement('button')
+          btn.setAttribute('type', 'button')
+          btn.setAttribute('class', 'btn btn-dark ')
+          btn.setAttribute('id', 'mais')
+          
+
+          
+          btn.onclick = function add(){
+              let checarSeExiste = comP.filter(item => (item.produto === e.produto)).length > 0; // retorna true ou false
+                if(checarSeExiste){
+                  comP.map(items => {                    
+                        if (items.produto === e.produto){
+                          
+                          items.produto = e.produto
+                          items.quantidade = parseInt(e.quantidade)
+                          items.valor = parseInt(e.valor)
+                          items.id = parseInt(e.id)
+                          items.quantidade += 1; // soma o valor existente mais a quantidade repassada na função
+                          
+                          return items;
+                        }
+                   
+                }
+                );
+                localStorage.setItem('produtos',JSON.stringify(comP))
+                document.location.reload(true)
+          }
+        }
+          btn.appendChild(document.createTextNode('+'))
+          li.appendChild(btn)
+          var div = document.createElement('div')
+          var span = document.createElement('span')
+          var qtd = document.createTextNode(' ' + e.quantidade + 'x ')
+          div.appendChild(span)
+          span.appendChild(qtd)
+          li.appendChild(div)
+          div.setAttribute('class','valor')
+
+          var btn = document.createElement('button')
+          btn.setAttribute('type', 'button')
+          btn.setAttribute('class', 'btn btn-dark')
+          btn.setAttribute('id', 'menos')
+          btn.setAttribute('onclick', "deletar("+ e.id+")")
+
+
+          btn.onclick = function remove(){
+              let checarSeExiste = comP.filter(item => (item.produto === e.produto)).length > 0; // retorna true ou false
+                if(checarSeExiste){
+                  comP.map(items => {
+                                       
+                        if (items.produto === e.produto){
+                                                    
+                              items.produto = e.produto
+                              items.quantidade = parseInt(e.quantidade)
+                              items.valor = parseInt(e.valor)
+                              items.id = parseInt(e.id)
+                              items.quantidade -= 1; // subtri o valor existente mais a quantidade repassada na função
+                              if(items.quantidade === 0){
+
+                                deletar(e.id)
+                                    comP.filter((val) => {
+                                        return comP === val;
+                                      });
+                                      console.log('removeu '+e.produto)    
+                                    }
+
+                              return items;
+                                                    
+                        }
+                       
+                }
+                );
+                localStorage.setItem('produtos',JSON.stringify(comP))
+                document.location.reload(true)
+          }
+        }
+          btn.appendChild(document.createTextNode('-'))
+          li.appendChild(btn)   
+          var nome = document.createTextNode(e.produto + ' ')
           li.appendChild(nome)
-          var valor = document.createTextNode('R$ ' + e.valorProduto + ' ')
-          li.appendChild(valor)
+          var valor = document.createTextNode('R$ ' + e.valor + ' ')
+          li.appendChild(valor)          
       
           var element = document.getElementById('lista')
           element.appendChild(li) 
         })
-  
+
+
+   // calcula o total dos recheios
+   function total(){
+    let total = JSON.parse(localStorage.getItem('produtos'))
+    let totalM = total.map(items=> {
+                          items.produto = items.produto
+                          items.quantidade = parseInt(items.quantidade)
+                          items.valor = parseInt(items.valor)
+                          items.id = parseInt(items.id)
+                          return items
+        })
+    let tot = []
+    if(total != null){
+      let somaT = totalM.map(e => {
+        let valor = e.quantidade * e.valor
+        tot.push(valor)
+        tot.reduce((e,t)=> tot = e+t)
+        
+      })
+      let valorT = document.getElementById('total')
+      let h3 = document.createElement('h3')
+      valorT.appendChild(h3)
+      h3.appendChild(document.createTextNode(`R$ ${tot}`))
+      
+    }else{
+      let tot = 0
+    }
+   }
+   window.addEventListener('load', total)
 
    
 
@@ -82,5 +200,3 @@
 </script>
 
 <script src="/js/carrinho.js"></script>
-<script src="/js/adiciona.js"></script>
-
