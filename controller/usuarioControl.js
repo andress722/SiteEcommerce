@@ -80,8 +80,9 @@ const usuario = {
       
       produtoUsuario: async function(req,res){
         try {      
-            const obj = {
-              produtos: await Produto.findAll()
+          const obj = {
+            produtos: await Produto.findAll(),
+            categoria: await Categoria.findAll()
           }
           return res.render('produtos', obj)
         } catch (error) {

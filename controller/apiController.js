@@ -26,6 +26,10 @@ const api = {
         res.send(cep.data)
     },
 
+    carrinho: async function(req, res, next){
+        const carrinho = await axios.get('')
+    }
+
 }
 
 module.exports = api

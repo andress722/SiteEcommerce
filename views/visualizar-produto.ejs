@@ -17,33 +17,49 @@
 
 <body>
     <%- include("./partials/header") %>
-    <main class="container-fluid " style="margin-top: 42px;">
-        <section class="container-fluid d-flex flex-column flex-sm-row">
+    <main class="container-fluid bg-light " style=" height: auto; border-top: solid 2px; ">
+        <section class="container-fluid d-flex justify-content-around flex-wrap bg-light" style="width: 100%;">
             
             
-                <div class="container d-flex flex-column align-items-center" style="background-color: rgb(250, 244, 244); height: 700px;">
-                    <img  style="height: 500px" class="img-fluid w-75 p-3  " src="/uploads/<%= produtos.imagem %>" alt="">
+                <div class="d-flex flex-column align-items-center bg-light " style="width: 375px">
+                    <img class="thumb-visual-principal"  src="/uploads/<%= produtos.imagem %>" alt="">
                     <div class="container d-flex justify-content-between w-50 p-3 " style="margin-left:12px;Height: 130px">
-                        <img    style="  margin:5px;width:80px;margin-right:20px;margin-left:20px;Height: 120px" src="/uploads/<%= produtos.imagem %>" alt="">
-                        <img    style="  margin:5px; margin-right:20px;width:80px;Height: 120px" src="/uploads/<%= produtos.imagem %>" alt="">
-                        <img  style="  margin:5px;width:80px;margin-right:20px;Height: 120px" src="/uploads/<%= produtos.imagem %>" alt="">
-                        <img  style="  margin:5px;width:80px;margin-right:20px;Height: 120px" src="/uploads/<%= produtos.imagem %>" alt="">
+                        <img class="thumb-visual"   src="/uploads/<%= produtos.imagem %>" alt="">
+                        <img class="thumb-visual"  src="/uploads/<%= produtos.imagem %>" alt="">
+                        <img class="thumb-visual"  src="/uploads/<%= produtos.imagem %>" alt="">
+                        
                     </div>
                     
                 </div>
-                <div class="container-fluid d-flex flex-column align-middle" style="background-color: rgb(235, 100, 100); margin-top: 20px;">
-                    <div class="container-fluid d-flex flex-column"  style="background-color: rgb(34, 83, 19); Height: 405px"  >
+                <div class=" d-flex flex-column align-middle bg-light border" style="width: 375px; margin-top: 20px;">
+                    <div class=" d-flex flex-column bg-light"  style=" Height: 405px"  >
                         <h1><%= produtos.nome %> </h1>
                         <p>vendido por: </p>
+                        <div >
+                            <div class="box-valor font-weight-bold">
+                                <span style="font-size: 14px; color: #29B6F6">R$</span>
+                                <span style="font-size: 30px; color: #1565C0;"><%= produtos.valor %> </span>
+                            </div>
+                            <div class='box-promo'>
+                                <span  style="color:#29B6F6; font-size: 20px; ">Promoção</span>
+                                <span>descrição da Promoção</span>
+                            </div>
+                           
+                        </div>
+                        <span style="font-size: 16px; margin-top: 38px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio, vero officia? Quis quidem, explicabo non natus, architecto aliquam id qui.</span>
+                        <div class="border-radius: 12px; d-flex flex-column-reverse" style="margin-left: -10px; margin-top: 10px; Height: 95px">
+                            <button style="Width:169px; Height:46px;" class="btn btn-primary" onclick="addProduto('<%= produtos.nome %>', document.getElementById('qtd').value, '<%= produtos.valor %>','<%= produtos.id %>')">Adicionar ao Carrinho</button>
+                            <div >
+                                <button style=" font-family: Roboto;  Size: 6px; align-items: center; text-align: center; border-radius: 12px;" class="border d-flex flex-column"> 
+                                    QTD: 
+                                 <input style="width: 35px;align-items: center; text-align: center; border: none; " class="bg-light" type="number" value="1" min="1" max="10" id="qtd">
+                                </button>
+                            
+                            </div>  
+                        </div>
+                    
                     </div>
-                    <div class="container-fluid" style="background-color: rgb(250, 246, 19); Height: 95px">
-                       <button onclick="addProduto('<%= produtos.nome %>', document.getElementById('qtd').value, '<%= produtos.valor %>','<%= produtos.id %>')">Adicionar ao Carrinho</button>
-                        <div>
-                            <p>qtd: </p>
-                             <input type="number" value="1" min="1" max="10" id="qtd">
-                        
-                        </div>  
-                    </div>
+                    
                 </div>
                 
             </div>

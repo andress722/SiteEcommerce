@@ -29,19 +29,25 @@
       </div>
       <div style="height: 300px; text-align: center;" class="container border w-70">
         
-        <div >
+        <div  >
           <h3>Valor do pedido</h3>
-          <div id="total"></div>
+          
+
+            <div id="total"></div>
+         
+          
+         
         </div>
         
       </div>
 
 
     </div>
-
+   
     
     
 </main>
+ 
   <%- include("./partials/footer")%>
   
 </body>
@@ -185,7 +191,19 @@
       })
       let valorT = document.getElementById('total')
       let h3 = document.createElement('h3')
+      let a = document.createElement('a')
       valorT.appendChild(h3)
+      let btnP = document.createElement('button')
+       let produto = JSON.parse(localStorage.getItem("produtos"))
+       produto.map(e => {
+        a.appendChild(btnP)
+        btnP.setAttribute('onclick', `${e.id}`)
+        btnP.setAttribute('class', 'btn btn-primary')
+        a.setAttribute('href','/pedidos/detalhes-pedido')
+       })
+      btnP.appendChild(document.createTextNode('Fazer pedido'))
+
+      valorT.appendChild(a)
       h3.appendChild(document.createTextNode(`R$ ${tot}`))
       
     }else{

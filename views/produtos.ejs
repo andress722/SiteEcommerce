@@ -19,44 +19,65 @@
 
 
 
-  <main>
-    <section>
-      <section class="produtos">
-        <div class="container">
-            <h2>Produtos em destaque</h2>
-            <div class="items">
-              <% produtos.forEach(function(produto) { %>
-                <a style="text-decoration: none ; color:black" href="/produtos/<%= produto.id %>"><article>
-                 <div class="thumb">
-                   <img id="produto1" src="/uploads/<%= produto.imagem %>" alt="">
-                  </div>
-                 
-                  <div class="descricao">
-
-                    <h5 style="font-style: oblique;"><%= produto.nome %></h5>
-                    <div class="valor">
-                      <h5>R$ <%= produto.valor %></h5 >
+    <main class="bg-light">
+      <section>
+        <section class="produtos bg-light" >
+          <div class="container-fluid w-100 p-0 bg-dark d-flex justify-content-center" style="height:100px; border-radius: 0px 0px 10px 10px;">
+            <div class="w-100 p-3">
+              <ul class="ul-categorias">  
+                <% categoria.forEach(function(categorias){ %> 
+                  <li >
+                    <div class="categoria-bar">
+                      <img style="width: 55px; border: solid #eee; border-radius: 41px;" 
+                           src="/uploads/<%= categorias.imagem %> " alt="">
+                      
+                          <p><%= categorias.nome %> </p>
                     </div>
                     
-                  </div>
-
-                                
-                   <div class="valores">
-                    
-                    <div class="icone-compra">
-                      <a href=""><span class="material-icons">    add_shopping_cart    </span></a>
-                    </div>   
-                    
-                  </div>
-                 
-                  
-                </article> </a>
-
-                <% }) %>
+                  </li>
+                <% }) %> 
+              </ul>
             </div>
-        </div>
-    </section>
-  </main>
+          </div>
+          <div id="section-produtos" class="container">
+              <div class="items">
+  
+                
+  
+                
+                <% produtos.forEach(function(produto) { %>
+                  <article >
+                    <div class="thumb">
+                      <img id="produto1" src="/uploads/<%= produto.imagem %>" alt="">
+                     </div>
+                    
+                     <div class="descricao">
+   
+                       <h5 style="font-style: oblique;" id="nome"><%= produto.nome %></h5>
+                       <div class="valor">
+                         <h5>R$ <%= produto.valor %></h5 >
+                       </div>
+                       
+                     </div>
+   
+                                   
+                      <div class="valores">
+                       
+                       <div class="icone-compra">
+                         <a  style="text-decoration:none ;" href="pedidos/adiciona/<%= produto.id %>"><span style="text-decoration:none ;" class="material-icons" >    add_shopping_cart    </span></a>
+                       </div>     
+   
+                     </div>
+                    
+                     
+                 
+                  </a>
+  
+                  <% }) %>
+              </div>
+          </div>
+      </section>
+    </main>
 
         <%- include("./partials/footer")%>
   </body>

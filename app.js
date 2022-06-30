@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.urlencoded({ extended: true }));
 
 // Esse middleware serve para adicionar os dados do login de forma que esteja acessivel em todos os arquivo EJS
 app.use(function adicionaUserNoRender(req, res, next){

@@ -5,6 +5,21 @@ module.exports = (connection, DataTypes) => {
             primaryKey: true,
               autoIncrement: true
         },
+        produto: {
+        type: DataTypes.STRING(100)
+    },
+        quantidade: {
+        type: DataTypes.INTEGER
+            },
+        
+            valor: {
+            type: DataTypes.INTEGER
+        },
+        total: {
+        type: DataTypes.INTEGER
+    },
+
+
     }, 
     {   timestamp: false,
         tableName: 'carrinhos'

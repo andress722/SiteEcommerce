@@ -1,6 +1,6 @@
 
 
-<div class="conteiner-fluid bg-dark">
+<div class="conteiner-fluid bg-dark border">
   <header class="row bg-dark" id="header">
     <div id="conteudo-menu">   
         <div class="navbar navbar-expand-sm row d-flex align-row-center .bg-dark" style="width:100% ;">
@@ -13,53 +13,56 @@
             </div>
         </div>
       
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light text-center d-flex">
+                <div class="container-fluid d-flex " style="align-items: center;">
                   <a class="navbar-brand" href="/">SLOGAN</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Pagina Inicial</a>
-                      </li>
+                  <div class="collapse navbar-collapse d-flex justify-content-around"  id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex" style="align-items: center; width: 100%; justify-content: space-evenly;  ">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Pagina Inicial</a>
+                          </li>
                     
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/produtos" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          produtos
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="/produtos">Todos os produtos</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/produtos" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                produtos
+                            </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/produtos">Todos os produtos</a></li>
+                          </ul>
 
-                        </ul>
-                      </li>
+                        </li>
+                        <div class="organizar-search-login" >
+                          <div id="carrinho-logo">
+                            <a href="/pedidos/vercarrinho"><img class="carrinho" src="/imagens/carrinho.jpg"  alt=""></a>
+                          </div>
+                          <form class="d-flex-search">
+                            <div id="search">
+                              <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                              <button class="btn btn-outline-success" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                              </svg></button>
+                             </form> 
+                             <ul id="ul-login">
+                             <% if(estaLogado) { %>
+                               <li id="logado" ><a class="li-login" href="/admin"><img src="/imagens/logado.png" style="width: 30px;" alt=""><%= usuarioLogado.nome %></a></li>
+                               <li id="logout"><a class="li-login" href="/logout">Logout</a></li>
+                             <% } else { %>
+                               <li id="logado"><a class="li-login" href="/login"><img src="/imagens/login.jpg" style="width: 30px;" alt="">Login</a></li>
+                             <% } %>
+                           </ul>
+                 
+                       </div>
                       
+                         </ul>
                     </div>
-                    </ul>
+                   
 
                     
-
-                   <div class="organizar-search-login">
-                    <div id="carrinho-logo">
-                      <a href="nav-link active"><img class="carrinho" src="/imagens/carrinho.jpg"  alt=""></a>
-                    </div>
-                    <form class="d-flex-search">
-                      <div id="search">
-                        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                        </svg></button>
-                    </div>
-                    </form>                  
-                      <ul id="ul-login">
-                      <% if(estaLogado) { %>
-                        <li id="logado" ><a class="li-login" href="/admin"><img src="/imagens/logado.png" style="width: 30px;" alt=""><%= usuarioLogado.nome %></a></li>
-                        <li id="logout"><a class="li-login" href="/logout">Logout</a></li>
-                      <% } else { %>
-                        <li id="logado"><a class="li-login" href="/login"><img src="/imagens/login.jpg" style="width: 30px;" alt="">Login</a></li>
-                      <% } %>
-                    </ul>
+                  
+                                    
                 </div> 
                   </div>
                 </div>

@@ -44,11 +44,7 @@ module.exports = (connection, DataTypes) => {
              foreignKey: 'usuario_id',
              as: 'usuarios'
          })
-         model.belongsToMany(models.Pedido, {
-            through: models.ItemPedido,
-            foreignKey: 'fk_pedido',
-            as: 'pedidos'
-        })
+         
           
         model.hasMany(models.Carrinho, {
               
