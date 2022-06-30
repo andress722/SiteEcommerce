@@ -40,13 +40,12 @@
             </div>
           </div>
           <div id="section-produtos" class="container">
-              <div class="items">
-  
-                
+            <div id="section-produtos" class="container">
+              <div class="items">            
   
                 
                 <% produtos.forEach(function(produto) { %>
-                  <article >
+                  <a style="text-decoration: none ; color:black ;" href="/produtos/<%= produto.id %>"><article >
                     <div class="thumb">
                       <img id="produto1" src="/uploads/<%= produto.imagem %>" alt="">
                      </div>
@@ -70,8 +69,7 @@
                      </div>
                     
                      
-                 
-                  </a>
+                   </article> </a>
   
                   <% }) %>
               </div>

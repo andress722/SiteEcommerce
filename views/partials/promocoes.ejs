@@ -1,0 +1,17 @@
+<section style="width: 100%; height:400px" >
+    <div id="vertical" style='height:300px; 'class="container-fluid bg-dark">
+        <div  class="container d-flex" >
+            
+            <div  style="margin-top: 10px;">            
+                
+                <h2 style="color: white;">PROMOÇÕES</h2>
+              <% produtos.forEach(function(produto) { %>
+                <div  id="promocoes" class="card container-fluid d-flex justify-content-between">      
+                    <img class="thumb" style='width: 100px; height: 150px;'src="/uploads/<%= produto.imagem %> " alt="">
+                </div>
+     
+                    <% }) %>
+                </div>
+        </div>
+    </div>
+</section>

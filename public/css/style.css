@@ -224,7 +224,7 @@ section.produtos .container {
 section.produtos .items {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 40px;
   margin-left: -20px;
