@@ -41,7 +41,11 @@ module.exports = (connection, DataTypes) => {
 
       model.associate = models => {
 
-
+        model.hasMany(models.Carrinho, {
+          
+          foreignKey: 'id_usuario',
+          as: 'carrinhousuarios'
+      })
         
 
         model.sync({alter:true})

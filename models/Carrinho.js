@@ -18,6 +18,7 @@ module.exports = (connection, DataTypes) => {
         total: {
         type: DataTypes.INTEGER
     },
+  
 
 
     }, 
@@ -33,7 +34,11 @@ module.exports = (connection, DataTypes) => {
                 foreignKey: 'id_produto',
                 as: 'addcarrinhos'
             })
-    
+            
+            model.belongsTo(models.UsuarioComum, {
+                foreignKey: 'id_usuario',
+                as: 'carrinhousuarios'
+            })
             
            
             model.sync({alter:true})

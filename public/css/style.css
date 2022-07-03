@@ -2,8 +2,7 @@ body{
   max-width: auto;
   min-width: auto;
    margin: 0px;
-   font-family: 'Josefin Sans', sans-serif;
-   font-size: 1.3vw;
+
   
     display: flex;
     flex-direction: column;
@@ -39,6 +38,7 @@ body{
 
 .d-flex-search{
   margin-top: 19px;
+  height: 55px;
 }
 
 .carrinho{
@@ -108,8 +108,9 @@ main{
   display: flex;
   /* margin-left: 43px; */
   margin-top: 12px;
-  flex-direction: column;
-  align-items: baseline;
+  align-items: center;
+  align-content: flex-start;
+  justify-content: space-between;
 }
 /*header */
 header #menuzinho{
@@ -208,6 +209,16 @@ section.produtos .container {
   justify-content: space-around;
 }
 
+
+#article-index{
+    /* margin-right: -5px; */
+    display: flex;
+    max-width: 170px;
+    flex-direction: column;
+    margin-bottom: 16px;
+    justify-content: space-between;
+    min-width: 100px;
+}
 .ul-categorias{
  
   color: white;
@@ -227,7 +238,7 @@ section.produtos .items {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 40px;
-  margin-left: -20px;
+
 }
 
 .conteudo{
@@ -261,6 +272,22 @@ section.produtos .items .thumb {
     margin-left: 34vw;
     font-size: 5vw;
     color: white;
+}
+
+#promocoes{
+  height: 158px;
+  min-width: 117px;
+  max-width: 257px;
+ width: 200px; 
+  margin-right: 5px;
+}
+
+.thumb-promo{
+  max-width: 253px;
+  min-width: 115px;
+  min-height: 112px;
+  width: 200px;
+  margin-top: 3px;
 }
 
 
@@ -350,8 +377,10 @@ section.produtos .items .thumb {
 }
 
 #produto1{
-  width: 200px;
-  height: 200px
+  width: 150px;
+  height: 200px;
+  min-width: 100px;
+  max-width: 200px
 }
 
 #produto1-detalhe{
@@ -451,15 +480,7 @@ width: 95%;
 
 
 
-footer{
-  background-color: #0d0d0e;
-  height: 200px;
-  min-height: auto;
-  margin-left: 0px;
-  padding: 0px;
-  margin-top: auto;  
-  
-}
+
 
 #logado{
   display: flex;
@@ -467,19 +488,23 @@ footer{
 }
 
 #ul-login{
-  margin-right: 40px;
-  text-decoration: none;
-  margin-top: 0px;
-  margin-bottom: -4px;
+    /* margin-right: 9px; */
+    width: 240px;
+    font-size: 9px;
+    text-decoration: none;
+
+    margin-bottom: -4px;
   
 }
 #search{
-  margin-top: 10px;
+  margin-top: 2px;
+  height: 51px;
   display: flex;
 }
 
 .organizar-search-login{
   display: flex;
+  margin-top: -16px
 }
 
 .li-login{
