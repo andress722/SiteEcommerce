@@ -34,11 +34,7 @@ module.exports = (connection, DataTypes) => {
              as: 'categoria'
          })    
  
-         model.belongsToMany(models.Usuario, {
-             through: models.ProdutoFavoritoUsuario,
-             foreignKey: 'produto_id',
-             as: 'favoritador'
-         })
+       
          
          model.belongsTo(models.Usuario, {
              foreignKey: 'usuario_id',

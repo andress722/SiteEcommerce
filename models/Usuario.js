@@ -25,11 +25,7 @@ module.exports = (connection, DataTypes) => {
 
       model.associate = models => {
 
-        model.belongsToMany(models.Produto, {
-          through: models.ProdutoFavoritoUsuario,
-          foreignKey: 'usuario_id',
-          as: 'favoritos'
-        })
+      
 
         
 
