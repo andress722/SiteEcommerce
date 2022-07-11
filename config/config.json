@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "andresite",
+    "username": "sql10505408",
+    "password": "3BYIDCf5jZ",
+    "database": "sql10505408",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "sql10.freemysqlhosting.net"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
+    "username": "sql10505408",
+    "password": "3BYIDCf5jZ",
+    "database": "sql10505408",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "sql10.freemysqlhosting.net"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
+    "username": "sql10505408",
+    "password": "3BYIDCf5jZ",
+    "database": "sql10505408",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "sql10.freemysqlhosting.net"
   }
 }
