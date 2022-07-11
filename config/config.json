@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "sql10505408",
-    "password": "3BYIDCf5jZ",
-    "database": "sql10505408",
-    "host": "127.0.0.1",
-    "dialect": "sql10.freemysqlhosting.net"
+    "username": "andress722",
+    "password": "and102030",
+    "database": "cidre",
+    "host": "cidre-info.cwmcwcahjp0c.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
   },
   "test": {
-    "username": "sql10505408",
-    "password": "3BYIDCf5jZ",
-    "database": "sql10505408",
-    "host": "127.0.0.1",
-    "dialect": "sql10.freemysqlhosting.net"
+    "username": "andress722",
+    "password": "and102030",
+    "database": "cidre",
+    "host": "cidre-info.cwmcwcahjp0c.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
   },
   "production": {
-    "username": "sql10505408",
-    "password": "3BYIDCf5jZ",
-    "database": "sql10505408",
-    "host": "127.0.0.1",
-    "dialect": "sql10.freemysqlhosting.net"
+    "username": "andress722",
+    "password": "and102030",
+    "database": "cidre",
+    "host": "cidre-info.cwmcwcahjp0c.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
   }
 }
