@@ -22,7 +22,7 @@ module.exports = (connection, DataTypes) => {
 
 
     }, 
-    {   timestamp: false,
+    {   timestamp: true,
         tableName: 'carrinhos'
     }  
         
