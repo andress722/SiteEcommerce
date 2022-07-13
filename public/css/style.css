@@ -276,10 +276,10 @@ section.produtos .items .thumb {
 }
 
 #promocoes{
-  height: 158px;
-  min-width: 117px;
-  max-width: 257px;
- width: 200px; 
+  height: 174px;
+  min-width: 113px;
+  max-width: 161px;
+  /* width: 200px; */
   margin-right: 5px;
 }
 
