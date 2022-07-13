@@ -35,31 +35,24 @@
                 
                 <% produtos.forEach(function(produto) { %>
                   <a style="text-decoration: none ; color:black ;" href="/produtos/<%= produto.id %>">
-                    <article >
+                    <article class="container" id="article-index" >
                     <div class="thumb">
                       <img id="produto1" src="/uploads/<%= produto.imagem %>" alt="">
                      </div>
                     
                      <div class="descricao">
-   
-                       <h5 style="font-style: oblique;" id="nome"><%= produto.nome %></h5>
-                       <div class="valor">
-                         <h5>R$ <%= produto.valor %></h5 >
-                       </div>
-                       
+                        <h5 style="font-style: oblique;" id="nome"><%= produto.nome %></h5>
+                        
+                        <h5>R$ <%= produto.valor %></h5 >
+                          
+                          <div>
+                            <a  style="text-decoration:none ;" href="pedidos/adiciona/<%= produto.id %>"><span style="text-decoration:none ;" class="material-icons" >    add_shopping_cart    </span></a>
+                      </div>   
                      </div>
    
-                                   
-                      <div class="valores">
                        
-                       <div class="icone-compra">
-                         <a  style="text-decoration:none ;" href="pedidos/adiciona/<%= produto.id %>">
-                          <span style="text-decoration:none ;" class="material-icons" >    add_shopping_cart</span></a>
-                       </div>     
+                      
                        
-                     </div>
-                    
-                     
                    </article> 
                   </a>
   
