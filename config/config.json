@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "andress722",
-    "password": "and102030",
-    "database": "cidre",
-    "host": "cidre-info.cwmcwcahjp0c.us-east-1.rds.amazonaws.com",
+    "username": "sql10505408",
+    "password": "3BYIDCf5jZ",
+    "database": "sql10505408",
+    "host": "sql10.freemysqlhosting.net",
     "dialect": "mysql"
   }
 }
