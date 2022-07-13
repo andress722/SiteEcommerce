@@ -165,6 +165,7 @@ header .texto-menu li{
 }
 
 section.produtos .container {
+  display: flex;
   flex-direction: column;
 }
 
@@ -491,8 +492,8 @@ width: 95%;
     /* margin-right: 9px; */
     width: 240px;
     font-size: 9px;
+    margin-left: -36px;
     text-decoration: none;
-
     margin-bottom: -4px;
   
 }
