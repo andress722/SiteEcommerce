@@ -242,6 +242,12 @@ section.produtos .items {
 
 }
 
+.items-2 {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
 .conteudo{
   display: flex;
 }

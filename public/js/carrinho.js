@@ -1,10 +1,12 @@
 // alterei o nome da função para entrar no contexto de adição de produtos!
 function addProduto(produto, quantidade, valor, id) { // mantive a nomenclatura para facilitar a leitura do código..
+    alert('item adicionado ao carrinho')
     const produtos = {
         produto:produto,
         quantidade:quantidade,
         valor:valor,
         id:id
+
     };
     // aqui o método vai retornar somente as chaves (ou melhor os produtos) negativo caso não exista!
     if (!Object.keys(produtos).length) {

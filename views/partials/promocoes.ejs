@@ -1,17 +1,33 @@
-<section class="container" style="width: 100%; height:258px; margin-top: 20px;" >
-    <div  style='height:300px; 'class="container-fluid bg-light">
-        <div  class="container d-flex flex-column" >
-            <h2 style="color: rgb(0, 0, 0); text-align: center;">PROMOÇÕES</h2>
-            <div  class="container d-flex justify-content-around" style="margin-top: 10px;">            
+
+<section>
+    <h2 style="margin-top: 30PX; margin-top: 30PX;  margin-bottom: 26px;  text-align: center;">PROMOÇÃO</h2>
+    <div class="items-2" >            
+
+        
+        <% produtos.forEach(function(produto) { %>
+          <a style="text-decoration: none ; color:black ;" href="/produtos/<%= produto.id %>">
+            <article class="container" id="article-index" >
+            <div class="thumb">
+              <img id="produto1" src="/uploads/<%= produto.imagem %>" alt="">
+             </div>
+            
+             <div class="descricao">
+                <h5 style="font-style: oblique;" id="nome"><%= produto.nome %></h5>
                 
-                
-              <% produtos.forEach(function(produto) { %>
-                <div  id="promocoes" style="border-top: solid 2px ;" class=" d-flex">      
-                    <img class="thumb-promo" src="/uploads/<%= produto.imagem %> " alt="">
-                </div>
-     
-                    <% }) %>
-                </div>
-        </div>
-    </div>
+                <h5>R$ <%= produto.valor %></h5 >
+                  
+                  <div>
+                    <a  style="text-decoration:none ;" href="pedidos/adiciona/<%= produto.id %>"><span style="text-decoration:none ;" class="material-icons" >    add_shopping_cart    </span></a>
+              </div>   
+             </div>
+
+               
+              
+               
+           </article> 
+          </a>
+
+          <% }) %>
+      </div>
 </section>
+      
