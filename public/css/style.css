@@ -170,11 +170,16 @@ section.produtos .container {
 }
 
 .thumb-visual{
-  margin:5px; margin-right:20px;width:80px;Height: 120px
+    /* margin: 5px; */
+    margin-top: 5px;
+    margin-right: 7px;
+    width: 90px;
+    Height: 106px;
 }
 
 .thumb-visual-principal{
-  height: 400px;
+  height: 343px;
+  width: 205px;
   align-items: center;
 }
 
