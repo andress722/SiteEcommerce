@@ -1,8 +1,7 @@
 var express = require('express');
 
 const { Usuario, Produto, Categoria, UsuarioComum} = require('../models')
-const fs = require('fs')
-const path = require('path')
+
 const bcrypt = require('bcrypt')
 
 /* GET home page. */
