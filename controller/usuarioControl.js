@@ -1,7 +1,9 @@
 var express = require('express');
 
 const { Usuario, Produto, Categoria, UsuarioComum} = require('../models')
-
+const fs = require('fs')
+const path = require('path')
+const bcrypt = require('bcrypt')
 
 /* GET home page. */
 
@@ -32,25 +34,32 @@ const usuario = {
       },
       
       
-      loginPost: async function(req,res){
-      
+      loginPost: async function(req,res, next){
+        
         try{
-      
+          const {email,senha} = req.body
           const usuarioLogin = await UsuarioComum.findOne({
             where: {
               email: req.body.email
             }
           })
-          if(usuarioLogin && usuarioLogin.senha == req.body.senha){
-              
-            req.session.estaLogado = true
-            req.session.usuarioLogado = usuarioLogin
-              
-             return res.redirect('/')
-      
-          }else{
-              return res.render('form-servico-erro', { mensagemErro: 'Senha Invalida'})
+          if(usuarioLogin){
+            const usuarioSenha = usuarioLogin.senha
+            
+            let valida = bcrypt.compareSync(req.body.senha, usuarioSenha)
+
+            if(usuarioLogin && valida  === true){
+                
+              req.session.estaLogado = true
+              req.session.usuarioLogado = usuarioLogin
+                
+               return res.redirect('/')
+        
+            }
           }
+
+
+
         }catch (erro){
           next(erro)
         }
@@ -106,13 +115,17 @@ const usuario = {
       cadastroPost: async function(req,res){      
       
           const emailReq = req.body.email
-      
+          const {nome, emailCadastro, senha,cep,endereco, cidade, estado,bairro,numero} = req.body
+          console.log(senha)
+          let senhaB = bcrypt.hashSync(senha, 4)
+          console.log(senhaB)
           const email = await UsuarioComum.findOne({ where: { email: emailReq } });
           if (!email) {
-            await UsuarioComum.create(req.body)
+            await UsuarioComum.create({nome, email: emailReq, senha:senhaB,cep,endereco, cidade, estado,bairro,numero})
+            console.log(senhaB)
             return res.redirect('/login')
         } else {
-          returnres.render('form-servico-erro', {mensagemErro: 'Email já cadastrado'})
+          return res.render('form-servico-erro', {mensagemErro: 'Email já cadastrado'})
       }
       },
       

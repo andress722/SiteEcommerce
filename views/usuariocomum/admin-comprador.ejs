@@ -3,29 +3,32 @@
 <body>
     <%- include("../partials/header") %>
     <main class="container-fluid" id="admin-main">
-        <section class="container-fluid" id="tabela">
-            <div class="container-fluid" id="admin-menu">
-                <div id="empresa-nome">
-                    <h2><%= usuarioLogado.nome  %>  </h2>
-                </div>
-                <div class="container" id="menu-dash-admin">
-                    <ul>
-                        <li><strong>Perfil</strong> </li>
+        <section style="margin-top: 50px;" class="container-fluid d-flex">
+            <div class="container-fluid" >
+                <h2><%= usuarioLogado.nome  %>  </h2>
+                    <ul style="list-style: none;">
+                        <li><strong>Editar meu perfil</strong> </li>
                         <li><strong>Meus pedidos</strong> </li>
-                        <li><strong><a href="/admin/favoritos">Meus favoritos</a></strong></li>
+                        <li><strong><a href="#">Meus favoritos</a></strong></li>
                     </ul>
 
                 </div>
             </div>
             <div class="container-fluid">
+                    <div style="" class="container d-flex flex-column align-items-center text-align-center">
+                        <h2>Informações de cadastro</h2>
+                        <ul style="list-style: none;">
+                            
+                             <li >Nome: <%= usuario.nome %> </li>
+                             <li>email: <%= usuario.email %> </li>
+                             <li>cep: <%= usuario.cep %> </li>
+                             <li>endereço: <%= usuario.endereco %> </li>
+                             <li>numero: <%= usuario.numero %> </li>
+                             <li>bairro: <%= usuario.bairro %> </li>
+                             <li>cidade: <%= usuario.cidade %> </li>
+                             <li>estado: <%= usuario.estado %> </li>
 
-            <div class="container-fluid" id="containers-admin">
-                <div clcass="container-fluid" id="container-1-numero">
-                    <div class="informacoes-1">
-                        <ul>
-                            <li><strong> Informações de vendas</li></strong>
-                            <li>Vendidos</li>
-                            <li>Total R$500</li>    
+                           
                         </ul>
                     </div>
                 </div>

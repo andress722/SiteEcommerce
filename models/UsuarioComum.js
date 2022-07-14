@@ -13,7 +13,7 @@ module.exports = (connection, DataTypes) => {
           type: DataTypes.STRING(100)
         },
         senha: {
-          type: DataTypes.STRING(20)
+          type: DataTypes.STRING(150)
         },
         cep: {
           type: DataTypes.INTEGER
