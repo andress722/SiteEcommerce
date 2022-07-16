@@ -1,20 +1,11 @@
 
 
-<div class="conteiner-fluid bg-dark border">
-  <header class="row bg-dark" id="header">
+
+  <header class="container-fluid">
     <div id="conteudo-menu">   
-        <div class="navbar navbar-expand-sm row d-flex align-row-center .bg-dark" style="width:100% ;">
-            <div class="texto-menu"> 
-                <ul>
-                    <li>Mulheres</li>
-                    <li>Homens</li>
-                    <li>Crianças </li>
-                </ul>
-            </div>
-        </div>
-      
+            
             <nav class="navbar navbar-expand-lg navbar-light bg-light text-center d-flex" >
-                <div class="container-fluid d-flex " style="align-items: center;">
+                <div class="container-fluid d-flex ">
                   <a class="navbar-brand" href="/">SLOGAN</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -45,17 +36,17 @@
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                               </svg></button>
                              </form> 
-                             <ul id="ul-login">
-                             <% if(estaLogado) { %>
-                               <li id="logado" ><a class="li-login" href="/admin"><img src="/imagens/logado.png" style="width: 30px;" alt=""><%= usuarioLogado.nome %></a></li>
-                               <li id="logout"><a class="li-login" href="/logout">Logout</a></li>
-                             <% } else { %>
-                               <li id="logado"><a class="li-login" href="/login"><img src="/imagens/login.jpg" style="width: 30px;" alt="">Login</a></li>
-                             <% } %>
-                           </ul>
+                            
                  
                        </div>
-                      
+                       <ul id="ul-login">
+                        <% if(estaLogado) { %>
+                          <li id="logado" ><a class="li-login" href="/admin"><img src="/imagens/logado.png" style="width: 30px;" alt=""><%= usuarioLogado.nome %></a></li>
+                          <li id="logout"><a class="li-login" href="/logout">Logout</a></li>
+                        <% } else { %>
+                          <li id="logado"><a class="li-login" href="/login"><img src="/imagens/login.jpg" style="width: 30px;" alt="">Login</a></li>
+                        <% } %>
+                      </ul>
                          </ul>
                     </div>
                    
@@ -70,6 +61,5 @@
             
     
   </header>
-</div>
 
 <script src="/js/procura.js"></script>

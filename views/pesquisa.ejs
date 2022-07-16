@@ -1,11 +1,14 @@
+<!DOCTYPE html>
 <html lang="en">
-    <%- include("./partials/head")%>
-<body>
+  <%- include("./partials/head")%>
+<body >
+  <%- include("./partials/header")%>
     <%- include("./partials/header")%>
 
-    <main>
+    <main class="container-fluid p-1">
         <section>
-            <div id="listagem-produto"></div>
+        
+            <div class="container-fluid p-0" id="listagem-produto"></div>
         </section>
 
     </main>
@@ -30,8 +33,10 @@
             console.log(produtoc[i].nome)
             let article = document.createElement('article')
             article.setAttribute('class', 'artcile-pesquisa')
+            article.setAttribute('style', 'min-width: 120px; display: flex; max-width: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
             let div = document.createElement('div')
             div.setAttribute('class', 'd-flex')
+            div.setAttribute('style', 'width: 116px')
             let p = document.createElement('p')
             p.appendChild(document.createTextNode(produtoc[i].nome))
             
@@ -39,6 +44,7 @@
             div.appendChild(p)
             let img = document.createElement('img')
             img.setAttribute('src', `/uploads/${produtoc[i].imagem}`)
+            img.setAttribute('style', 'width: 112px; height: 134px')
             article.appendChild(img)
             article.appendChild(div)
             listagem.appendChild(article)
