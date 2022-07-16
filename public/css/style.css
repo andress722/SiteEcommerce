@@ -27,18 +27,23 @@ body{
 
 #admin-main{
   height: 350px;
-    border: solid;
+    border: solid 1px;
     border-color: black;
     border-radius: 6px;
     padding: 5px;
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+
 }
 
 .d-flex-search{
   margin-top: 19px;
   height: 55px;
+  width: 221px;
 }
 
 .carrinho{
@@ -120,11 +125,10 @@ header #menuzinho{
 }
 
 header .texto-menu{
-  Width: 159px;
-  Height: 13px;
-
-  Left: 120px;
-  color:white
+  Width: 347px; 
+  Height: 14px;
+  /* Left: 120px; */
+  color: white;
 }
 
 header .texto-menu ul{
@@ -137,14 +141,15 @@ header .texto-menu ul{
 
 header .texto-menu li{
   justify-content: space-between;
-  margin-right: 8vh;
+  margin-right: 4vh;
   Width: 55px;
   Height:  13px
 }
 
 #search{
-  margin-top: 10px;
-    display: flex;
+  margin-top: 2px;
+  height: 51px;
+  display: flex;
 
 }
 
@@ -501,11 +506,13 @@ width: 95%;
 
 #ul-login{
     /* margin-right: 9px; */
-    width: 240px;
+    width: 287px;
     font-size: 9px;
-    margin-left: -36px;
+    margin-left: -10px;
+    /* margin-top: -1px; */
+    /* display: flex; */
     text-decoration: none;
-    margin-bottom: -4px;
+
   
 }
 #search{
@@ -516,7 +523,8 @@ width: 95%;
 
 .organizar-search-login{
   display: flex;
-  margin-top: -16px
+  margin-top: -16px;
+
 }
 
 .li-login{

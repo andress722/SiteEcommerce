@@ -2,10 +2,11 @@
     <%- include("../partials/head")%>
 <body>
     <%- include("../partials/header") %>
-    <main class="container-fluid" id="admin-main">
-        <section style="margin-top: 50px;" class="container-fluid d-flex">
-            <div class="container-fluid" >
-                <h2><%= usuarioLogado.nome  %>  </h2>
+    <main class="container-fluid bg-light" id="admin-main">
+        <h2><%= usuarioLogado.nome  %>  </h2>
+        <section style="margin-top: 50px;" class="container-fluid d-flex flex-wrap justify-content-around">
+            <div class="container-fluid" style="width: 250px; margin-left: -30px;">
+            
                     <ul style="list-style: none;">
                         <li><strong>Editar meu perfil</strong> </li>
                         <li><strong>Meus pedidos</strong> </li>
@@ -14,8 +15,8 @@
 
                 </div>
             </div>
-            <div class="container-fluid">
-                    <div style="" class="container d-flex flex-column align-items-center text-align-center">
+            <div style="width: 300px;" class="container d-flex flex-column align-items-center text-align-center">
+                   
                         <h2>Informações de cadastro</h2>
                         <ul style="list-style: none;">
                             
@@ -30,7 +31,7 @@
 
                            
                         </ul>
-                    </div>
+                
                 </div>
                 
             </div>

@@ -7,8 +7,7 @@ var verificaLogin = require('../middlewares/authLogin')
 
 
 
-router.get('/produtos', api.index)
-router.get('/carrinho', api.carrinho)
+router.get('/produtos/', api.index)
 router.get('/cep', api.cep)
 
 

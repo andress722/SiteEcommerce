@@ -10,13 +10,10 @@ const { Usuario, Produto, Categoria, UsuarioComum} = require('../models')
 
 const api = {
 
-    
-
-
     index: async function(req, res, next) {
         
         const produtos = await Produto.findAll()
-        res.render('produtos-copy',{produtos})
+        res.send({produtos})    
     },
 
     cep: async function(req, res, next) {
@@ -26,9 +23,6 @@ const api = {
         res.send(cep.data)
     },
 
-    carrinho: async function(req, res, next){
-        const carrinho = await axios.get('')
-    }
 
 }
 

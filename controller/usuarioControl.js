@@ -27,6 +27,18 @@ const usuario = {
         return res.render('index', obj);
       },
       
+      procura: async function(req,res,next) {
+        
+        let produtos = await Produto.findAll()
+        return res.render('pesquisa')
+      },
+      procuraParam: async function(req,res,next) {
+        const nome = req.params.nome
+        let produtos = await Produto.findAll()
+        return res.render('pesquisa', {nome})
+      },
+
+
       
       login: function(req,res){
         return res.render('login')

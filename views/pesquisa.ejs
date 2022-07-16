@@ -1,0 +1,51 @@
+<html lang="en">
+    <%- include("./partials/head")%>
+<body>
+    <%- include("./partials/header")%>
+
+    <main>
+        <section>
+            <div id="listagem-produto"></div>
+        </section>
+
+    </main>
+
+    <%- include("./partials/footer")%>
+
+
+</body>
+
+<script>
+   async function pesquisar(){
+        
+
+       
+        const response = await fetch('/api/produtos')
+        let json = await response.json()
+        let produtoc = json.produtos.map(e=>e)
+        const nomes = localStorage.getItem('pesquisa')
+        let listagem = document.getElementById('listagem-produto')
+        
+        for(let i = 0; i<=produtoc.length; i++ ){
+            console.log(produtoc[i].nome)
+            let article = document.createElement('article')
+            article.setAttribute('class', 'artcile-pesquisa')
+            let div = document.createElement('div')
+            div.setAttribute('class', 'd-flex')
+            let p = document.createElement('p')
+            p.appendChild(document.createTextNode(produtoc[i].nome))
+            
+            p.appendChild(document.createTextNode(' R$' + ' ' + produtoc[i].valor))
+            div.appendChild(p)
+            let img = document.createElement('img')
+            img.setAttribute('src', `/uploads/${produtoc[i].imagem}`)
+            article.appendChild(img)
+            article.appendChild(div)
+            listagem.appendChild(article)
+        }
+    }
+    window.addEventListener('load', pesquisar)
+    
+
+</script>
+</html>
