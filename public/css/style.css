@@ -534,14 +534,18 @@ width: 95%;
 #listagem-produto-promo{
   display: flex;
   flex-wrap: wrap;
+  width: 95%;
   margin-left: 13px;
+  justify-content: center;
 }
 
 #listagem-produto{
   display: flex;
   flex-wrap: wrap;
   margin-top: 25px;
+  width: 95%;
   margin-left: 13px;
+  justify-content: center;
 }
 
 
