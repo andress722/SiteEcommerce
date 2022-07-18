@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "sql10505408",
-    "password": "3BYIDCf5jZ",
-    "database": "sql10505408",
-    "host": "sql10.freemysqlhosting.net",
+    "username": "bd6f2a87caea4f",
+    "password": "3eab5e50",
+    "database": "heroku_fc5ea3d58457205",
+    "host": "us-cdbr-east-06.cleardb.net",
     "dialect": "mysql"
   }
 }

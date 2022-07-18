@@ -3,20 +3,25 @@
   <%- include("./partials/head")%>
 <body >
   <%- include("./partials/header")%>
-  <main class="container-fluid d-flex justify-content-around " >
-    <div class="container d-flex justify-content-around ">
-      <div class="container w-75 p-3  ">
+  <main style="        margin-top: 88px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;" >
+  
+      <div class="container p-0" style="width: 263px;">
         <h3>Carrinho</h3>
-        <div class="container">
-          <div id="itens" class="container"> 
-            <ul style="display: flex; flex-direction: column; list-style: none; " id="lista"></ul>
-            <button class="btn btn-primary" type="button" onclick=" localStorage.clear(); location.reload();"> Limpar carrinho </button>
+        <div class="container p-0">
+          <div class="p-0" id="itens"> 
+            <ul class="p-0" id="lista"></ul>
+            
           </div>
+          <button class="btn btn-primary" type="button" onclick=" localStorage.clear(); location.reload();"> Limpar carrinho </button>
         </div>
         
       
       </div>
-      <div style="height: 300px; text-align: center;" class="container border w-70">
+      <div style="width: 202px;    margin-left: 7px;" class="container border p-0">
         
         <div  >
           <h3>Valor do pedido</h3>
@@ -76,9 +81,7 @@
           btn.setAttribute('type', 'button')
           btn.setAttribute('class', 'btn btn-dark ')
           btn.setAttribute('id', 'mais')
-          
-
-          
+                    
           btn.onclick = function add(){
               let checarSeExiste = comP.filter(item => (item.produto === e.produto)).length > 0; // retorna true ou false
                 if(checarSeExiste){
@@ -149,14 +152,17 @@
           }
         }
           btn.appendChild(document.createTextNode('-'))
+          li.setAttribute('class', 'lista-carrinho')
           li.appendChild(btn)   
           var nome = document.createTextNode(e.produto + ' ')
           li.appendChild(nome)
           var valor = document.createTextNode('R$ ' + e.valor + ' ')
-          li.appendChild(valor)          
+          li.appendChild(valor)
+          ul.setAttribute('class', 'p-0')
+          ul.appendChild(li)       
       
           var element = document.getElementById('lista')
-          element.appendChild(li) 
+          element.appendChild(ul) 
         })
 
 

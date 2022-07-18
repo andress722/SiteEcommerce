@@ -25,6 +25,35 @@ body{
   
 }
 
+#mais{
+  display: flex;
+  margin-right: 5px;
+  width: 10px;
+  height: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+#btn-product{
+  Width: 143px;
+    Height: 46px;
+    font-size: 14px;
+    display: flex;
+    /* align-content: stretch; */
+    align-items: center;
+}
+
+#menos{
+  display: flex;
+  margin-right: 5px;
+  width: 10px;
+  height: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
 #admin-main{
   height: 350px;
     border: solid 1px;
@@ -204,6 +233,23 @@ section.produtos .container {
   font-weight: bold
   
 }
+
+#btn-qtd{
+  font-family: Roboto;
+  Size: 6px;
+  align-items: center;
+  text-align: center;
+  border-radius: 12px;
+}
+
+#btn-qtd:hover {
+  box-shadow: 2px 2px 2px black;
+}
+
+#qtd:hover{
+  color: red;
+}
+
 
 .box-promo{
   font-weight: bold;
@@ -539,6 +585,7 @@ width: 95%;
   justify-content: center;
 }
 
+
 #listagem-produto{
   display: flex;
   flex-wrap: wrap;
@@ -562,6 +609,18 @@ width: 95%;
   text-decoration: none;
 }
 
+.lista-carrinho{
+  display: flex;
+}
+
+#itens{
+  display: flex;
+}
+
+#lista{
+  display: flex;
+}
+
 article{
   display: flex;
   max-width: 150px;
@@ -570,6 +629,9 @@ article{
   justify-content: space-between;
   margin-right: 10px;
   min-width: 200px;
+}
+article:hover{
+  cursor: pointer;
 }
 
 

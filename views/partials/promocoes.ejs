@@ -21,6 +21,10 @@
           console.log(produtoc[i].nome)
           let article = document.createElement('article')
           article.setAttribute('class', 'artcile-pesquisa')
+          article.setAttribute('href', `/produtos/${produtoc[i].id}`)
+          article.onclick = ()=> {
+            window.location.href = `/produtos/${produtoc[i].id}`
+          }
           article.setAttribute('style', 'min-width: 120px; display: flex; max-width: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
           let div = document.createElement('div')
           div.setAttribute('class', 'd-flex')

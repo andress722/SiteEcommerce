@@ -7,7 +7,7 @@
 
 <body>
     <%- include("./partials/header") %>
-    <main class="bg-light " style=" height: 637px; border-top: solid 2px; ">
+    <main class="bg-light " style=" height: 637px; border-top: solid 2px;margin-top: 31px; ">
         <section class="container-fluid d-flex justify-content-evenly flex-wrap bg-light" style="width: 100%;">
             
             
@@ -42,11 +42,11 @@
                         </div>
                         <span style="font-size: 16px; margin-top: 18px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio, vero officia? Quis quidem, explicabo non natus, architecto aliquam id qui.</span>
                         <div class="border-radius: 12px; d-flex flex-column-reverse" style="margin-left: -10px; margin-top: 10px; Height: 95px">
-                            <button style="Width:169px; Height:46px;" class="btn btn-primary" onclick="addProduto('<%= produtos.nome %>', document.getElementById('qtd').value, '<%= produtos.valor %>','<%= produtos.id %>')">Adicionar ao Carrinho</button>
+                            <button id="btn-product" class="btn btn-primary" onclick="addProduto('<%= produtos.nome %>', document.getElementById('qtd').value, '<%= produtos.valor %>','<%= produtos.id %>')">Adicionar ao Carrinho</button>
                             <div >
-                                <button style=" font-family: Roboto;  Size: 6px; align-items: center; text-align: center; border-radius: 12px;" class="border d-flex flex-column"> 
+                                <button id="btn-qtd" class="border d-flex flex-column"> 
                                     QTD: 
-                                 <input style="width: 35px;align-items: center; text-align: center; border: none; " class="bg-light" type="number" value="1" min="1" max="10" id="qtd">
+                                 <input  class="bg-light" type="number" value="1" min="1" max="10" id="qtd">
                                 </button>
                             
                             </div>  
@@ -66,5 +66,13 @@
 </body>
 <script src="/js/apiCepProduto.js"></script>
 <script src="/js/carrinho.js"></script>
+<script>
+    let qtd = document.getElementById('btn-qtd')
+    function passou(){
+        console.log('passou')
+    }
+    qtd.addEventListener('mouseenter',passou )
+
+</script>
 <script src="/js/adi.js"></script>
 </html>
