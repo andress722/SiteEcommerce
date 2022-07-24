@@ -8,8 +8,9 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;" >
-  
+
       <div class="container p-0" style="width: 263px;">
+        <div id="lista-erro"></div>
         <h3>Carrinho</h3>
         <div class="container p-0">
           <div class="p-0" id="itens"> 
@@ -47,22 +48,84 @@
 </body>
 </html>
 <script>
-   
-  
+        
+        function errorValidate(e){  
+          let login = document.querySelector('.li-login').innerText
+          if(login != 'Login'){
+            console.log('diferente')
+            
+            enviar()
+          }else{
+            e.preventDefault()
+            console.log('faça a login')
+            
+            window.location.href = '/login'
+          }
+        }
+        let erro = document.getElementById('lista-erro')
+
 
         var product = JSON.parse(localStorage.getItem("produtos"))
         var ul = document.createElement('ul')
         ul.setAttribute('class', 'container')
         ul.setAttribute('class', 'lista-produtos')
         
+          async function geraStringAleatoria(tamanho) {
+            var stringAleatoria = '';
+            var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            for (var i = 0; i < tamanho; i++) {
+                stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            return await stringAleatoria;
+        }
+            
+                           
 
-        var comP = product.map(items=> {
+                        
+        var comP = product.map((items)=> {
+         
+
                           items.produto = items.produto
                           items.quantidade = parseInt(items.quantidade)
                           items.valor = parseInt(items.valor)
                           items.id = parseInt(items.id)
+                          
                           return items
         })
+          async function cart(){
+
+            const pedido = await fetch('/api/carrinho')
+            const retorno = await pedido.json()
+            let numeroPAleatorio = await geraStringAleatoria(20)    
+              let proc = retorno.pedidos.map(e=>e)
+              let list = []
+              let number = ''
+
+            if(retorno == null || []){
+              number = numeroPAleatorio
+            }else{
+
+              for(let i = 0; i<proc.length; i++){
+                if(proc[i].numero_pedido != null && proc[i].numero_pedido != ''){
+                  list.push(proc[i].numero_pedido)
+                }
+              }
+              if(list){
+                for(let e = 0; e<list.length; e++){
+                if(list.indexOf(numeroPAleatorio) !== -1){
+                  console.log('encontrou')
+                }else{
+                  number = numeroPAleatorio
+                }
+              }
+              }
+            }
+
+            return await number
+            
+          }
+        
+
         function deletar(id){
           alert('deletar '+id)
           for(let i=0; i<comP.length; i++ ){
@@ -107,8 +170,20 @@
           li.appendChild(btn)
           var div = document.createElement('div')
           var span = document.createElement('span')
-          var qtd = document.createTextNode(' ' + e.quantidade + 'x ')
+          if(e.quantidade < 10){
+            var qtd = document.createTextNode(' ' + 0 + e.quantidade + 'x ')
+          }else{
+            var qtd = document.createTextNode(' ' + e.quantidade + 'x ')
+          }
+          
           div.appendChild(span)
+
+         
+            
+            span.appendChild(qtd) 
+          
+            span.appendChild(qtd) 
+          
           span.appendChild(qtd)
           li.appendChild(div)
           div.setAttribute('class','valor')
@@ -186,25 +261,70 @@
       })
       let valorT = document.getElementById('total')
       let h3 = document.createElement('h3')
-      let a = document.createElement('a')
+  
       valorT.appendChild(h3)
       let btnP = document.createElement('button')
        let produto = JSON.parse(localStorage.getItem("produtos"))
        produto.map(e => {
-        a.appendChild(btnP)
-        btnP.setAttribute('onclick', `${e.id}`)
+       
+        btnP.setAttribute('name', `${e.id}`)
+        btnP.setAttribute('onclick', 'errorValidate(event)')
         btnP.setAttribute('class', 'btn btn-primary')
-        a.setAttribute('href','/pedidos/detalhes-pedido')
+       
        })
       btnP.appendChild(document.createTextNode('Fazer pedido'))
-
-      valorT.appendChild(a)
+      btnP.setAttribute('type','submit')
+       valorT.appendChild(btnP)
+     
       h3.appendChild(document.createTextNode(`R$ ${tot}`))
       
     }else{
       let tot = 0
     }
-   }
+   }    
+  
+let nPedido = cart()
+
+   const pedido = comP.map((items)=> {
+         
+
+         items.produto = items.produto
+         items.quantidade = parseInt(items.quantidade)
+         items.valor = parseInt(items.valor)
+         items.id = parseInt(items.id)
+         items.pedidos = nPedido
+         return items
+})
+
+
+console.log(pedido)
+
+   function enviar(){
+                let settings = {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(pedido)
+                    
+                }
+                
+                    fetch('/pedidos/detalhes-pedido', settings)
+                    .then(function(response){
+                        console.log(response)
+                        const ok = response.ok
+                        console.log(ok)
+                        response.json()
+                        localStorage.clear()
+                        window.location.href = '/'
+                    })
+                    .then(function(info){
+                        console.log(info)
+                    }).catch(function(error){
+                        console.log(error)
+                    })
+                   
+}  
    window.addEventListener('load', total)
 
    

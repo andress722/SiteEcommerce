@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/head")%>
+<body >
+  <%- include("./partials/header")%>
+
+
+    <main class="container-fluid p-1" style="    margin-top: 88px;">
+        <section>
+        
+            <div class="container-fluid p-0" id="listagem-produto"></div>
+        </section>
+
+    </main>
+
+    <%- include("./partials/footer")%>
+
+
+</body>
+
+<script>
+    let lista = []
+    
+   async function pesquisar(){
+        
+        const response = await fetch('/api/produtos')
+        const json = await response.json()
+        const produtoc = json.produtos.map(e=>e)
+        const nomes = localStorage.getItem('pesquisa').toUpperCase()
+        let encontrou = produtoc.length
+        let erros = 0
+        console.log(encontrou)
+        let listagem = document.getElementById('listagem-produto')
+
+                   
+
+                        for(let i = 0; i<=produtoc.length; i++ ){
+                            if(produtoc[i].nome.toUpperCase().indexOf(nomes) !== -1 ){
+
+                                console.log(encontrou)
+                                let article = document.createElement('article')
+                                article.setAttribute('class', 'artcile-pesquisa')
+                                article.setAttribute('style', 'min-width: 120px; display: flex; max-width: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
+                                article.setAttribute('style', 'min-width: 120px; display: flex; max-width: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
+                                let div = document.createElement('div')
+                                div.setAttribute('class', 'd-flex')
+                                div.setAttribute('id', 'div-pesquisa')
+                                div.setAttribute('style', 'width: 78px')
+                                let p = document.createElement('p')
+                                p.appendChild(document.createTextNode(produtoc[i].nome))
+                                p.setAttribute('class', 'p-pesuisa')
+                                div.appendChild(p)
+                                let span = document.createElement('span')
+                                span.appendChild(document.createTextNode('R$' + ' ' + produtoc[i].valor))
+                                span.setAttribute('class', 'span-pesquisa')
+                                div.appendChild(span)
+                                let img = document.createElement('img')
+                                img.setAttribute('src', `/uploads/${produtoc[i].imagem}`)
+                                img.setAttribute('style', 'width: 116px; height: 134px')
+                                article.appendChild(img)
+                                article.appendChild(div)
+                                listagem.appendChild(article)
+                                
+                        }else{
+                            let h2 = document.createElement('h2')
+                            h2.appendChild(document.createTextNode(`${nomes} nao encontrado`))
+                            listagem.appendChild(h2)
+                            break
+                    }
+                    }  
+                    
+                
+
+}
+    window.addEventListener('load', pesquisar)
+    
+
+</script>
+</html>

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser')
-const { Usuario, Produto, Categoria, Carrinho} = require('../models')
+const { Usuario, Produto, Categoria, Carrinho,Pedido} = require('../models')
 const multer = require('multer');
 
 var session = require('express-session')
@@ -55,16 +55,7 @@ const pedidoController = {
 
       detalhePedido: async function(req,res){
         
-        try {
-          const usuario = req.session.usuarioLogado.id
-          if(usuario != undefined){
-            return res.render('pedidosDetalhe')
-          }else{
-            return res.render('form-servico-erro', { mensagemErro: 'Você precisa estar logado para continuar com a compra' })
-          }
-        } catch (error) {
-           res.render('form-servico-erro', { mensagemErro: 'Você precisa estar logado para continuar com a compra' })
-        }
+        return res.render('pedidosDetalhe')
        
 
         
@@ -80,36 +71,28 @@ const pedidoController = {
       
         const produtos = req.body
 
-
+        
+       
         for(let i=0; i < produtos.length; i++){
           if(produtos.length){
             console.log(produtos[i])
+           
             await Carrinho.create({
               produto: produtos[i].produto,
               quantidade: produtos[i].quantidade,
               valor: produtos[i].valor,
+              total: produtos[i].valor * produtos[i].quantidade,
               id_produto: produtos[i].id,
-              id_usuario: usuario
+              id_usuario: usuario,
+              numero_pedido: produtos[i].pedidos
             })
-            // array.push(produtos[i].produto)
-            // array.push(produtos[i].quantidade)
-            // array.push(produtos[i].valor)
+
+          }
            
-          } 
+              
+        }
          
         }
-        // 
-      
-
-        //   await Carrinho.create(
-        //    produtos
-        //  )
-            
-            return res.redirect('/')
-            // return res.send(produtos)
-       }
-      
-
-    }
+      }
 
       module.exports = pedidoController

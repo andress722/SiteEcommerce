@@ -17,7 +17,9 @@ module.exports = (connection, DataTypes) => {
         },
         total: {
         type: DataTypes.INTEGER
-    },
+    }, numero_pedido: {
+        type: DataTypes.STRING(100)
+    }
   
 
 
@@ -39,7 +41,8 @@ module.exports = (connection, DataTypes) => {
                 foreignKey: 'id_usuario',
                 as: 'carrinhousuarios'
             })
-            
+
+          
            
             model.sync({alter:true})
         }

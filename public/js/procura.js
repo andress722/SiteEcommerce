@@ -1,10 +1,15 @@
 function search(e, nome){
     e.preventDefault()
+    
+    let parametro = nome
+    localStorage.setItem('pesquisa', parametro)
+    if(parametro != ''){
+        window.location.href = `/procura/${nome}`
+    }else{
+        window.location.href = `/procura`
+    }
 
-    localStorage.setItem('pesquisa', JSON.stringify(nome))
-    alert(nome)
-
-    window.location.href = `/procura/${nome}`
+    
     
     
 }

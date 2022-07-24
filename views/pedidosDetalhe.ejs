@@ -6,7 +6,7 @@
 
 <body>
     <%- include("./partials/header") %>
-    <main class="container-fluid " style="margin-top: 42px;">
+    <main class="container-fluid " id="main-pedido">
         <section class="container-fluid d-flex flex-column flex-sm-row">
            
             <div id="body" class="container"></div>
@@ -21,7 +21,8 @@
     <%- include("./partials/footer") %>
 </body>
 <script>
-      
+    
+
   
     var btn = document.createElement('button')
     var product = JSON.parse(localStorage.getItem('produtos'))
@@ -137,14 +138,18 @@
                     fetch('/pedidos/detalhes-pedido', settings)
                     .then(function(response){
                         console.log(response)
-                        return response.json()
+                        const ok = response.ok
+                        console.log(ok)
+                        response.json()
+                        localStorage.clear()
+                        window.location.href = '/'
                     })
                     .then(function(info){
                         console.log(info)
                     }).catch(function(error){
                         console.log(error)
                     })
-
-}
+                   
+}   
 </script>
 </html>

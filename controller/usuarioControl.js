@@ -35,7 +35,7 @@ const usuario = {
       procuraParam: async function(req,res,next) {
         const nome = req.params.nome
         let produtos = await Produto.findAll()
-        return res.render('pesquisa', {nome})
+        return res.render('pesquisa-id', {nome})
       },
 
 
@@ -65,16 +65,15 @@ const usuario = {
               req.session.usuarioLogado = usuarioLogin
                 
                return res.redirect('/')
-        
             }
           }
-
-
 
         }catch (erro){
           next(erro)
         }
+          
       },
+          
       
       logout: function(req, res, next) {
         req.session.destroy()
