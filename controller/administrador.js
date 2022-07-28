@@ -112,9 +112,17 @@ const superadmin = {
     
     criarProdutoAdminPost: async function(req,res){
     
-        req.body.imagem =  req?.file?.filename
+        let file = req.file
         
-        await Produto.create(req.body) 
+        try {
+          if(file){
+            await Produto.create(req.body) 
+          }
+        } catch (error) {
+          res.render('form-servico-erro', {mensagemErro: 'Erro'})
+        }
+
+        
     
         return res.render('enviado')
     
@@ -193,10 +201,21 @@ const superadmin = {
     
     categoriaCriarPost: async function(req,res){
     
-        req.body.imagem =  req?.file?.filename
-        await Categoria.create(req.body)
-        console.log(req.body)
-        return res.redirect('/superadmin/categorias')
+        let file = req.file
+        try {
+          if(file){
+            console.log(req.body)
+            await Categoria.create(req.body)
+            
+            return res.redirect('/superadmin/categorias')
+          }
+          
+        } catch (error) {
+          res.render('form-servico-erro', {MessageChannel: 'erro ao criar'})
+        }
+        
+        
+        
     },
     
     categoriaId: async function(req,res){

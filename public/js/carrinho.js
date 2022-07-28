@@ -56,6 +56,7 @@ function addProduto(produto, quantidade, valor, id) { // mantive a nomenclatura 
             localStorage.setItem("produtos", JSON.stringify(listaProdutos));
             console.log(listaProdutos)
             console.log(localStorage.getItem('produtos'))
+            window.location.reload()
         }
     }
 }

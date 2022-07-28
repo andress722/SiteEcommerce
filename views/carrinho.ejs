@@ -70,14 +70,7 @@
         ul.setAttribute('class', 'container')
         ul.setAttribute('class', 'lista-produtos')
         
-          async function geraStringAleatoria(tamanho) {
-            var stringAleatoria = '';
-            var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for (var i = 0; i < tamanho; i++) {
-                stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-            }
-            return await stringAleatoria;
-        }
+           
             
                            
 
@@ -92,14 +85,25 @@
                           
                           return items
         })
-          async function cart(){
+         const cart =  async ()=> {
 
+         const geraStringAleatoria =  (tamanho)=> {
+            var stringAleatoria = '';
+            var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const charactersLength = caracteres.length;
+            for (var i = 0; i < tamanho; i++) {
+                stringAleatoria += caracteres.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            console.log(stringAleatoria)
+            return stringAleatoria[0];
+            
+        }
             const pedido = await fetch('/api/carrinho')
             const retorno = await pedido.json()
-            let numeroPAleatorio = await geraStringAleatoria(20)    
+            var numeroPAleatorio =geraStringAleatoria(20)  
               let proc = retorno.pedidos.map(e=>e)
               let list = []
-              let number = ''
+              var number = ''
 
             if(retorno == null || []){
               number = numeroPAleatorio
@@ -116,12 +120,15 @@
                   console.log('encontrou')
                 }else{
                   number = numeroPAleatorio
+                  
                 }
               }
+              
               }
+             
             }
-
-            return await number
+            return Promise.resolve(number)
+            
             
           }
         
@@ -283,7 +290,10 @@
     }
    }    
   
-let nPedido = cart()
+const nPedido = new Promise ((resolve,reject)=> {
+  return resolve(cart())
+
+}) 
 
    const pedido = comP.map((items)=> {
          
@@ -292,7 +302,7 @@ let nPedido = cart()
          items.quantidade = parseInt(items.quantidade)
          items.valor = parseInt(items.valor)
          items.id = parseInt(items.id)
-         items.pedidos = nPedido
+         items.pedidos = Promise.resolve(cart())
          return items
 })
 

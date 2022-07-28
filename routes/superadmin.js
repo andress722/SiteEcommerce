@@ -5,7 +5,7 @@ var empresa = require('../controller/administrador')
 var verificaLoginAdm = require('../middlewares/authAdmin')
 var superAdm = require('../middlewares/authAdmin')
 
-const multer = require('multer')
+const multer  = require('multer')
 
 const uploads = multer({
     dest: 'public/uploads/'
