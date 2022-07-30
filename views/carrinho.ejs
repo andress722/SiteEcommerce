@@ -55,6 +55,9 @@
             console.log('diferente')
             
             enviar()
+
+            localStorage.clear()
+            window.location.href = '/'
           }else{
             e.preventDefault()
             console.log('faça a login')
@@ -85,9 +88,8 @@
                           
                           return items
         })
-         const cart =  async ()=> {
 
-         const geraStringAleatoria =  (tamanho)=> {
+        const geraStringAleatoria =  (tamanho)=> {
             var stringAleatoria = '';
             var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             const charactersLength = caracteres.length;
@@ -95,13 +97,16 @@
                 stringAleatoria += caracteres.charAt(Math.floor(Math.random() * charactersLength));
             }
             console.log(stringAleatoria)
-            return stringAleatoria[0];
+            return stringAleatoria;
             
         }
+         const cart =  async ()=> {
+
+         
             const pedido = await fetch('/api/carrinho')
             const retorno = await pedido.json()
-            var numeroPAleatorio =geraStringAleatoria(20)  
-              let proc = retorno.pedidos.map(e=>e)
+            var numeroPAleatorio = await geraStringAleatoria(20)  
+              let proc = await retorno.pedidos.map(e=>e)
               let list = []
               var number = ''
 
@@ -127,7 +132,7 @@
               }
              
             }
-            return Promise.resolve(number)
+            return  number
             
             
           }
@@ -290,26 +295,23 @@
     }
    }    
   
-const nPedido = new Promise ((resolve,reject)=> {
-  return resolve(cart())
-
-}) 
+const nPedido = geraStringAleatoria(20)
 
    const pedido = comP.map((items)=> {
          
 
-         items.produto = items.produto
-         items.quantidade = parseInt(items.quantidade)
-         items.valor = parseInt(items.valor)
-         items.id = parseInt(items.id)
-         items.pedidos = Promise.resolve(cart())
-         return items
+          items.produto =  items.produto
+         items.quantidade =  parseInt(items.quantidade)
+         items.valor =  parseInt(items.valor)
+         items.id =  parseInt(items.id)
+         items.pedidos =  nPedido
+         return  items
 })
 
 
 console.log(pedido)
 
-   function enviar(){
+    async function enviar(){
                 let settings = {
                     method: "POST",
                     headers: {
@@ -319,20 +321,12 @@ console.log(pedido)
                     
                 }
                 
-                    fetch('/pedidos/detalhes-pedido', settings)
-                    .then(function(response){
-                        console.log(response)
+                   await fetch('/pedidos/detalhes-pedido', settings)
+                                  
                         const ok = response.ok
                         console.log(ok)
                         response.json()
-                        localStorage.clear()
-                        window.location.href = '/'
-                    })
-                    .then(function(info){
-                        console.log(info)
-                    }).catch(function(error){
-                        console.log(error)
-                    })
+                        
                    
 }  
    window.addEventListener('load', total)

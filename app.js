@@ -6,8 +6,7 @@ const bodyParser = require('body-parser')
 var logger = require('morgan');
 var session = require('express-session')
 const passport = require('passport')
-
-
+var nodemailer = require('nodemailer')
 
 
 var app = express();

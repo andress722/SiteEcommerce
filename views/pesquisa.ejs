@@ -5,7 +5,7 @@
   <%- include("./partials/header")%>
 
 
-    <main class="container-fluid p-1" style="    margin-top: 88px;">
+    <main class="container-fluid p-1"  style="height: 760px;    margin-top: 88px;">
         <section>
         
             <div class="container-fluid p-0" id="listagem-produto"></div>
@@ -19,6 +19,10 @@
 </body>
 
 <script>
+  function roteSearch(id){
+         window.location.href = `/produtos/${id}`     
+            }
+
    async function pesquisar(){
         
 
@@ -33,7 +37,8 @@
             
             let article = document.createElement('article')
             article.setAttribute('class', 'artcile-pesquisa')
-            article.setAttribute('style', 'min-width: 120px; display: flex; max-width: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
+            article.setAttribute('onclick', `roteSearch(${produtoc[i].id})`)
+            article.setAttribute('style', 'min-width: 120px; display: flex; max-widt  h: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
             article.setAttribute('style', 'min-width: 120px; display: flex; max-width: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
           let div = document.createElement('div')
           div.setAttribute('class', 'd-flex')

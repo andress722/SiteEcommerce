@@ -16,6 +16,7 @@ function addProduto(produto, quantidade, valor, id) { // mantive a nomenclatura 
         if (localStorage.getItem("produtos") === null) {
             // cria um item com o objeto indexado (passou a ser uma chave filho)
             localStorage.setItem("produtos", JSON.stringify([produtos])); 
+            window.location.reload()
         } else {
             // obtêm o conteúdo do item produtos do localStorage
 
