@@ -91,9 +91,9 @@ const usuario = {
           usuario: await UsuarioComum.findByPk(usuario),
         }
       
-          return  res. render('contato', obj)
+          return  res.render('envio', obj)
         }catch(error){
-         return res. render('contato')
+         return res.render('envio')
         }
       },
       

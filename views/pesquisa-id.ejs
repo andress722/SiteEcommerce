@@ -5,7 +5,7 @@
   <%- include("./partials/header")%>
 
 
-    <main class="container-fluid p-1" style="height: 7600px;    margin-top: 88px;">
+    <main class="container-fluid p-1" style="height: 760px;    margin-top: 88px;">
         <section>
         
             <div class="container-fluid p-0" id="listagem-produto"></div>
@@ -28,9 +28,9 @@
         const produtoc = json.produtos.map(e=>e)
         const nomes = localStorage.getItem('pesquisa').toUpperCase()
         console.log(nomes)
-        console.log()
         let listagem = document.getElementById('listagem-produto')
-
+        let h1 = document.createElement('h1')
+                            h1.appendChild(document.createTextNode('Produto não encontrado...'))
                    
 
                         for(let i = 0; i<produtoc.length; i++ ){
@@ -61,12 +61,13 @@
                                 article.appendChild(p)
 
                                 listagem.appendChild(article)
-                           }    
-                        }
-
-}  
-
+                           }else{
                             
+                            listagem.appendChild(h1)
+                           }
+
+} 
+}
                         
                 
 

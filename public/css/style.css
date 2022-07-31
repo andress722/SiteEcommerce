@@ -14,6 +14,11 @@ body{
   display: flex;
 }
 
+footer a{
+  text-decoration: none;
+  text-decoration-style: none;
+}
+
 a{
   text-decoration: none;
 }
@@ -286,10 +291,11 @@ section.produtos .container {
     /* margin-right: -5px; */
     display: flex;
     max-width: 170px;
+    height: 178px;
     flex-direction: column;
     margin-bottom: 16px;
     justify-content: space-between;
-    min-width: 100px;
+    min-width: 135px;
 }
 .ul-categorias{
  
@@ -605,18 +611,23 @@ width: 95%;
 
 .span-pesquisa{
   font-weight: bold;
+  font-size: 14px;
 }
 
 #div-pesquisa{
+
   display: flex;
-  margin-left: 13px;
-  justify-content: center;
-  /* align-items: baseline; */
   flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    width: 134px;
+    
+
 }
 
 .p-pesuisa{
   padding: 0px;
+  font-size: 14px;
   margin-bottom: -1px;
   text-align: center;
   font-weight: bold;
@@ -634,7 +645,7 @@ width: 95%;
 
 
 .article-pesquisa img{
-  width: 111px;
+  width: 131px;
 }
 
 
@@ -660,16 +671,14 @@ width: 95%;
 
 article{
   display: flex;
-  max-width: 150px;
   flex-direction: column;
   margin-bottom: 16px;
   justify-content: space-between;
   margin-right: 10px;
   min-width: 200px;
 }
-article:hover{
-  cursor: pointer;
-}
+
+
 
 
 #estilo-form{
@@ -680,6 +689,31 @@ article:hover{
 #estilo-form >input{
   width: 250px;
   height: 40px;
+}
+
+.img-article{
+  width: 130px;
+    height: 142px;
+}
+.img-article:hover{
+  cursor: pointer;
+}
+
+pre{
+  display: block;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    overflow: auto;
+    font-size: 15px;
+    color: white;
+    width: 135px;
+    text-align: center;
+    height: 25px;
+}
+
+pre:hover{
+  color: red;
+  cursor: pointer;
 }
 
 #botao-usuario{

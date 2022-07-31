@@ -1,5 +1,5 @@
 
-<section class="d-flex flex-column">
+<section class="d-flex flex-column" style="height: 319px">
     <h2 style="margin-top: 30PX; margin-top: 30PX;  margin-bottom: 26px;  text-align: center;">PROMOÇÃO</h2>
 
         
@@ -14,22 +14,16 @@
       const response = await fetch('/api/produtos')
       let json = await response.json()
       let produtoc = json.produtos.map(e=>e)
-      const nomes = localStorage.getItem('pesquisa')
       let listagem = document.getElementById('listagem-produto-promo')
       
       for(let i = 0; i<=produtoc.length; i++ ){
           console.log(produtoc[i].nome)
           let article = document.createElement('article')
-          article.setAttribute('class', 'artcile-pesquisa')
-          article.setAttribute('href', `/produtos/${produtoc[i].id}`)
-          article.onclick = ()=> {
-            window.location.href = `/produtos/${produtoc[i].id}`
-          }
-          article.setAttribute('style', 'min-width: 120px; display: flex; max-width: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
+          article.setAttribute('id', 'article-index')
+      
           let div = document.createElement('div')
           div.setAttribute('class', 'd-flex')
           div.setAttribute('id', 'div-pesquisa')
-          div.setAttribute('style', 'width: 78px')
           let p = document.createElement('p')
           p.appendChild(document.createTextNode(produtoc[i].nome))
           p.setAttribute('class', 'p-pesuisa')
@@ -38,11 +32,23 @@
           span.appendChild(document.createTextNode('R$' + ' ' + produtoc[i].valor))
           span.setAttribute('class', 'span-pesquisa')
           div.appendChild(span)
+          let pre = document.createElement('pre')
+          pre.setAttribute('class', 'btn bi bi-cart btn-primary active p-0')
+          pre.appendChild(document.createTextNode(' Adicionar'))
+          pre.onclick = ()=> {
+            window.location.href = `/produtos/${produtoc[i].id}`
+          }
+          div.appendChild(pre)
           let img = document.createElement('img')
           img.setAttribute('src', `/uploads/${produtoc[i].imagem}`)
-          img.setAttribute('style', 'width: 116px; height: 134px')
+          img.setAttribute('class', 'img-article')
+          img.setAttribute('href', `/produtos/${produtoc[i].id}`)
+          img.onclick = ()=> {
+            window.location.href = `/produtos/${produtoc[i].id}`
+          }
           article.appendChild(img)
           article.appendChild(div)
+          
           listagem.appendChild(article)
       }
     }
