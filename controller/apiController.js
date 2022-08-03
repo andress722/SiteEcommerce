@@ -22,6 +22,11 @@ const api = {
         res.send({pedidos})
     },
 
+    login: async function(req,res,next){
+        const usuarios =  await UsuarioComum.findAll()
+        res.send({usuarios})
+    },
+
     cep: async function(req, res, next) {
         
         const cep = await axios.get('https://viacep.com.br/ws/01001000/json')

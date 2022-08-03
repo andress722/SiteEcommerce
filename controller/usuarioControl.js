@@ -37,6 +37,11 @@ const usuario = {
         let produtos = await Produto.findAll()
         return res.render('pesquisa-id', {nome})
       },
+      
+      forgetPassword: async function(req,res,next){
+        res.render('fortePass')
+      },
+
 
 
       

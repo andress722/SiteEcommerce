@@ -30,7 +30,7 @@
         console.log(nomes)
         let listagem = document.getElementById('listagem-produto')
         let h1 = document.createElement('h1')
-                            h1.appendChild(document.createTextNode('Produto não encontrado...'))
+        h1.appendChild(document.createTextNode('Produto não encontrado...'))
                    
 
                         for(let i = 0; i<produtoc.length; i++ ){
@@ -62,8 +62,10 @@
 
                                 listagem.appendChild(article)
                            }else{
+                            if(produtoc[i].nome.toUpperCase() == nomes.toUpperCase()){
+                                listagem.appendChild(h1)
+                            }
                             
-                            listagem.appendChild(h1)
                            }
 
 } 

@@ -10,7 +10,7 @@ router.get('/login', usuario.login)
 router.post('/login', usuario.loginPost)
 router.get('/logout', usuario.logout)
 router.get('/contato', usuario.contato)
-
+router.get('/newpass', usuario.forgetPassword)
 router.get('/produtos', usuario.produtoUsuario)
 router.get('/procura/', usuario.procura)
 router.get('/procura/:nome',  usuario.procuraParam)

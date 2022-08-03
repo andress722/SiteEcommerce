@@ -6,7 +6,10 @@ const bodyParser = require('body-parser')
 var logger = require('morgan');
 var session = require('express-session')
 const passport = require('passport')
+var flash = require('express-flash');
 var nodemailer = require('nodemailer')
+
+var cookieParser = require('cookie-parser')
 
 
 var app = express();
@@ -20,6 +23,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
+
+app.use(flash());
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -41,11 +46,13 @@ app.use(function adicionaUserNoRender(req, res, next){
 })
 
 
+
+
 app.use('/', require('./routes/usuario'));
 app.use('/superadmin', require('./routes/superadmin'))
 app.use('/pedidos', require('./routes/pedidos'))
 app.use('/api', require('./routes/api'))
-
+app.use('/pass', require('./routes/pass'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

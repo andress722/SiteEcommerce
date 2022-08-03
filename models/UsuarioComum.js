@@ -32,6 +32,9 @@ module.exports = (connection, DataTypes) => {
           },
         numero: {
             type: DataTypes.INTEGER
+          },
+          token: {
+            type: DataTypes.STRING(200)
           }
         
       }, {
