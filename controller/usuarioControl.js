@@ -18,6 +18,11 @@ const usuario = {
       return res.render('usuariocomum/admin-comprador', obj)
     },
 
+    log: (req,res) => {
+      return res.render('logar')
+    },
+    
+
 
     index: async function(req, res, next) {
         const obj = {

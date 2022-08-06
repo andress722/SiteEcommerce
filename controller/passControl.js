@@ -89,6 +89,24 @@ const passwordNew = {
                         where: {
                             email: email
                         }})
+                }else{
+                    if(usuario.token != null){
+                        await mailer.sendMail({
+                            to: email,
+                            from: 'andrecidre@hotmail.com',
+                            html: `
+                            <body>
+                                <strong>Olá </strong>
+                                <span>${token}</span>
+                            </body>
+                
+                        `
+                        })
+                        await UsuarioComum.update({token:token}, {
+                            where: {
+                                email: email
+                            }})
+                    }
                 }
             
         }

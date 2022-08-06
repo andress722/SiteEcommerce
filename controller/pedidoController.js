@@ -53,6 +53,10 @@ const pedidoController = {
             return res.render('carrinho')
        },
 
+       pagamento: async function(req,res){
+         return res.render('mercado-pago')
+       },
+
       detalhePedido: async function(req,res){
         
         return res.render('pedidosDetalhe')

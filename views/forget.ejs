@@ -1,19 +1,27 @@
 
-
+<!DOCTYPE html>
+<html lang="en">
+        <%- include("./partials/head")%>
 <body>
     
-
-        <form action="/pass/send" method="post">
-            
-
-            <label for="esqueci">Digite seu email para redefinir senha: </label>
-            <input type="email" name='email'placeholder="email" id="email">
-            <button type="submit">Enviar</button>
-        </form>
-
 </body>
 
-<script>
+<body>
+    <%- include("./partials/header")%>
 
+    <section style="height: 500px;">
+        <form style="margin-top: 120px" action="/pass/send" method="post" onsubmit="validaCadastro(event)" novalidate>
+           
+            <div class="lista-erros"></div>
 
-</script>
+            <label for="esqueci">Digite seu email para redefinir senha: </label>
+            <input type="email" name='email'placeholder="email" id="email" data-required>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+        <%- include("./partials/footer")%>
+</body>
+
+<script src="/js/validacao.js"></script>
+<script src="/js/verificarEmail.js"></script>
+</html>

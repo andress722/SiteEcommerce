@@ -5,21 +5,18 @@
 
 <body>
     <%- include("../partials/header") %>
-    <main>
+    <main style="margin-top: 88px; margin-bottom: 20px">
         <section class="container-fluid d-flex flex-wrap align-middle" style="align-items: center;">
             <div class="container" >
                 <h1>Cadastro de Usuario</h1>
 
                 <div class="align-row align-middle" style="align-items: center;">
-                    <div class="lista-erros"></div>
                     <form method="POST" onsubmit="validaCadastro(event)" novalidate>
 
                         <div class="form-group " style="align-items: center;" id="estilo-form">
                             
                             <div class="lista-erros">
-                            <form class="form-cadastro" method="POST" >
-                            <div id="logo">
-                                <img src="img/logo.png" alt="">
+
                             </div>
                 
                             
@@ -33,7 +30,7 @@
                                     
                                 </div>
                                 <div class="card d-flex flex-column " style="margin-right: 50px; width: 300px;">
-                                    <label for="email">email</label>
+                                    <label for="email">Email</label>
                                     <input type="email" name="email" class="form-control" placeholder="Digite seu email" data-required>
                                     
                                 </div>
@@ -79,7 +76,7 @@
                                     <label for="repeatPassword">Repita a senha</label>
                                     <input type="password" name="repeatPassword" class="form-control" placeholder="Repita a senha">
                                 </div>
-                                <button type="submit" id="botao-usuario" class="btn btn-dark">ENVIAR</button>
+                                <button type="submit" id="botao-usuario" class="btn btn-primary">Enviar</button>
                             <hr>
                             
                         </main>

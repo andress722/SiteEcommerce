@@ -10,6 +10,7 @@
         <form class="container" style="margin-top: 88px; border: solid 2px; margin-bottom: 15px;"
                 action="https://formspree.io/f/mayvlrzj"
                 method="POST"
+                onsubmit="ValidaCadastro(event)" novalidate
                 >
                 <% if(estaLogado){ %> 
                     <h1>Olá  <%= usuario.nome %> </h1>
@@ -18,7 +19,7 @@
                     <% }  %> 
               <div class="form-group">
 
-
+                  
                     <label for="exampleFormControlInput1">
                       
                       <th type="email" name="email" readonly=“true” value="andrecidre@hotmail.com" hidden>
@@ -27,16 +28,16 @@
                          
   
                   <label for="exampleFormControlInput1" >Nome</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" name="nome" >
+                  <input type="text" class="form-control" id="exampleFormControlInput1" name="nome" data-required>
                   <br>
                   <hr>
 
                   <label for="exampleFormControlInput1" >email</label>
-                  <input type="email" class="form-control" id="exampleFormControlInput1" name="email-usuario" placeholder="name@example.com">
+                  <input type="email" class="form-control" id="exampleFormControlInput1" name="email-usuario" placeholder="name@example.com" data-required>
 
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Motivo do contato</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="contato">
+                    <select class="form-control" id="exampleFormControlSelect1" name="contato" data-required>
                       <option>produtos</option>
                       <option>login</option>
                       <option>erros</option>
@@ -59,6 +60,8 @@
 
         <%- include("./partials/footer") %>
 </body>
+<script src="/js/validacao.js"></script>
+<script src="/js/cadastro.js"></script>
 </html>
 
 

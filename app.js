@@ -8,7 +8,7 @@ var session = require('express-session')
 const passport = require('passport')
 var flash = require('express-flash');
 var nodemailer = require('nodemailer')
-
+const cors = require("cors");
 var cookieParser = require('cookie-parser')
 
 
@@ -25,7 +25,7 @@ app.use(session({
 }))
 
 app.use(flash());
-
+app.use(cors())
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(bodyParser.urlencoded({extended:true}))

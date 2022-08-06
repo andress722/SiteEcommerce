@@ -5,9 +5,11 @@
   <%- include("./partials/header")%>
 
 
-    <main class="container-fluid p-1" style="height: 760px;    margin-top: 88px;">
+    <main class="container-fluid p-1" style="height: 500px;    margin-top: 88px;">
+
+
         <section>
-        
+            <h2>A pesquisa retornou...</h2>
             <div class="container-fluid p-0" id="listagem-produto"></div>
         </section>
 
@@ -38,29 +40,37 @@
                            if(produtoc[i].nome.toUpperCase().indexOf(nomes) !== -1 ){
                                 console.log(produtoc[i].nome)
                                 let article = document.createElement('article')
-                                article.setAttribute('class', 'artcile-pesquisa')
-                                article.setAttribute('style', 'min-width: 120px; display: flex; max-width: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
-                                article.setAttribute('style', 'min-width: 120px; display: flex; max-width: 151px; height: 172px;  flex-direction: column;  margin-bottom: 16px;  justify-content: space-between;  margin-right: 10px;')
-                                let div = document.createElement('div')
-                                div.setAttribute('class', 'd-flex')
-                                div.setAttribute('id', 'div-pesquisa')
-                                div.setAttribute('style', 'width: 78px')
-                                let p = document.createElement('p')
-                                p.appendChild(document.createTextNode(produtoc[i].nome))
-                                p.setAttribute('class', 'p-pesuisa')
-                                div.appendChild(p)
-                                let span = document.createElement('span')
-                                span.appendChild(document.createTextNode('R$' + ' ' + produtoc[i].valor))
-                                span.setAttribute('class', 'span-pesquisa')
-                                div.appendChild(span)
-                                let img = document.createElement('img')
-                                img.setAttribute('src', `/uploads/${produtoc[i].imagem}`)
-                                img.setAttribute('style', 'width: 116px; height: 134px')
-                                article.appendChild(img)
-                                article.appendChild(div)
-                                article.appendChild(p)
-
-                                listagem.appendChild(article)
+          article.setAttribute('id', 'article-index')
+      
+          let div = document.createElement('div')
+          div.setAttribute('class', 'd-flex')
+          div.setAttribute('id', 'div-pesquisa')
+          let p = document.createElement('p')
+          p.appendChild(document.createTextNode(produtoc[i].nome))
+          p.setAttribute('class', 'p-pesuisa')
+          div.appendChild(p)
+          let span = document.createElement('span')
+          span.appendChild(document.createTextNode('R$' + ' ' + produtoc[i].valor))
+          span.setAttribute('class', 'span-pesquisa')
+          div.appendChild(span)
+          let pre = document.createElement('pre')
+          pre.setAttribute('class', 'btn bi bi-cart btn-primary active p-0')
+          pre.appendChild(document.createTextNode(' Adicionar'))
+          pre.onclick = ()=> {
+            window.location.href = `/produtos/${produtoc[i].id}`
+          }
+          div.appendChild(pre)
+          let img = document.createElement('img')
+          img.setAttribute('src', `/uploads/${produtoc[i].imagem}`)
+          img.setAttribute('class', 'img-article')
+          img.setAttribute('href', `/produtos/${produtoc[i].id}`)
+          img.onclick = ()=> {
+            window.location.href = `/produtos/${produtoc[i].id}`
+          }
+          article.appendChild(img)
+          article.appendChild(div)
+          
+          listagem.appendChild(article)
                            }else{
                             if(produtoc[i].nome.toUpperCase() == nomes.toUpperCase()){
                                 listagem.appendChild(h1)
