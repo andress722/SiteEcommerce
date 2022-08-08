@@ -1,6 +1,6 @@
 // alterei o nome da função para entrar no contexto de adição de produtos!
 function addProduto(produto, quantidade, valor, id) { // mantive a nomenclatura para facilitar a leitura do código..
-    alert('item adicionado ao carrinho')
+    alert(`item ${produto} adicionado ao carrinho`)
     const produtos = {
         produto:produto,
         quantidade:quantidade,

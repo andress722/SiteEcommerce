@@ -14,7 +14,7 @@ document.getElementById("checkout-btn").addEventListener("click", function() {
     description: document.getElementById("product-description").innerHTML,
     price: document.getElementById("unit-price").innerHTML
   };
-    
+    console.log(orderData)
   fetch("/pedidos/create_preference", {
     method: "POST",
     headers: {
@@ -51,6 +51,7 @@ function createCheckoutButton(preferenceId) {
       label: 'Pagamento', // Change the payment button text (optional)
     }
   });
+  console.log(preferenceId)
 }
 
 // Handle price update

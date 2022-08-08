@@ -2,7 +2,9 @@ var express = require('express');
 
 const { Usuario, Produto, Categoria, UsuarioComum} = require('../models')
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const axios = require('axios');
+
 
 /* GET home page. */
 
@@ -22,6 +24,14 @@ const usuario = {
       return res.render('logar')
     },
     
+    myOrder: async (req,res) => {
+
+     const orders = await axios.get('http://localhost:3000/api/carrinho')
+      const response = await orders.data
+    
+      return res.json(response)
+
+    },
 
 
     index: async function(req, res, next) {

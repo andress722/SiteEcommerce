@@ -15,7 +15,6 @@ const api = {
         const produtos = await Produto.findAll()
         res.send({produtos})    
     },
-
     carrinho: async function(req,res,next){
 
         const pedidos = await Carrinho.findAll()

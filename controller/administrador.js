@@ -3,7 +3,9 @@ var router = express.Router();
 const bodyParser = require('body-parser')
 const { Usuario, Produto, Categoria} = require('../models')
 const multer = require('multer')
-var superAdm = require('../middlewares/authAdmin')
+var superAdm = require('../middlewares/authAdmin');
+const { default: axios } = require('axios');
+const { data } = require('jquery');
 
 
 
@@ -252,6 +254,14 @@ const superadmin = {
             return res.render('categorias/editar-categorias',obj)
         }
         
+    },
+
+    jsonPedido: async (req,res) => {
+
+      const salvar = await axios.get('https://api.mercadopago.com/v1/payments/1307189053?acces_token=TEST-8218594776835434-091003-3eab1f89cb25fb2fb5ec4eb39b8159da-258177562')
+      const response = await salvar.data()
+
+      return res.send(response)
     },
     
     categoriaEditPost: async function(req,res){

@@ -17,6 +17,7 @@ router.post('/detalhes-pedido/',pedidos.enviarPedido)
 router.get('/payment', creaOrder.payment)
 router.get('/pay', creaOrder.teste)
 router.post("/create_preference", creaOrder.createPrefer)
-router.get('feedback', creaOrder.feedback)
+router.get('/feedback', creaOrder.feedback)
+
 
 module.exports = router

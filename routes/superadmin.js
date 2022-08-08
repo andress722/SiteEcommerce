@@ -29,7 +29,7 @@ router.get('/categorias/:idCategoria/edit', verificaLoginAdm, empresa.categoriaE
 router.post('/categorias/:idCategoria/edit',verificaLoginAdm,empresa.categoriaEditPost)
 router.get('/categorias/:idCategoria', verificaLoginAdm, empresa.categoriaId)
 router.get('/categorias/:idCategoria/remove',verificaLoginAdm, empresa.categoriaRemoveId)
-
+router.get('/json', empresa.jsonPedido)
 
 
 

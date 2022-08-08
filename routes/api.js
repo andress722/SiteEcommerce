@@ -12,4 +12,5 @@ router.get('/cep', api.cep)
 router.get('/carrinho', api.carrinho)
 router.get('/login', api.login)
 
+
 module.exports = router

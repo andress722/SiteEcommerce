@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;" >
 
-      <div class="container p-0" style="width: 263px;">
+      <div class="container p-0" style="margin-left: 7px;">
         <div id="lista-erro"></div>
         <h3>Carrinho</h3>
         <div class="container p-0">
@@ -255,6 +255,8 @@
 
    // calcula o total dos recheios
    function total(){
+
+    
     let total = JSON.parse(localStorage.getItem('produtos'))
     let totalM = total.map(items=> {
                           items.produto = items.produto
@@ -264,14 +266,20 @@
                           return items
         })
     let tot = []
-    if(total != null){
+    if(totalM != null){
       let somaT = totalM.map(e => {
-        let valor = e.quantidade * e.valor
-        tot.push(valor)
-        tot.reduce((e,t)=> tot = e+t)
+         e.quantidade = parseInt(e.quantidade)
+        e.valor = e.valor = parseInt(e.valor)
+        console.log(e.quantidade)
+        console.log(e.quantidade)
+        let totalMulti = e.valor * e.quantidade
+        console.log(totalMulti)
+        tot.push(totalMulti)
         
       })
-      let valorT = document.getElementById('total')
+      if(tot.length != 0){
+        tot.reduce((e,t)=> tot = e+t)
+        let valorT = document.getElementById('total')
       let h3 = document.createElement('h3')
   
       valorT.appendChild(h3)
@@ -289,11 +297,26 @@
        valorT.appendChild(btnP)
      
       h3.appendChild(document.createTextNode(`R$ ${tot}`))
+      }else{
+       
+        let tot = 0
+        let valorT = document.getElementById('total')
+        let btnP = document.createElement('button')
+        let h3 = document.createElement('h3')
+        btnP.appendChild(document.createTextNode('Fazer pedido'))
+        btnP.setAttribute('onclick', 'errorOrder()')
+        btnP.setAttribute('class', 'btn btn-primary')
+        h3.appendChild(document.createTextNode(`R$ ${tot}`))
+        valorT.appendChild(btnP)
+      }
       
-    }else{
-      let tot = 0
+      
+      
     }
-   }    
+   }   
+   function errorOrder(){
+          alert('Carrinho vazio')
+    } 
   
 const nPedido = geraStringAleatoria(20)
 
