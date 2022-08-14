@@ -1,24 +1,23 @@
 module.exports = (connection, DataTypes) => {
     const model = connection.define('Carrinho', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-              autoIncrement: true
-        },
+       
         produto: {
-        type: DataTypes.STRING(100)
+        type: DataTypes.STRING
     },
         quantidade: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
             },
         
             valor: {
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING
         },
         total: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     }, numero_pedido: {
-        type: DataTypes.STRING(100)
+        type: DataTypes.STRING
+    },
+    id_produto: {
+        type: DataTypes.STRING
     }
   
 

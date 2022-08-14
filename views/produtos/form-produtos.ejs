@@ -6,17 +6,17 @@
 
 <body>
     <%- include("../partials/header") %>
-        <section class="contato">
+        <section class="contato" style="margin-top: 128px ;">
             <div class="container">
                 <h1>Cadastro de produtos</h1>
 
                 <div class="align-row">
                     <form  class="formulario-principal" method="POST" enctype="multipart/form-data">
 
-                        <label for="imagemServico">Envie uma imagem</label>
-                        <input type="file" name="imagemProduto">
+                        <label for="imagem">Envie uma imagem</label>
+                        <input type="file" name="imagem">
                         
-                        <label for="">Selecione uma categoria</label>
+                        <label for="">Selecione uma categoria</lab  el>
                         <select name="categoria_id" id="categoria_id">
                             <% categorias.forEach(categoria => { %> 
                             <option value="<%= categoria.id %>" ><%= categoria.nome %></option>

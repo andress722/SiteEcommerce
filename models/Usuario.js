@@ -7,16 +7,16 @@ module.exports = (connection, DataTypes) => {
           autoIncrement: true
         },
         nome: {
-          type: DataTypes.STRING(100)
+          type: DataTypes.STRING(200)
         },
         superusuario: {
-          type: DataTypes.STRING(100)
+          type: DataTypes.STRING(200)
         },
         email: {
-          type: DataTypes.STRING(100)
+          type: DataTypes.STRING(200)
         },
         senha: {
-          type: DataTypes.STRING(100)
+          type: DataTypes.STRING(200)
         }
       }, {
         timestamps: true,

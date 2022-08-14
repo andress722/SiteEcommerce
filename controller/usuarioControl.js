@@ -23,6 +23,8 @@ const usuario = {
     log: (req,res) => {
       return res.render('logar')
     },
+
+  
     
     myOrder: async (req,res) => {
 

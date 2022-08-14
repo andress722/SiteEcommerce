@@ -1,3 +1,5 @@
+
+
 module.exports = (connection, DataTypes) => {
 
     const model = connection.define('Produto', {
@@ -7,7 +9,7 @@ module.exports = (connection, DataTypes) => {
              autoIncrement: true
          },
          imagem:{
-             type: DataTypes.STRING(100)
+             type: DataTypes.STRING
          },
          nome:{
              type: DataTypes.STRING(50)
@@ -47,8 +49,12 @@ module.exports = (connection, DataTypes) => {
             foreignKey: 'id_produto',
             as: 'addcarrinho'
         })
-       
+        model.hasMany(models.FavoritoProduto, {
+            foreignKey: 'id_produto',
+            as: 'favo'
+        })
 
+   
        
          model.sync({alter:true})
      }

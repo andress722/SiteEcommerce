@@ -49,8 +49,13 @@ const pedidoController = {
       
 
       verCarrinho: async function(req,res){
-  
-            return res.render('carrinho')
+        try {
+          const usuario = req.session.usuarioLogado.id
+          return res.render('carrinho', {usuario})
+        } catch (error) {
+          return res.render('carrinho')
+        }
+            
        },
 
        pagamento: async function(req,res){
@@ -60,42 +65,45 @@ const pedidoController = {
       detalhePedido: async function(req,res){
         
         return res.render('pedidosDetalhe')
-       
-
-        
-
-
-
       },
 
       
        enviarPedido: async function(req,res){
         
-        const usuario = req.session.usuarioLogado.id
+        try {
+          const usuario = req.session.usuarioLogado.id
       
-        const produtos = req.body
-
-        
-       
-        for(let i=0; i < produtos.length; i++){
-          if(produtos.length){
-            console.log(produtos[i])
-           
-            await Carrinho.create({
-              produto: produtos[i].produto,
-              quantidade: produtos[i].quantidade,
-              valor: produtos[i].valor,
-              total: produtos[i].valor * produtos[i].quantidade,
-              id_produto: produtos[i].id,
-              id_usuario: usuario,
-              numero_pedido: produtos[i].pedidos
-            })
-
-          }
-           
-              
+        const {id, produto,quantidade, valor, total,pedidos } = req.body
+        const qtd = quantidade.toString()
+          console.log(qtd)
+      await Carrinho.create({
+        produto: produto.join(),
+        id_produto: id.join(),
+        quantidade: quantidade.join(),
+        valor: valor.join(),
+        total: total.join(),
+        id_usuario: usuario,
+        numero_pedido: pedidos
+      })        
+          
+        } catch (error) {
+          return res.render('form-servico-erro', {mensagemErro: 'Erro ao criar pedido, tenta novamente ou entre contato conosco'})
         }
-         
+        
+      // for(let i=0; i < produtos.length; i++){
+          //if(produtos.length){
+          //  console.log(produtos[i])
+            
+           // await Carrinho.create({
+           //   produto: produtos[i].produto,
+           //   quantidade: produtos[i].quantidade,
+            //  valor: produtos[i].valor,
+             // total: produtos[i].valor * produtos[i].quantidade,
+             // id_produto: produtos[i].id,
+            //  id_usuario: usuario,
+            //  numero_pedido: produtos[i].pedidos
+           // })
+      
         }
       }
 

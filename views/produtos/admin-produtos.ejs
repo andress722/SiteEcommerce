@@ -5,8 +5,8 @@
 
 <body>
     <%- include("../partials/header") %>
-    <main>        
-      <table class="table" >
+    <main style="margin-top: 88px;">        
+      <table class="table" style="margin-top: 88px;">
         <tbody>
         <tr class="table-active">
             <th>categoria</th>
@@ -19,7 +19,7 @@
         </tr>
           
             <% calca.forEach(function (calcas){ %>
-              <% if(calcas.usuario_id == usuario.id){ %>  
+          
             <tr>
               <td><%= calcas.categoria_id %> </td>
               <td><%= calcas.id  %> </td>
@@ -33,9 +33,9 @@
                 <a href="/superadmin/produtos/<%= calcas.id %>">Ver produto</a>
 
                
-                <td><a class='favorito' href="/superadmin/produtos/<%= calcas.id %>/favoritar" style="text-decoration: none;">⭐</a></td>
+                <td><a onclick="showMessage()" class='favorito' href="/superadmin/favoritar/<%= calcas.id %>"style="text-decoration: none;">⭐</a></td>
               
-              <% }}) %> 
+              <% }) %> 
               
               </td>
             </tr>
@@ -48,11 +48,17 @@
  
   <a href="/superadmin/produtos/criar">Novo produto</a>
   <a href="/superadmin/categorias/criar">Nova categoria</a>
+  <a href="/superadmin/promo">Ver itens em favoritos</a>
 
       
   
 </main>
     <%- include("../partials/footer") %>
 </body>
+<script>
+  function showMessage(){
+    alert('item a dicionado aos favoritos/promo')
+  }
 
+</script>
 </html>

@@ -2,14 +2,12 @@
     <%- include("../partials/head")%>
 <body>
     <%- include("../partials/header") %>
-    <main class="container-fluid" id="admin-main">
-        <section class="container-fluid" id="tabela">
-            <div class="container-fluid" id="admin-menu">
-                <div id="empresa-nome">
-                    <h2><%= usuarioLogado.nome  %> </h2>
-                </div>
+    <main class="d-flex" style="margin-top: 88px;" >
+        <section class="container-fluid d-flex align-baseline" style="margin-top: 88px; align-items: baseline;" >
+            <div class="container-fluid d-flex flex-column" >
                 <div class="container" id="menu-dash-admin">
                     <ul>
+                        <li><h2><%= usuarioLogado.nome  %> </h2></li>
                         <li><strong>Perfil</strong> </li>
                         <li><strong><a href="/superadmin/produtos">ir para produtos</strong></a></li>
                         <li><strong><a href="/superadmin/categorias">ir para categorias</a></strong></li>
@@ -21,17 +19,12 @@
             <div class="container-fluid">
 
             <div class="container-fluid" id="containers-admin">
-                <div clcass="container-fluid" id="container-1-numero">
-                    <div class="informacoes-1">
                         <ul>
                             <li><strong> Informações de vendas</li></strong>
                             <li>Vendidos</li>
                             <li>Total R$500</li>    
                         </ul>
-                    </div>
-                </div>
-                
-            </div>
+                   
         </div>
         </section>
         

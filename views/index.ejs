@@ -46,17 +46,15 @@
 </body>
 
 <script>
- async function pesquisar(){
+ async function indexFetch(){
       
-
-     
       const response = await fetch('/api/produtos')
       let json = await response.json()
       let produtoc = json.produtos.map(e=>e)
       let listagem = document.getElementById('listagem-produto')
       
-      for(let i = 0; i<=produtoc.length; i++ ){
-          console.log(produtoc[i].nome)
+      for(let i = 0; i<produtoc.length; i++ ){
+       
           let article = document.createElement('article')
           article.setAttribute('id', 'article-index')
       
@@ -91,7 +89,7 @@
           listagem.appendChild(article)
       }
   }
-  window.addEventListener('load', pesquisar)
+  window.addEventListener('load', indexFetch)
   
 
 </script>

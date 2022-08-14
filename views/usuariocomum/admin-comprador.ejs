@@ -1,15 +1,19 @@
 <html lang="en">
     <%- include("../partials/head")%>
+    <style>a{
+        text-decoration: none;
+    }
+    </style>
 <body>
     <%- include("../partials/header") %>
     <main class="container-fluid bg-light" id="admin-main">
         <h2><%= usuarioLogado.nome  %>  </h2>
         <section style="margin-top: 50px;" class="container-fluid d-flex flex-wrap justify-content-around">
-            <div class="container-fluid" style="width: 250px; margin-left: -30px;">
+            <div class="container-fluid" style="width: 250px; margin-left: -6px;">
             
-                    <ul style="list-style: none;">
+                    <ul style="list-style: none; text-decoration: none; ">
                         <li><strong>Editar meu perfil</strong> </li>
-                        <li><strong>Meus pedidos</strong> </li>
+                        <li><strong><a href="/api/carrinho">Meus pedidos </a></strong> </li>
                         <li><strong><a href="#">Meus favoritos</a></strong></li>
                     </ul>
 
@@ -20,14 +24,14 @@
                         <h2>Informações de cadastro</h2>
                         <ul style="list-style: none; padding: 0px;">
                             
-                             <li >Nome: <%= usuario.nome %> </li>
-                             <li>email: <%= usuario.email %> </li>
-                             <li>cep: <%= usuario.cep %> </li>
-                             <li>endereço: <%= usuario.endereco %> </li>
-                             <li>numero: <%= usuario.numero %> </li>
-                             <li>bairro: <%= usuario.bairro %> </li>
-                             <li>cidade: <%= usuario.cidade %> </li>
-                             <li>estado: <%= usuario.estado %> </li>
+                             <li >Nome: <%= administrador.nome %> </li>
+                             <li>email: <%= administrador.email %> </li>
+                             <li>cep: <%= administrador.cep %> </li>
+                             <li>endereço: <%= administrador.endereco %> </li>
+                             <li>numero: <%= administrador.numero %> </li>
+                             <li>bairro: <%= administrador.bairro %> </li>
+                             <li>cidade: <%= administrador.cidade %> </li>
+                             <li>estado: <%= administrador.estado %> </li>
 
                            
                         </ul>

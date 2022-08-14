@@ -66,7 +66,8 @@ const passwordNew = {
 
     send: async (req,res) => {
         const {email} = req.body
-        const usuario = await UsuarioComum.findOne({where: {
+        try {
+            const usuario = await UsuarioComum.findOne({where: {
                 email: email
             }})
             console.log('Este é o email ' + usuario)
@@ -112,8 +113,12 @@ const passwordNew = {
         }
         
         res.redirect('/pass/resetpass')
-    }
+    
 
+        } catch (error) {
+            res.render('form-servico-error', {mensagemErro: 'Erro ao enviar menssagem'})
+        }
+    }
 
 }
 

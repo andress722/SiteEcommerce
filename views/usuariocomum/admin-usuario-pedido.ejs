@@ -1,16 +1,90 @@
-<!DOCTYPE html>
 <html lang="en">
-  <%- include("./partials/head")%>
-<body >
-  <%- include("./partials/header")%>
-  
-  <main>
-    <section>
-        
-    </section>
-  </main>
+    <%- include("../partials/head")%>
+<body>
+    <%- include("../partials/header") %>
+    <main style="margin-top: 88px; height: 544px;" class="container-fluid bg-light" id="admin-main">
+       
+       
+        <section class="d-flex bg-light" style="margin-top: 59px;">
  
-  <%- include("./partials/footer")%>
-  
+            <div class="container-fluid" style="width: 250px; padding-top: 58px; margin-bottom: 20px ;">
+              
+                    <ul style="list-style: none;">
+                        <li>
+                            <% if(usuarioLogado){ %> 
+                                <h1><%= usuarioLogado.nome  %>  </h1>   
+                            <%    }else{%>
+                               <h1>Usuario não logado</h1> 
+                              <% } %>
+                            </li>
+                        <li><strong>Editar meu perfil</strong> </li>
+                        <li><strong>Meus pedidos</strong> </li>
+                        <li><strong><a href="#">Meus favoritos</a></strong></li>
+                    </ul>
+
+                </div>
+            </div>
+
+            
+            <div style="width: 300px; padding-top: 58px; text-align: center;" class="container d-flex flex-column align-items-center p-0">
+                    
+                        <h2>Meus pedidos</h2>
+                        <ul id="list" style="list-style: none; padding: 0px;">
+                            <% orders.filter(function(nPedido){ %> 
+                                <div>
+                                  
+                                    <div style="width: 100px; align-items: center; margin-left: 65px;">
+                                        <img style="width: 30px;" src="/imagens/cor-vermelha.png" alt="">
+                                        <img style="width: 30px;" src="/imagens/cor-ver.png" alt=""> 
+                                        <img style="width: 30px;" src="/imagens/cor-laranja.png" alt="">
+                                    </div>
+                                    <p style="text-align: center;">Status: Aprovado  </p>
+                                    <% if(nPedido.numero_pedido  ) {%> 
+                                            <p>Detalhes do pedido: <%= nPedido.numero_pedido %> </p>
+                                    <% } %> 
+                                    <li style="width: 220px;"><%= nPedido.total %>  </li>
+                                
+                                    
+                                </div>
+                                
+                             <% }) %> 
+                           
+                        </ul>
+                        <nav style='margin-top: 10px;margin-bottom: 10px;' aria-label="Page navigation example">
+                            <ul class="pagination"><li class="page-item ">
+                               
+
+                                <% for(let i = 0; i<totalPages; i++){ %> 
+                              
+                              <li class="page-item"><a class="page-link" href="?page=<%= i+1 %>"><%= i+1 %> </a></li>
+                            <%   }%> 
+                                <li class="page-item">
+                            
+                              </li>
+                            </ul>
+                          </nav>
+                          </nav>
+                </div>
+                
+            </div>
+            
+        </div >
+        
+        </section>
+        
+    </main>
+    
+   <%-  include('../partials/footer') %> 
 </body>
+
+<script>
+function check(){
+
+}
+    
+
+
+    window.addEventListener('load',check )
+
+</script>
 </html>

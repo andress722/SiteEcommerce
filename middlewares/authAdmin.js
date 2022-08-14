@@ -1,15 +1,18 @@
 var {Usuario} = require('../models')
 
-const verificaLoginAdm = function verificaLoginAdm(req,res,next){
-    
+const verificaLoginAdm = async function verificaLoginAdm(req,res,next){
     if(!req.session.estaLogado){
         res.redirect('/superadmin/loginempresa')
         return
+    }else{
+        const id = req.session.usuarioLogado.id
+        const usuario = await Usuario.findByPk(id)
+        if(usuario.superadmin === 1){
+            next()
+        }
     }
-    if(req.session.usuarioLogado.id != 1){
-        res.redirect('superadmin/loginempresa')
-    }   
-    next()
+
+   
 }
 
 

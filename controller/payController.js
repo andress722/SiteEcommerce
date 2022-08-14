@@ -1,43 +1,30 @@
 var mercadopago = require('mercadopago');
 const cors = require("cors");
-const { json } = require('body-parser');
+var express = require('express');
+const { json } = require('body-parser')
+const { Usuario, Produto, Categoria, Carrinho,Pedido} = require('../models')
 mercadopago.configure({
   access_token: 'TEST-8218594776835434-091003-3eab1f89cb25fb2fb5ec4eb39b8159da-258177562'
 });
 
 const creaOrder = {
-    payment: async (req, res)=> {
-   
-    
-    var response = await mercadopago.payment_methods.listAll();
-    var payment_methods = response.body;
-    
-    let preference = {
-        items: [
-          {
-            title: 'Produtos',
-            unit_price: 1001,
-            quantity: 2,
-          }
-        ]
-      };
-      
-      mercadopago.preferences.create(preference)
-      .then(function(response){
-      // Este valor substituirá a string "<%= global.id %>" no seu HTML
-        global.id = response.body.id;
-      }).catch(function(error){
-        console.log(error);
-      })
-
-      console.log(response)
-
-    res.render('mercado-pago',{response}) 
-
-},
+  
 
   teste: async (req,res) => {
-    res.render('mp')
+    
+    try {
+      const product = await Carrinho.findAll()
+      const usuario = req.session.usuarioLogado.id
+      console.log(usuario)
+      let pFilter = product.filter(item => item.id_usuario === usuario).filter((item,pos) => {if(item.numero_pedido === '0aCv9lPHyWadppNR7jAK'){
+        item.total = parseInt(item.total)+parseInt(item.total)
+        return item.indexOf(item) === pos
+      }})
+      return res.send(pFilter)
+    } catch (error) {
+      res.send(error)
+    }
+    
   },
 
   createPrefer: async (req,res) => {

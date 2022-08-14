@@ -1,12 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser')
-const { Usuario, Produto, Categoria} = require('../models')
-const multer = require('multer')
-var superAdm = require('../middlewares/authAdmin');
-const { default: axios } = require('axios');
-const { data } = require('jquery');
+const { Usuario, Produto, Categoria, FavoritoProduto} = require('../models')
 
+const { default: axios } = require('axios');
+
+var bcrypt = require('bcrypt')
 
 
 const superadmin = {
@@ -17,16 +16,60 @@ const superadmin = {
           const logado = req.session.usuarioLogado.id
 
           const obj =  {
-            administrador: await Usuario.findByPk(logado)}
-          return res.render('produtos/admin',obj)
+            administrador: await Usuario.findByPk(logado)
+          }
+            
+          return res.render('produtos/admin')
           
-        } catch (error) {
-          console.log(error)
-          return null
+        }catch(error) {
+          res.render('form-servico-erro', { mensagemErro: 'Houve algum erro'})
         }
       },
 
+      favorito: async(req,res) => {
+        try {
+          const favorito = await FavoritoProduto.findAll({
+            include: {
+              model: Produto,
+              as: 'addfavo'
+            }})
+            return res.render('produtos/favo-promo', {favorito})
+        } catch (error) {
+          return res.sendStatus(404)
+        }
+      
+          //return res.send(favorito)
+       
+      },
+      
+      favoritar: async(req,res) => {
+          const idProduto = req.params.idProduto
+          await FavoritoProduto.create({id_produto:idProduto})
+          return res.redirect('/superadmin/produtos')
+      },
 
+      criarUsuarioGet: (req,res)=> {
+        return res.render('cadastro')
+      },
+      criando: async function(req,res){
+        try {
+            const {email,senha,nome} = req.body
+            let senhaB = bcrypt.hashSync(senha, 4)
+            console.log(email)
+            const emailReq = await Usuario.findOne({ where: { email: email } });
+            if (!emailReq) {
+              await Usuario.create({nome:nome, email: email, senha:senhaB})
+              console.log(senhaB)
+              return res.redirect('/superadmin/loginempresa')
+            }
+            
+        } catch (error) {
+            return res.render('form-servico-erro', {mensagemErro: 'Erro no cadastro, tente novamente'})
+        }
+        
+      
+      },
+         
 
      loginEmpresa: function(req,res){
        if(req.query.fail)
@@ -39,25 +82,30 @@ const superadmin = {
       loginEmpresaPost: async function(req,res,next){
       
         try{
-      
+          const {email,senha} = req.body
           const usuarioLogin = await Usuario.findOne({
             where: {
               email: req.body.email
             }
           })
-          if(usuarioLogin && usuarioLogin.senha == req.body.senha){
-              
-            req.session.estaLogado = true
-            req.session.usuarioLogado = usuarioLogin
-              
-              return res.redirect('/superadmin')
-      
-          }else{
-             return  res.render('form-servico-erro', { mensagemErro: 'Senha Invalida'})
+          if(usuarioLogin){
+            const usuarioSenha = usuarioLogin.senha
+            
+            let valida = bcrypt.compareSync(req.body.senha, usuarioSenha)
+
+            if(usuarioLogin && valida  === true){
+                
+              req.session.estaLogado = true
+              req.session.usuarioLogado = usuarioLogin
+                
+               return res.redirect('/')
+            }
           }
+
         }catch (erro){
-          next(erro)
+          return res.render('form-servico-erro', {mensagemErro: 'erro ao tentar login'})
         }
+          
       },
        
     
@@ -100,39 +148,49 @@ const superadmin = {
   
     return res.render('produtos/visualizar-produto-admin', obj)
   },
+
+
     
     criarProdutosAdmin: async function(req,res){
     
         const usuario = req.session.usuarioLogado.id
-        const obj = {
-            categorias: await Categoria.findAll(),
-            usuario: await Usuario.findByPk(usuario)
+        try {
+          const obj = {
+              categorias: await Categoria.findAll(),
+              usuario: await Usuario.findByPk(usuario)
+          }
+      
+          return res.render('produtos/form-produtos',obj)
+          
+        } catch (error) {
+          return res.sendStatus(404)
         }
-    
-        return res.render('produtos/form-produtos',obj)
     },
     
     criarProdutoAdminPost: async function(req,res){
-    
-        let file = req.file
+        
         
         try {
-          if(file){
-            await Produto.create(req.body) 
+          const {categoria_id, usuario_id, nome, descricao, valor} = req.body
+          let file = req.file
+          if(file != null){
+            await Produto.create({categoria_id: categoria_id, usuario_id: usuario_id, nome:nome,descricao: descricao, valor:valor, imagem: file.filename}) 
           }
+          return res.render('enviado')
+         
         } catch (error) {
           res.render('form-servico-erro', {mensagemErro: 'Erro'})
         }
 
         
     
-        return res.render('enviado')
+        
     
     },
     
     removerProdutoAdmin: async function(req,res){
-        console.log('removendo produto')
     
+
         const idProduto = req.params.idProduto
         await Produto.destroy({
             where: {
@@ -235,7 +293,7 @@ const superadmin = {
         }
         return res.render('categorias/ver-categoria', obj)
       } catch (error) {
-        return res.render('categorias/ver-categoria')
+        return res.sendStatus(404)
       }
     },
     
@@ -258,32 +316,43 @@ const superadmin = {
 
     jsonPedido: async (req,res) => {
 
-      const salvar = await axios.get('https://api.mercadopago.com/v1/payments/1307189053?acces_token=TEST-8218594776835434-091003-3eab1f89cb25fb2fb5ec4eb39b8159da-258177562')
-      const response = await salvar.data()
+      const salvar = await axios.get('https://api.mercadopago.com/v1/payments/1307465816?acces_token=TEST-8218594776835434-091003-3eab1f89cb25fb2fb5ec4eb39b8159da-258177562')
+      const response = await salvar.data
 
-      return res.send(response)
+      return res.json(response)
     },
     
     categoriaEditPost: async function(req,res){
         const idCategoria = req.params.idCategoria
         console.log('chhamou edição')
-        await Categoria.update(req.body, {
-            where: {
-                id: idCategoria
-            }
-        })
-        return res.redirect('/superadmin/categorias')
+
+        try {
+          
+          await Categoria.update(req.body, {
+              where: {
+                  id: idCategoria
+              }
+          })
+          return res.redirect('/superadmin/categorias')
+        } catch (error) {
+          return res.sendStatus(404)
+        }
     },
     
     categoriaRemoveId: async function(req,res){
         const idCategoria = req.params.idCategoria
-        await Categoria.destroy({
-            where: {
-                id: idCategoria
-            }
-             
-        })
-        return res.redirect('/superadmin/categorias')
+        try {
+          await Categoria.destroy({
+              where: {
+                  id: idCategoria
+              }
+               
+          })
+          return res.redirect('/superadmin/categorias')
+          
+        } catch (error) {
+          return res.sendStatus(404)
+        }
     }
 
 }
