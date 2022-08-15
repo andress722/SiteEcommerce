@@ -33,13 +33,11 @@
     "sequelize": "^6.21.3",
     "sequelize-cli": "^6.4.1",
     "sqlite3": "^5.0.11",
-    "uuidv4": "^6.2.12"
+    "uuidv4": "^6.2.12",
+    "mysql2": "^2.3.3"
   },
   "main": "index.js",
   "repository": "https://github.com/andress722/SiteEcommerce.git",
   "author": "andress722 <andrecidre@hotmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "mysql2": "^2.3.3"
-  }
+  "license": "MIT"
 }
