@@ -1,9 +1,11 @@
 var express = require('express');
+var router = express.Router();
 
-const { Usuario, Produto, Categoria, UsuarioComum} = require('../models')
+const { Usuario, Produto, Categoria, FavoritoProduto} = require('../models')
 
-const bcrypt = require('bcrypt');
 const axios = require('axios');
+
+var bcrypt = require('bcrypt')
 
 
 /* GET home page. */
