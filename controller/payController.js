@@ -28,22 +28,36 @@ const creaOrder = {
   },
 
   createPrefer: async (req,res) => {
-    let preference = {
-      items: [
-        {
-          title: req.body.description,
-          unit_price: Number(req.body.price),
-          quantity: Number(req.body.quantity),
-        }
-      ],
-      back_urls: {
-        "success": "http://localhost:3000/pedidos/feedback",
-        "failure": "http://localhost:3000/pedidos/feedback",
-        "pending": "http://localhost:3000/pedidos/feedback"
-      },
-      auto_return: "approved",
-    };
+    const body = req.body
+    console.log(body)
   
+      var preference = {
+
+      items: body.map(e=> (
+            {
+              
+                    title: e.description,
+                    unit_price: Number(e.price),
+                     quantity: Number(e.quantity),
+                      
+                  }
+                  
+                  )),
+        
+                  back_urls: {
+                    "success": "http://localhost:3000/pedidos/feedback",
+                    "failure": "http://localhost:3000/pedidos/feedback",
+                    "pending": "http://localhost:3000/pedidos/feedback"
+                  },
+                  auto_return: "approved",
+                
+        
+    
+
+      
+    
+    };
+    console.log(preference)
     mercadopago.preferences.create(preference)
       .then(function (response) {
         res.json({

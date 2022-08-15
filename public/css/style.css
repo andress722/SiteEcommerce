@@ -674,6 +674,9 @@ width: 95%;
 
 .lista-carrinho{
   display: flex;
+  height: 70px;
+  align-items: center;
+
 }
 
 #itens{

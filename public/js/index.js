@@ -16,13 +16,13 @@ const mercadopago = new MercadoPago('TEST-7bd75aea-c0f3-476c-919f-feb33efcfa89',
   
     $('#checkout-btn').attr("disabled", true);
 
-      
 
-    const orderData = {
-      quantity: document.getElementById("quantity").value,
-      description: document.getElementById("product-description").innerHTML,
-      price: document.getElementById("unit-price").innerHTML
-    };
+    const orderData = comP.map(e=> ({
+      description: e.produto,
+      price: e.valor,
+      quantity: e.quantidade
+    }))
+    
       console.log(orderData)
     fetch("/pedidos/create_preference", {
       method: "POST",
@@ -66,20 +66,7 @@ const mercadopago = new MercadoPago('TEST-7bd75aea-c0f3-476c-919f-feb33efcfa89',
   }
   
   // Handle price update
-  function updatePrice() {
-
-    let quantity = document.getElementById("quantity").value;
-    let unitPrice = document.getElementById("unit-price").innerHTML;
-    let amount = parseInt(unitPrice) * parseInt(quantity);
-  
-    document.getElementById("total").innerHTML = "$ " + amount;
-    document.getElementById("summary-price").innerHTML = "$ " + unitPrice;
-    document.getElementById("summary-quantity").innerHTML = quantity;
-    document.getElementById("summary-total").innerHTML = "$ " + amount;
-  }
-  
-  document.getElementById("quantity").addEventListener("change", updatePrice);
-  updatePrice();  
+ 
   
   // Go back
   document.getElementById("go-back").addEventListener("click", function() {

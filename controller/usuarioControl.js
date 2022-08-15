@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { Usuario, Produto, Categoria, FavoritoProduto} = require('../models')
+const { Usuario, UsuarioComum, Produto, Categoria, FavoritoProduto} = require('../models')
 
 const axios = require('axios');
 

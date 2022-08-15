@@ -18,24 +18,24 @@
   <main style="        margin-top: 88px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;" >
 
-      <div class="container p-0" style="margin-left: 7px;">
+      <div class="p-0" style="margin-left: 7px;">
         <div id="lista-erro"></div>
-        <h3>Carrinho</h3>
-        <div class="container p-0">
+        <h1 style="font-size: 50px;">Carrinho</h1>
+        <div style="margin-top: 30px;" class=" p-0">
 
           <div class="p-0" id="itens"> 
             <ul class="p-0" id="lista"></ul>
             
           </div>
-          <button class="btn btn-primary" type="button" onclick=" localStorage.clear(); location.reload();"> Limpar carrinho </button>
+          <button style="margin-top: 10px" class="btn btn-primary" type="button" onclick=" localStorage.clear(); location.reload();"> Limpar carrinho </button>
         </div>
         
       
       </div>
-      <div style="width: 202px;    margin-left: 7px;" class="container border p-0">
+      <div style=" margin-left: 7px;" class="border p-0">
         
         <div  >
           <ul id="resumo-pedido">
@@ -89,28 +89,17 @@
           <h2>Checkout Payment</h2>
           <p>This is an example of a Mercado Pago integration</p>
         </div>
-        <div class="form-payment">
+        <div id="for-pay" class="form-payment">
           <div class="products">
-            <h2 class="title">Summary</h3>
+            <h2 id='summary' class="title">Summary</h3>
             <div class="item">
-              <span class="price" id="summary-price"></span>
-              <p class="item-name">Book x <span id="summary-quantity"></span></p>
+     
+             
             </div>
-            <div class="total">Total<span class="price" id="summary-total"></span></div>
+           
           </div>
-          <div class="payment-details">
-            <div class="form-group col-sm-12">
-              <br>      
-              <div id="button-checkout">
-              </div>                 
-              <br>
-              <a id="go-back">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 10 10" class="chevron-left">
-                  <path fill="#009EE3" fill-rule="nonzero"id="chevron_left" d="M7.05 1.4L6.2.552 1.756 4.997l4.449 4.448.849-.848-3.6-3.6z"></path>
-                </svg>
-                Go back to Shopping Cart
-              </a>
-            </div>
+     
+         
           </div>
         </div>
       </div>
@@ -348,45 +337,53 @@
 
         tot.push(totalMulti)
         
+        
       })
-      if(tot.length != 0){
-        tot.reduce((e,t)=> tot = e+t)
-        let valorT = document.getElementById('total')
-      let h3 = document.createElement('h3')
-  
-      valorT.appendChild(h3)
-      let btnP = document.createElement('button')
-       let produto = JSON.parse(localStorage.getItem("produtos"))
-       produto.map(e => {
-       
-        btnP.setAttribute('name', `${e.id}`)
-        btnP.setAttribute('onclick', 'errorValidate(event)')
-        btnP.setAttribute('class', 'btn btn-primary')
-       
-       })
-      btnP.appendChild(document.createTextNode('Fazer pedido'))
-      btnP.setAttribute('type','submit')
-       valorT.appendChild(btnP)
-     
-      h3.appendChild(document.createTextNode(`R$ ${tot}`))
-      }else{
-       
-        let tot = 0
-        let valorT = document.getElementById('total')
-        let btnP = document.createElement('button')
-        let h3 = document.createElement('h3')
-        btnP.appendChild(document.createTextNode('Fazer pedido'))
-        btnP.setAttribute('onclick', 'errorOrder()')
-        btnP.setAttribute('class', 'btn btn-primary')
-        h3.appendChild(document.createTextNode(`R$ ${tot}`))
-        valorT.appendChild(btnP)
-      }
+      console.log(tot)
+    
       
       
       
     }
+    
     return tot
-   }   
+   }  
+   
+   function totR (){
+
+       
+      let tot = total()
+      if(tot != 0){ 
+          let totReduce = tot.reduce((e,t)=> tot = e+t)
+          
+          let valorT = document.getElementById('total')
+          let h3 = document.createElement('h3')
+    
+        
+        let btnP = document.createElement('button')
+         btnP.setAttribute('onclick', 'errorValidate(event)')
+          btnP.setAttribute('class', 'btn btn-primary')
+        btnP.appendChild(document.createTextNode('Fazer pedido'))
+        btnP.setAttribute('type','submit')
+        valorT.appendChild(h3)
+        valorT.appendChild(btnP)
+       
+        h3.appendChild(document.createTextNode(`R$ ${totReduce}`))
+        } else{
+         
+         let tot2 = 0
+         let valorT = document.getElementById('total')
+         let btnP = document.createElement('button')
+         let h3 = document.createElement('h3')
+         btnP.appendChild(document.createTextNode('Fazer pedido'))
+         btnP.setAttribute('onclick', 'errorOrder()')
+         btnP.setAttribute('class', 'btn btn-primary')
+         h3.appendChild(document.createTextNode(`R$ ${tot2}`))
+         valorT.appendChild(btnP)
+       }
+   }
+
+   window.addEventListener('load', totR)
    function errorOrder(){
           alert('Carrinho vazio')
     } 
@@ -475,8 +472,35 @@ order.pedidos = nPedido
         let content = document.getElementById('content')
         content.appendChild(row)
         
-      
-       
+      //summary-pay
+  
+
+      let spanQtd = document.createElement('span')
+      spanQtd.setAttribute('id', 'summary-quantity')
+      spanQtd.appendChild(document.createTextNode(items.quantidade))
+    let pSumm = document.createElement('p')
+    pSumm.setAttribute('class', 'item-name')
+    pSumm.appendChild(document.createTextNode(items.produto + ' x '))
+    pSumm.appendChild(spanQtd)
+
+    let spanP = document.createElement('span')
+    spanP.setAttribute('class', 'price')
+    spanP.setAttribute('id', 'summary-price')
+    spanP.appendChild(document.createTextNode('R$ '+ items.valor*items.quantidade))
+      let divItem = document.createElement('div')
+      divItem.setAttribute('class', 'item')
+      divItem.setAttribute('id', 'sumItem')
+      divItem.appendChild(spanP)
+      divItem.appendChild(pSumm)
+     
+
+      let divPro = document.createElement('div')
+      divPro.setAttribute('class', 'products')
+      divPro.setAttribute('id', 'summaryCon')
+      divPro.appendChild(divItem)
+      let formP = document.getElementById('for-pay')
+       formP.setAttribute('class', 'form-payment')
+       formP.appendChild(divPro)
         
               
         
@@ -497,6 +521,50 @@ console.log(order)
         let tt = total()
 
         let sub = document.getElementById('cart-total').innerHTML = 'R$ ' + tt
+
+
+  //summary
+        let totalS = document.createElement('div')
+        totalS.setAttribute('class', 'total')
+        let sumI = document.getElementById('for-pay')
+        let spanTotal = document.createElement('span')
+       spanTotal.setAttribute('id', 'summary-total')
+       spanTotal.setAttribute('class', 'price')
+       spanTotal.appendChild(document.createTextNode('Total ' + 'R$ ' + tt))
+        totalS.appendChild(spanTotal)
+        sumI.appendChild(totalS)
+        let summCon = document.getElementById('summaryCon')
+        let payDe = document.createElement('div')
+        payDe.setAttribute('class', "payment-details")
+
+        let svg = document.createElement('svg')
+        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+        svg.setAttribute('width', '12')
+        svg.setAttribute('height','12')
+        svg.setAttribute('viewBox','0 0 10 10')
+        svg.setAttribute('class','chevron-left')
+
+        let path = document.createElement('path')
+        path.setAttribute('fill','009EE3')
+        path.setAttribute('fill-rule','nonzero')
+        path.setAttribute('id','chevron_left')
+        path.setAttribute('d','M7.05 1.4L6.2.552 1.756 4.997l4.449 4.448.849-.848-3.6-3.6z')
+        svg.appendChild(path)
+        let a = document.createElement('a')
+        a.setAttribute('id', 'go-back')
+        a.appendChild(svg)
+        a.appendChild(document.createTextNode('Go back to Shopping Cart'))
+        let divB = document.createElement('div')
+        divB.setAttribute('id', 'button-checkout')
+        let divForm = document.createElement('div')
+        divForm.setAttribute('class', 'form-group col-sm-12')
+        let br = document.createElement('br')
+        divForm.appendChild(br)
+        divForm.appendChild(divB)
+        divForm.appendChild(br)
+        payDe.appendChild(divForm)
+        payDe.appendChild(a)
+        sumI.appendChild(payDe)
 
     async function enviar(){
                 let settings = {
