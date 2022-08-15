@@ -30,6 +30,8 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "popper.js": "^1.16.1",
+    "sequelize": "^6.21.3",
+    "sequelize-cli": "^6.4.1",
     "sqlite3": "^5.0.11",
     "uuidv4": "^6.2.12"
   },
@@ -38,8 +40,6 @@
   "author": "andress722 <andrecidre@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "mysql2": "^2.3.3",
-    "sequelize": "^6.21.3",
-    "sequelize-cli": "^6.4.1"
+    "mysql2": "^2.3.3"
   }
 }
