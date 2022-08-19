@@ -25,7 +25,8 @@
                     
                         <h2>Meus pedidos</h2>
                         <ul id="list" style="list-style: none; padding: 0px;">
-                            <% orders.forEach(function(nPedido){ %> 
+                            <% orders.filter(function(nPedido){ %> 
+                                <% if(nPedido.id_usuario == usuario){ %> 
                                 <div>
                                   
                                     <div style="width: 100px; align-items: center; margin-left: 65px;">
@@ -51,7 +52,7 @@
                                     <% let nTotalN = nTotal.map(Number).reduce((e,t)=> e+t) %> 
                                     <li>Total: R$ <%= nTotalN %> </li>
                                 
-                             <% }) %> 
+                             <% }}) %> 
                            
                         </ul>
                         <nav style='margin-top: 10px;margin-bottom: 10px;' aria-label="Page navigation example">

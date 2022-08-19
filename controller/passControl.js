@@ -42,7 +42,7 @@ const passwordNew = {
         } else{
             res.render('form-servico-erro', {mensagemErro: 'Erro de validação de usuario'})
         }
-            res.send(usuario)
+            res.redirect('/login')
         }catch (error) {
             res.render('form-servico-erro', {mensagemErro: 'Erro de validação de usuario'})
         }
