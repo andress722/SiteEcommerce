@@ -5,6 +5,11 @@ function validateRequired(form){
     const erros = []
     const inputs = form.querySelectorAll("[data-required]")
     console.log(inputs)
+    const nome = document.getElementsByName('nome')
+    if(nome.value.length < 4){
+        erros.push('O campo nome precisa de mais caracteres!')
+        nome.classList.add('has-error')
+    }
 
     inputs.forEach(i => {
         if(!i.value){
@@ -12,6 +17,8 @@ function validateRequired(form){
             i.classList.add('has-error')
             
         }
+
+        
     })
     return erros
 }
@@ -34,8 +41,13 @@ function validaCamposIguais(input1,input2){
         input1.classList.add('has-error')
         input2.classList.add('has-error')
     }
+    if(input1.value.length < 6){
+        erros.push((`'${input1.placeholder}' deve conter no minimo 6 caracteres`))
+        input1.classList.add('has-error')
+    }
     return erros
 }
+
 
 function limpaErros(form){
     form.querySelectorAll('input').forEach(i => {

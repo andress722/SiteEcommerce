@@ -44,26 +44,20 @@ const api = {
 
     //pedidos
     carrinho: async function(req,res,next){
+        
         const page =  req.query.page
-        
         try {
-            //const {count:total,rows:orders} = await Carrinho.findAndCountAll({
-               // limit: 4,
-                //offset: (page- 1) *4
-           // })
-
-           const todosPedidos = await Carrinho.findAll()
+            const usuario = req.session.usuarioLogado.id
+            const {count:total,rows:orders} = await Carrinho.findAndCountAll({
+               limit: 4,
+                offset: page *4
+            })
         
-        
-
-
-            
-           //let totalPages = Math.round(total/4)
+         let totalPages = Math.round(total/4)
     
-            //res.render('usuariocomum/admin-usuario-pedido',{totalPages,orders})
-            res.send(todosPedidos)
+           res.render('usuariocomum/admin-usuario-pedido',{totalPages, orders, usuario})
         } catch (error) {
-            return res.sendStatus(404)
+            return res.send(error)
         }
         
     },

@@ -1,21 +1,14 @@
-var mercadopago = require('mercadopago');
-mercadopago.configure({
-    access_token: 'TEST-7bd75aea-c0f3-476c-919f-feb33efcfa89'
-});
 
-var customer_data = { "email": "test_payer_12345@testuser.com" }
+const axios = require('axios')
 
-mercadopago.customers.create(customer_data).then(function (customer) {
-
-  var card_data = {
-    "token": "9b2d63e00d66a8c721607214cedaecda",
-    "customer_id": customer.id,
-    "issuer_id": "23",
-    "payment_method_id": "debit_card"
+async function request(){
+const pay = await axios.get(`https://api.mercadopago.com/v1/payments/1307779713`, {
+  headers: {
+    'Authorization': 'Bearer TEST-8218594776835434-091003-3eab1f89cb25fb2fb5ec4eb39b8159da-258177562'
   }
+})
+let payment = await pay.data
+console.log(payment)
+}
 
-  mercadopago.card.create(card_data).then(function (card) {
-    console.log(card);
-  });
-
-});
+request()

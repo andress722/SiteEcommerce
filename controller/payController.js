@@ -2,7 +2,8 @@ var mercadopago = require('mercadopago');
 const cors = require("cors");
 var express = require('express');
 const { json } = require('body-parser')
-const { Usuario, Produto, Categoria, Carrinho,Pedido} = require('../models')
+const { Usuario, UsuarioComum, Produto, Categoria, Carrinho,Pedido} = require('../models');
+
 mercadopago.configure({
   access_token: 'TEST-8218594776835434-091003-3eab1f89cb25fb2fb5ec4eb39b8159da-258177562'
 });
@@ -30,7 +31,9 @@ const creaOrder = {
   createPrefer: async (req,res) => {
     const body = req.body
     console.log(body)
-  
+    
+    
+
       var preference = {
 
       items: body.map(e=> (
@@ -39,6 +42,7 @@ const creaOrder = {
                     title: e.description,
                     unit_price: Number(e.price),
                      quantity: Number(e.quantity),
+                     pedido: e.pedido
                       
                   }
                   
@@ -58,26 +62,60 @@ const creaOrder = {
     
     };
     console.log(preference)
+    const pedido = body.map(e=> e.pedido)
+    console.log(pedido)
     mercadopago.preferences.create(preference)
-      .then(function (response) {
-        res.json({
+      .then(async function (response) {
+        res.send({
           id: response.body.id
-        });
+        })
+
+        console.log(pedido)
+        let idPagamento = response.body.id
+        console.log(response)
+        await Carrinho.update({
+          id_pagamento: idPagamento,
+          }, {
+      where: {
+         numero_pedido:pedido
+      }})
+        
+     
       }).catch(function (error) {
         console.log(error);
       });
       console.log(json)
       
   }, 
-  feedback:  (req,res) => {
+  feedback:  async (req,res) => {
     console.log(req.query.payment_id)
     console.log(req.query.status)
     console.log(req.query.merchant_order_id)
-    res.json({
-      Payment: req.query.payment_id,
-      Status: req.query.status,
-      MerchantOrder: req.query.merchant_order_id
-    });
+    console.log(req.query.preference_id)
+    const pagamentoId = req.query.preference_id
+    const payId = req.query.payment_id
+    const statusP = req.query.status
+    const merchant = req.query.merchant_order_id
+    
+    const obj = {
+      pagamentoId:pagamentoId,
+      payId:payId,
+      statusP:statusP,
+      merchant:merchant
+    }
+    
+   
+    await Carrinho.update({
+      status: statusP,
+      payment: payId,
+      MerchantOrd: merchant      
+
+    }, {
+      where: {
+        id_pagamento: pagamentoId
+      }
+    })
+    res.render('usuariocomum/dados-pagamento', obj);
   },
   
  

@@ -17,13 +17,47 @@ const usuario = {
     admin: async(req,res)=>{
       const usuario = req.session.usuarioLogado.id
       const obj = {
-        usuario: await UsuarioComum.findByPk(usuario)
+        usuario:usuario,
+        administrador: await UsuarioComum.findByPk(usuario)
       }
       return res.render('usuariocomum/admin-comprador', obj)
     },
 
     log: (req,res) => {
       return res.render('logar')
+    },
+
+    editUsuarioGet: async (req,res)=> {
+      const usuarioId = req.params.id
+      const usuario = await UsuarioComum.findByPk(usuarioId)
+
+      return res.render('usuariocomum/edit-usuario', {usuario})
+    },
+    editUsuarioPost: async (req,res)=> {
+      
+      const usuarioId = req.params.id
+      const {nome, emailCadastro, senha,cep,endereco, cidade, estado,bairro,numero,cpf,celular} = req.body
+      let senhaB = bcrypt.hashSync(senha, 4)
+      await UsuarioComum.update({
+        nome, 
+        emailCadastro,
+        cep, 
+        endereco,
+        cidade,
+        estado,
+        bairro,
+        numero,
+        cpf,
+        celular,
+        senha:senhaB
+      }, {
+        where: {
+          id: usuarioId
+        }
+      })  
+
+      return res.redirect('/admin')
+
     },
 
   

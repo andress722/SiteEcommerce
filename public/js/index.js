@@ -6,11 +6,7 @@ const mercadopago = new MercadoPago('TEST-7bd75aea-c0f3-476c-919f-feb33efcfa89',
   
      
      
-                         // <div id='quantidade' class="col-md-3 product-detail">
-                         //   <label for="quantity"><h5>Quantity</h5></label>
-                       //     <input type="number" id="quantity" value="1" min="1" class="form-control">
-                      //    </div>
-
+                      
   // Handle call to backend and generate preference.
   document.getElementById("checkout-btn").addEventListener("click", function() {
   
@@ -20,7 +16,8 @@ const mercadopago = new MercadoPago('TEST-7bd75aea-c0f3-476c-919f-feb33efcfa89',
     const orderData = comP.map(e=> ({
       description: e.produto,
       price: e.valor,
-      quantity: e.quantidade
+      quantity: e.quantidade,
+      pedido: nPedido
     }))
     
       console.log(orderData)
@@ -41,7 +38,12 @@ const mercadopago = new MercadoPago('TEST-7bd75aea-c0f3-476c-919f-feb33efcfa89',
           setTimeout(() => {
               $(".container_payment").show(500).fadeIn();
           }, 500);
+          console.log(preference)
       })
+     
+    
+
+    
       .catch(function() {
           alert("Unexpected error");
           $('#checkout-btn').attr("disabled", false);
@@ -51,8 +53,9 @@ const mercadopago = new MercadoPago('TEST-7bd75aea-c0f3-476c-919f-feb33efcfa89',
   
   
   // Create preference when click on checkout button
-  function createCheckoutButton(preferenceId) {
+ async function createCheckoutButton(preferenceId) {
     // Initialize the checkout
+    
     mercadopago.checkout({
       preference: {
         id: preferenceId
@@ -63,16 +66,26 @@ const mercadopago = new MercadoPago('TEST-7bd75aea-c0f3-476c-919f-feb33efcfa89',
       }
     });
     console.log(preferenceId)
+
+    
   }
   
   // Handle price update
  
   
   // Go back
-  document.getElementById("go-back").addEventListener("click", function() {
+  document.getElementById("go-back").addEventListener("click", async function() {
     $(".container_payment").fadeOut(500);
     setTimeout(() => {
         $(".shopping-cart").show(500).fadeIn();
     }, 500);
-    $('#checkout-btn').attr("disabled", false);  
+    $('#checkout-btn').attr("disabled", false);
+    localStorage.clear()  
+    const pay = await fetch(`https://api.mercadopago.com/v1/payments/${preferenceId}`, {
+      headers: {
+    'Authorization': 'Bearer TEST-7bd75aea-c0f3-476c-919f-feb33efcfa89'
+}
+ })
+      let payment = await pay.json()
+      console.log(payment)
   });

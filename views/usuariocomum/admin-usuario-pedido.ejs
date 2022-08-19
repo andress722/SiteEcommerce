@@ -5,47 +5,51 @@
     <main style="margin-top: 88px; height: 544px;" class="container-fluid bg-light" id="admin-main">
        
        
-        <section class="d-flex bg-light" style="margin-top: 59px;">
+        <section class="d-flex bg-light " style="margin-top: 59px;">
  
-            <div class="container-fluid" style="width: 250px; padding-top: 58px; margin-bottom: 20px ;">
-              
-                    <ul style="list-style: none;">
-                        <li>
-                            <% if(usuarioLogado){ %> 
-                                <h1><%= usuarioLogado.nome  %>  </h1>   
-                            <%    }else{%>
-                               <h1>Usuario não logado</h1> 
-                              <% } %>
-                            </li>
-                        <li><strong>Editar meu perfil</strong> </li>
-                        <li><strong>Meus pedidos</strong> </li>
-                        <li><strong><a href="#">Meus favoritos</a></strong></li>
-                    </ul>
-
+          
+            <section style="margin-top: 50px;" class="container-fluid d-flex justify-content-around">
+                <div class="bg-light" id="side">
+                
+                        <ul style="list-style: none; text-decoration: none; ">
+                            <li><strong><a href="/cadastro/edit/<%= usuario %> ">Editar meu perfil</a> </strong> </li>
+                            <li><strong><a href="/api/carrinho?page=0">Meus pedidos </a></strong> </li>
+    
+                        </ul>
+    
+                    </div>
                 </div>
-            </div>
 
             
             <div style="width: 300px; padding-top: 58px; text-align: center;" class="container d-flex flex-column align-items-center p-0">
                     
                         <h2>Meus pedidos</h2>
                         <ul id="list" style="list-style: none; padding: 0px;">
-                            <% orders.filter(function(nPedido){ %> 
+                            <% orders.forEach(function(nPedido){ %> 
                                 <div>
                                   
                                     <div style="width: 100px; align-items: center; margin-left: 65px;">
-                                        <img style="width: 30px;" src="/imagens/cor-vermelha.png" alt="">
-                                        <img style="width: 30px;" src="/imagens/cor-ver.png" alt=""> 
-                                        <img style="width: 30px;" src="/imagens/cor-laranja.png" alt="">
+                                        <% if(nPedido.status == 'refused'){ %> 
+                                            <img id="recusado" style="width: 30px; " src="/imagens/cor-vermelha.png" alt="">
+                                        <% }else if(nPedido.status== 'approved'){ %>
+                                             
+                                        <img id="aceito" style="width: 30px;" src="/imagens/cor-ver.png" alt=""> 
+                                        <% }else{ %> 
+                                        <img id="pendente" style="width: 30px;" src="/imagens/cor-laranja.png" alt="">
+                                        <% } %> 
                                     </div>
-                                    <p style="text-align: center;">Status: Aprovado  </p>
+                                    <% if(nPedido.status){ %> 
+                                    <p style="text-align: center;">Status: <span id="statusId"> <%= nPedido.status %>   </span></p>
+                                        <% }else{ %>
+                                           <p>Status: <span id="statusId">Pendente</span></p> 
+                                        <% } %>  
                                     <% if(nPedido.numero_pedido  ) {%> 
-                                            <p>Detalhes do pedido: <%= nPedido.numero_pedido %> </p>
+                                            <p>Numero do pedido: <a href=""><%= nPedido.numero_pedido %></a> </p>
                                     <% } %> 
-                                    <li style="width: 220px;"><%= nPedido.total %>  </li>
-                                
-                                    
-                                </div>
+                                   <% let total = [nPedido.valor] %>
+                                   <% let nTotal = total[0].split(",") %> 
+                                    <% let nTotalN = nTotal.map(Number).reduce((e,t)=> e+t) %> 
+                                    <li>Total: R$ <%= nTotalN %> </li>
                                 
                              <% }) %> 
                            
@@ -56,7 +60,7 @@
 
                                 <% for(let i = 0; i<totalPages; i++){ %> 
                               
-                              <li class="page-item"><a class="page-link" href="?page=<%= i+1 %>"><%= i+1 %> </a></li>
+                              <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i+1 %> </a></li>
                             <%   }%> 
                                 <li class="page-item">
                             
@@ -78,13 +82,7 @@
 </body>
 
 <script>
-function check(){
 
-}
-    
-
-
-    window.addEventListener('load',check )
 
 </script>
 </html>

@@ -80,8 +80,9 @@ const passwordNew = {
                         from: 'andrecidre@hotmail.com',
                         html: `
                         <body>
-                            <strong>Olá </strong>
-                            <span>${token}</span>
+                            <strong>Olá abaixo você irá visualizar o token: </strong>
+                            <strong><span>Numero: ${token}</span></strong>
+
                         </body>
             
                     `
@@ -97,8 +98,8 @@ const passwordNew = {
                             from: 'andrecidre@hotmail.com',
                             html: `
                             <body>
-                                <strong>Olá </strong>
-                                <span>${token}</span>
+                                <strong>Olá abaixo você irá visualizar o token: </strong>
+                                <strong><span>Numero: ${token}</span></strong>
                             </body>
                 
                         `

@@ -60,97 +60,24 @@
     
 </main>
 
-<div id="btn-confirm" style="display: none;margin-top: 150px;" >
-  <button onclick="backCart()" class="btn btn-primary" > Voltar</button>
-  
- 
 
-      <h3>Recebedor: <%= usuarios.nome %> </h3>
-      <h3>Rua: <%= usuarios.endereco %> </h3>
-      <h3>Numero: <%= usuarios.numero %> </h3>
-      <h3>Cidade: <%= usuarios.cidade %> </h3>
-      <h3>Estado: <%= usuarios.estado %> </h3>
-      <h3>Bairro: <%= usuarios.bairro %> </h3>
-
-  <button  class="btn btn-primary" onclick="enviar()">Confirmar</button>
-  
-
-</div>
-
- 
-<div id="checkout" style="display: none;">
-       <!-- Shopping Cart -->
-       <section  class="shopping-cart dark">
-        <div class="container" id="container">
-          <div class="block-heading">
-            <h2>Shopping Cart</h2>
-            <p>Mercado Pago</p> 
-          </div>
-          <div id="content" class="content">
-           
-            
-          </div>
-          <div class="col-md-12 col-lg-4">
-            <div class="summary">
-              <h3>Cart</h3>
-              <div class="summary-item"><span class="text">Subtotal</span><span class="price" id="cart-total"></span></div>
-              <button class="btn btn-primary btn-lg btn-block" id="checkout-btn">Checkout</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--payment-->
-    <section class="payment-form dark">
-      <div class="container_payment">
-        <div class="block-heading">
-          <h2>Checkout Payment</h2>
-          <p>This is an example of a Mercado Pago integration</p>
-        </div>
-        <div id="for-pay" class="form-payment">
-          <div class="products">
-            <h2 id='summary' class="title">Summary</h3>
-            <div class="item">
-     
-             
-            </div>
-           
-          </div>
-     
-         
-          </div>
-        </div>
-      </div>
-      </section>
-</div> 
   <%- include("./partials/footer")%>
   
 </body>
 </html>
 <script>
-
-    function backCart(){
-      let i = 0
-      let btnConfirm = document.getElementById('btn-confirm')
-          btnConfirm.setAttribute('style', 'display:none')
-      i++
-      if(i = 1){
-        window.location.reload()
-      }
-    }
        
         function errorValidate(e){  
           let login = document.querySelector('.li-login').innerText
+          let checkout = document.getElementById('checkout')
+          let main = document.getElementById('main')
           let btnConfirm = document.getElementById('btn-confirm')
-
           if(login != 'Login'){
             console.log('diferente')
-
-          let main = document.getElementById('main')
-            btnConfirm.setAttribute('style', 'display: flex')
             
+            checkout.setAttribute('style', 'display: block')
             main.setAttribute('style', 'display:none')
-      
+            btnConfirm.setAttribute('style', 'display:block')
 
 
             
@@ -375,7 +302,7 @@
         
         
       })
-      tot.reduce((e,t)=> tot = e+t)
+      console.log(tot)
     
       
       
@@ -390,7 +317,7 @@
        
       let tot = total()
       if(tot != 0){ 
-          let totReduce = tot
+          let totReduce = tot.reduce((e,t)=> tot = e+t)
           
           let valorT = document.getElementById('total')
           let h3 = document.createElement('h3')
@@ -474,8 +401,7 @@ order.pedidos = nPedido
         proDetail.appendChild(proDetailP)
       
         let divCol = document.createElement('div')
-        divCol.setAttribute('class', 'col-md-3 d-flex flex-end')
-        divCol.setAttribute('style','width: 230px')
+        divCol.setAttribute('class', 'col-md-3')
         let img = document.createElement('img')
         img.setAttribute('class', 'img-fluid mx-auto d-block image')
         img.setAttribute('src', '/imagens/logo.png' )
@@ -604,10 +530,6 @@ console.log(order)
         sumI.appendChild(payDe)
 
     async function enviar(){
-      let checkout = document.getElementById('checkout')
-            checkout.setAttribute('style', 'display: block')
-      let confirm = document.getElementById('btn-confirm')
-      confirm.setAttribute('style', 'display:none')  
                 let settings = {
                     method: "POST",
                     headers: {
@@ -618,12 +540,12 @@ console.log(order)
                 }
                 
                    await fetch('/pedidos/detalhes-pedido', settings)
-                             
+                                  
                         const ok = response.ok
                         console.log(ok)
                         response.json()
                         
-                      
+                   
 }  
    window.addEventListener('load', total)
 

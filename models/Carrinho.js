@@ -1,3 +1,5 @@
+const { type } = require("jquery")
+
 module.exports = (connection, DataTypes) => {
     const model = connection.define('Carrinho', {
        
@@ -18,6 +20,19 @@ module.exports = (connection, DataTypes) => {
     },
     id_produto: {
         type: DataTypes.STRING
+    },
+
+    status: {
+        type: DataTypes.STRING
+    },
+    payment: {
+        type: DataTypes.INTEGER
+    }, 
+    merchantOrder: {
+        type: DataTypes.INTEGER
+    }, 
+    id_pagamento: {
+      type: DataTypes.STRING
     }
   
 

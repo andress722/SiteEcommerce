@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser')
-const { Usuario, Produto, Categoria, Carrinho,Pedido} = require('../models')
+const { Usuario, UsuarioComum, Produto, Categoria, Carrinho,Pedido} = require('../models')
 const multer = require('multer');
 
-var session = require('express-session')
+var session = require('express-session');
+const usuario = require('./usuarioControl');
 const axios = require('axios').default
 
 
@@ -49,11 +50,20 @@ const pedidoController = {
       
 
       verCarrinho: async function(req,res){
+      
         try {
-          const usuario = req.session.usuarioLogado.id
-          return res.render('carrinho', {usuario})
+          let usuario = req.session.usuarioLogado.id
+          let usuarios = await UsuarioComum.findByPk(usuario)
+          const obj = {
+           usuarios:usuarios
+            
+          }
+
+          
+            return res.render('carrinho', obj)
+          
         } catch (error) {
-          return res.render('carrinho')
+          return res.render('carrinho-not')
         }
             
        },
@@ -77,11 +87,11 @@ const pedidoController = {
         const qtd = quantidade.toString()
           console.log(qtd)
       await Carrinho.create({
-        produto: produto.join(),
-        id_produto: id.join(),
-        quantidade: quantidade.join(),
-        valor: valor.join(),
-        total: total.join(),
+        produto: produto.toString(),
+        id_produto: id.toString(),
+        quantidade: quantidade.toString(),
+        valor: valor.toString(),
+        total: total.toString(),
         id_usuario: usuario,
         numero_pedido: pedidos
       })        

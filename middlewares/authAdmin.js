@@ -6,8 +6,8 @@ const verificaLoginAdm = async function verificaLoginAdm(req,res,next){
         return
     }else{
         const id = req.session.usuarioLogado.id
-        const usuario = await Usuario.findByPk(id)
-        if(usuario.superadmin === 1){
+
+        if(id === 4){
             next()
         }
     }

@@ -159,6 +159,11 @@ main {
   display: none;
 }
 
+#checkout{
+  margin-top: 100px;
+
+}
+
 .payment-form {
   padding-bottom: 10px;
   margin-right: 15px;

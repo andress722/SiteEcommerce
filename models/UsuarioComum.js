@@ -19,13 +19,13 @@ module.exports = (connection, DataTypes) => {
           type: DataTypes.INTEGER
         },
         endereco: {
-          type: DataTypes.STRING(100)
+          type: DataTypes.STRING(200)
         },
         cidade: {
-            type: DataTypes.STRING(20)
+            type: DataTypes.STRING(50)
           },
         estado: {
-            type: DataTypes.STRING(20)
+            type: DataTypes.STRING(40)
           },
         bairro: {
             type: DataTypes.STRING(20)
@@ -35,6 +35,12 @@ module.exports = (connection, DataTypes) => {
           },
           token: {
             type: DataTypes.STRING(200)
+          }, 
+          celular: {
+            type: DataTypes.INTEGER
+          }, 
+          cpf: {
+            type: DataTypes.STRING
           }
         
       }, {
