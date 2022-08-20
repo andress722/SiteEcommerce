@@ -1,0 +1,57 @@
+<html lang="en">
+    <%- include("../partials/head")%>
+    <style>a{
+        text-decoration: none;
+    }
+    </style>
+<body>
+    <%- include("../partials/header") %>
+    <main id="admin-main"  style="height: 700px;" class="container-fluid bg-light"  >
+        <section class="d-flex">
+            <div class="bg-light" id="side">
+            
+                <ul style="list-style: none; text-decoration: none; ">
+                    <li><strong><a href="/cadastro/edit/<%= usuario %> ">Editar meu perfil</a> </strong> </li>
+                    <li><strong><a href="/api/carrinho?page=0">Meus pedidos </a></strong> </li>
+
+                </ul>
+
+            </div>
+        </div>
+        <div style="width: 300px;" class="container d-flex flex-column text-align-center p-0">
+               
+                    <h2 style="font-size: 40px;">Informações do pedido</h2>
+                    <% if(order.status === undefined || order.status == null ){ %>
+                        <h1>Status <span>Pendente</span></h1>
+                    <% }else{ %>
+                        <h1>Status <span><%= order.status %> </span></h1>
+                        <% } %>  
+                    
+                    <ul style="list-style: none; padding: 0px;">
+                        
+                        <div class="d-flex flex-column">
+                            <li >Produtos: <%= order.produto %></li>
+                            
+                            <li>cep: <%= order.total %> </li>
+                        </div>
+                                              
+                         
+                         <li>Identificador do pagamento: <%= order.payment %> </li>
+                        <% if(order.status === undefined || order.status == null){ %>
+                            <h3><a href="https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=<%= order.id_pagamento %>"> Concluir pagamento</a> </h3>
+                            <% } %>
+
+                         
+                       
+                    </ul>
+            
+            </div>
+            
+        </div>
+    </div>
+        </section>
+        
+    </main>
+   <%- include('../partials/footer') %> 
+</body>
+</html>

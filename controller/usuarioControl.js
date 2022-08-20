@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { Usuario, UsuarioComum, Produto, Categoria, FavoritoProduto} = require('../models')
+const { Usuario, UsuarioComum, Carrinho, Produto, Categoria, FavoritoProduto} = require('../models')
 
 const axios = require('axios');
 
@@ -21,6 +21,22 @@ const usuario = {
         administrador: await UsuarioComum.findByPk(usuario)
       }
       return res.render('usuariocomum/admin-comprador', obj)
+    }, 
+    
+    viewOrder: async (req,res)=> {
+      try {
+        const nOrder = req.params.order
+        const usuario = req.session.usuarioLogado.id
+        const order = await Carrinho.findOne({
+          where: {
+            numero_pedido: nOrder
+          }
+        })
+
+        return res.render('usuariocomum/visualizar-pedido', {order, usuario})
+      } catch (error) {
+        res.send(error)
+      }
     },
 
     log: (req,res) => {

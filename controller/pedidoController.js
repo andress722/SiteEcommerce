@@ -72,12 +72,7 @@ const pedidoController = {
          return res.render('mercado-pago')
        },
 
-      detalhePedido: async function(req,res){
-        
-        return res.render('pedidosDetalhe')
-      },
-
-      
+           
        enviarPedido: async function(req,res){
         
         try {
@@ -114,7 +109,9 @@ const pedidoController = {
             //  numero_pedido: produtos[i].pedidos
            // })
       
-        }
+        },
+
+       
       }
 
       module.exports = pedidoController

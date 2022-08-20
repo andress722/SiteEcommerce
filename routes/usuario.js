@@ -22,7 +22,7 @@ router.post('/cep', usuario.cepPost)
 router.get('/logar', usuario.log)
 router.get('/cadastro/edit/:id', usuario.editUsuarioGet)
 router.post('/cadastro/edit/:id', usuario.editUsuarioPost)
-
+router.get('/order/:order', verificaLogin, usuario.viewOrder)
 router.get('/admin',verificaLogin, usuario.admin)
 
 

@@ -45,7 +45,7 @@
                                            <p>Status: <span id="statusId">Pendente</span></p> 
                                         <% } %>  
                                     <% if(nPedido.numero_pedido  ) {%> 
-                                            <p>Numero do pedido: <a href=""><%= nPedido.numero_pedido %></a> </p>
+                                            <p>Numero do pedido: <a href="/order/<%= nPedido.numero_pedido %>"><%= nPedido.numero_pedido %></a> </p>
                                     <% } %> 
                                    <% let total = [nPedido.valor] %>
                                    <% let nTotal = total[0].split(",") %> 
