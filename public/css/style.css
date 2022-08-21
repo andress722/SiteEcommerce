@@ -158,8 +158,7 @@ header  {
   --bs-gutter-x: 0rem;
   height: 154px;
   position: fixed;
-    width: 100%;
-    border-bottom: solid #193345f7 2px;
+ 
 }
 
 .button {
@@ -195,6 +194,10 @@ header  {
  #conteudo-principal-brand{
      DISPLAY: FLEX;
  
+ }
+
+ #conteudo-menu{
+  width: 100%;
  }
 
  #logout{
