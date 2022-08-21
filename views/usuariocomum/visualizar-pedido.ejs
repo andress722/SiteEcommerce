@@ -32,7 +32,9 @@
                         <div class="d-flex flex-column">
                             <li >Produtos: <%= order.produto %></li>
                             
-                            <li>cep: <%= order.total %> </li>
+                            <% var total = [order.total] %> 
+                            <% var totalS = total[0].split(",").map(Number).reduce((e,t)=> e+t) %> 
+                            <li>valor: R$ <%= totalS %> </li>
                         </div>
                                               
                          

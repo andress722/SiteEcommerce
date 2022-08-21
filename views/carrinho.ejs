@@ -35,7 +35,7 @@
         
       
       </div>
-      <div style=" margin-left: 7px;" class="border p-0">
+      <div style=" margin-left: 7px;width: 234px;" class="border p-0">
         
         <div  >
           <ul id="resumo-pedido">
@@ -72,7 +72,7 @@
       <h3>Estado: <%= usuarios.estado %> </h3>
       <h3>Bairro: <%= usuarios.bairro %> </h3>
 
-  <button  class="btn btn-primary" onclick="enviar()">Confirmar</button>
+  <button  class="btn btn-primary" onclick='confirmDetails()' >Confirmar</button>
   
 
 </div>
@@ -94,7 +94,7 @@
             <div class="summary">
               <h3>Cart</h3>
               <div class="summary-item"><span class="text">Subtotal</span><span class="price" id="cart-total"></span></div>
-              <button class="btn btn-primary btn-lg btn-block" id="checkout-btn">Checkout</button>
+              <button class="btn btn-primary btn-lg btn-block" onclick="enviar()" id="checkout-btn">Checkout</button>
             </div>
           </div>
         </div>
@@ -603,12 +603,17 @@ console.log(order)
         payDe.appendChild(a)
         sumI.appendChild(payDe)
 
-    async function enviar(){
-      alert('Pedido Criado! Clique em Ok para prosseguir com pagamento!')
+  function confirmDetails(){
+   
       let checkout = document.getElementById('checkout')
             checkout.setAttribute('style', 'display: block')
       let confirm = document.getElementById('btn-confirm')
       confirm.setAttribute('style', 'display:none')  
+  }
+
+    async function enviar(){
+      alert('Pedido Criado! Clique em Ok para prosseguir com pagamento!')
+      localStorage.clear()
                 let settings = {
                     method: "POST",
                     headers: {

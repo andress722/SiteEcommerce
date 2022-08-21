@@ -63,6 +63,7 @@ const pedidoController = {
             return res.render('carrinho', obj)
           
         } catch (error) {
+          console.log(error)
           return res.render('carrinho-not')
         }
             
