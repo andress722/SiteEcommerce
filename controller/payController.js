@@ -49,9 +49,9 @@ const creaOrder = {
                   )),
         
                   back_urls: {
-                    "success": "/pedidos/feedback",
-                    "failure": "/pedidos/feedback",
-                    "pending": "/pedidos/feedback"
+                    "success": "https://cidreinfo.herokuapp.com/pedidos/feedback",
+                    "failure": "https://cidreinfo.herokuapp.com/pedidos/feedback",
+                    "pending": "https://cidreinfo.herokuapp.com/pedidos/feedback"
                   },
                   auto_return: "approved",
                 
