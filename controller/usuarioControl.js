@@ -136,7 +136,7 @@ const usuario = {
           }
 
         }catch (erro){
-          next(erro)
+          return res.render('form-servico-erro', {mensagemErro:'Erro ao efetuar login'})
         }
           
       },

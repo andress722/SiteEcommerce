@@ -49,9 +49,9 @@ const creaOrder = {
                   )),
         
                   back_urls: {
-                    "success": "http://localhost:3000/pedidos/feedback",
-                    "failure": "http://localhost:3000/pedidos/feedback",
-                    "pending": "http://localhost:3000/pedidos/feedback"
+                    "success": "/pedidos/feedback",
+                    "failure": "/pedidos/feedback",
+                    "pending": "/pedidos/feedback"
                   },
                   auto_return: "approved",
                 
