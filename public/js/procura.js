@@ -1,4 +1,4 @@
-function search(e, nome){
+function searchItem(e, nome){
     e.preventDefault()
     
     let parametro = nome

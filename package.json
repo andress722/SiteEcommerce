@@ -34,10 +34,21 @@
     "sequelize": "^6.21.3",
     "sequelize-cli": "^6.4.1",
     "sqlite3": "^5.0.11",
-    "uuidv4": "^6.2.12"
+    "uuidv4": "^6.2.12",
+    "core-js": "^3.3.2",
+    "regenerator-runtime": "^0.13.9"
   },
   "main": "index.js",
   "repository": "https://github.com/andress722/SiteEcommerce.git",
   "author": "andress722 <andrecidre@hotmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "babel-loader": "^8.2.5",
+
+    "webpack": "^4.41.2",
+    "webpack-cli": "4.10.0"
+  }
 }

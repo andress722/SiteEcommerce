@@ -10,7 +10,7 @@ body{
     flex-direction: column;
 }
 #main-pedido{
-  margin-top: 88px;
+
   display: flex;
 }
 
@@ -74,9 +74,6 @@ a{
   align-content: center;
 }
 
-a{
-  color: black !important;
-}
 
 .loader-container {
   width: 100%;
@@ -109,7 +106,6 @@ a{
 
 #admin-main{
   
-  margin-top: 150px;
   height: 700px!important;
     border: solid 1px;
     border-color: black;
@@ -149,17 +145,10 @@ main{
   height: 100%;
   min-height: 500px;
   background-color: var(--main-bg-color);
-  margin-top: 169px!important
 }
 
 
 
-header  {
-  --bs-gutter-x: 0rem;
-  height: 154px;
-  position: fixed;
- 
-}
 
 .button {
   border-top: 8px solid gray;
@@ -218,47 +207,13 @@ header  {
   align-content: flex-start;
   justify-content: space-between;
 }
-/*header */
-header #menuzinho{
-  max-width: auto;
-  width: 100%;
-  Height: 24px;
-}
 
-header .texto-menu{
-  Width: 347px; 
-  Height: 14px;
-  /* Left: 120px; */
-  color: white;
-}
-
-header .texto-menu ul{
-    margin: 0;
-    display: flex;
-    margin-top: -5px;
-    list-style: none;
-    
-}
-
-header .texto-menu li{
-  justify-content: space-between;
-  margin-right: 4vh;
-  Width: 55px;
-  Height:  13px
-}
-
-#search{
-  margin-top: 2px;
-  height: 51px;
-  display: flex;
-
-}
 
 
 /*banner */
 
-#img-fluid{
-  margin-top: 169px;
+.u-nav-item{
+  color: white;
 }
 
 .img-fluid-banner{
@@ -697,6 +652,8 @@ width: 95%;
 }
 
 .p-pesuisa{
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
   padding: 0px;
   font-size: 14px;
   margin-bottom: -1px;
