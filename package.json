@@ -13,6 +13,7 @@
     "bootstrap": "^3.4.1",
     "bootstrap-icons": "^1.9.1",
     "cookie-parser": "~1.4.4",
+    "core-js": "^3.3.2",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "^3.1.8",
@@ -22,6 +23,7 @@
     "express-validator": "^6.14.0",
     "http-errors": "~1.6.3",
     "jquery": "^3.6.0",
+    "keen-slider": "^6.7.0",
     "mdb-ui-kit": "^4.3.0",
     "mercadopago": "^1.5.14",
     "morgan": "~1.9.1",
@@ -31,12 +33,11 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "popper.js": "^1.16.1",
+    "regenerator-runtime": "^0.13.9",
     "sequelize": "^6.21.3",
     "sequelize-cli": "^6.4.1",
     "sqlite3": "^5.0.11",
-    "uuidv4": "^6.2.12",
-    "core-js": "^3.3.2",
-    "regenerator-runtime": "^0.13.9"
+    "uuidv4": "^6.2.12"
   },
   "main": "index.js",
   "repository": "https://github.com/andress722/SiteEcommerce.git",
@@ -47,7 +48,6 @@
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
     "babel-loader": "^8.2.5",
-
     "webpack": "^4.41.2",
     "webpack-cli": "4.10.0"
   }
