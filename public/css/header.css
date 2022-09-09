@@ -38167,7 +38167,7 @@ a.u-link.u-text-hover-grey-90:hover {
      }
 
   #procura{
-    margin-left: 60%;
+    margin-left: 41% !important;
   }
 
   .u-header .u-repeater-1 {
@@ -38243,7 +38243,7 @@ a.u-link.u-text-hover-grey-90:hover {
     min-height: 57px;
   }
   .u-cart{
-    margin-left: -87px;
+    margin-left: -9px;;
   }
 }
 @media (max-width: 575px) {
