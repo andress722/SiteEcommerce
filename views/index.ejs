@@ -35,8 +35,71 @@
           </div>
         </div>
         <section>
-        
-          <div class="container-fluid p-0" id="listagem-produto"></div>
+
+          
+
+          
+          <div class="container d-flex justify-content-center mt-50 mb-50">
+         
+            <div class="row">
+              <% produtos.forEach(function(element){ %>
+              <div class="col-md-4 mt-2">
+          
+          
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-img-actions">
+          
+                      <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid"
+                        width="96" height="350" alt="">
+          
+          
+                    </div>
+                  </div>
+          
+                  <div class="card-body bg-light text-center">
+                    <div class="mb-2">
+                      <h6 class="font-weight-semibold mb-2">
+                        <a href="/produtos/<%= element.id %> " class="text-default mb-2" data-abc="true"><%= element.nome %> </a>
+                      </h6>
+          
+                      <a href="/produtos/<%= element.id %>" class="text-muted" data-abc="true">Laptops & Notebooks</a>
+                    </div>
+                    
+                    <div>
+                        QTD: <input style="text-align: center;" class="bg-light" type="number" value="1" min="1" max="10" id="qtd">
+                     
+                      <h3 class="mb-0 font-weight-semibold">R$ <%= element.valor %></h3>
+                    </div>
+          
+                    <div>
+                      <i class="fa fa-star star"></i>
+                      <i class="fa fa-star star"></i>
+                      <i class="fa fa-star star"></i>
+                      <i class="fa fa-star star"></i>
+                    </div>
+          
+                    <div class="text-muted mb-3">34 reviews</div>
+          
+                    <button type="button" onclick="addProduto('<%= element.nome %>', document.getElementById('qtd').value, '<%= element.valor %>','<%= element.id %>')" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+          
+          
+                  </div>
+      
+                </div>
+          
+          
+          
+          
+              </div>
+          
+          <% }) %>
+                        
+          
+            </div>
+          </div>  
+         
+
       </section>
 
   </main>
@@ -46,47 +109,7 @@
 
 </body>
 
-<script>
- async function indexFetch(){
-      
-      const response = await fetch('/api/produtos')
-      let json = await response.json()
-      let produtoc = json.produtos.map(e=>e)
-      let listagem = document.getElementById('listagem-produto')
-      
-      for(let i = 0; i<produtoc.length; i++ ){
-       
-          let article = document.createElement('article')
-          article.setAttribute('id', 'article-index')
-      
-          let div = document.createElement('div')
-          div.setAttribute('class', 'd-flex')
-          div.setAttribute('id', 'div-pesquisa')
-          let p = document.createElement('p')
-          p.appendChild(document.createTextNode(produtoc[i].nome))
-          p.setAttribute('class', 'p-pesuisa')
-          div.appendChild(p)
-          let span = document.createElement('span')
-          span.appendChild(document.createTextNode('R$' + ' ' + produtoc[i].valor))
-          span.setAttribute('class', 'span-pesquisa')
-          div.appendChild(span)
-          let img = document.createElement('img')
-          img.setAttribute('src', `/uploads/${produtoc[i].imagem}`)
-          img.setAttribute('class', 'img-article')
-          img.setAttribute('href', `/produtos/${produtoc[i].id}`)
-          img.onclick = ()=> {
-            window.location.href = `/produtos/${produtoc[i].id}`
-          }
-          article.appendChild(img)
-          article.appendChild(div)
-          
-          listagem.appendChild(article)
-      }
-  }
-  window.addEventListener('load', indexFetch)
-  
-
-</script>
 
 
 </html>
+<script src="/js/carrinho.js"></script>

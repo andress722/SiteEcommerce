@@ -8,7 +8,13 @@
       </div>
       
       <div class="u-cart">
-          <h2>carrinho</h2>
+       
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-cart2"
+            viewBox="0 0 16 16">
+            <path
+              d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+          </svg>
+          <span id="cart-number" style="margin-left: -21px; color: red;">0</span>  
       </div>
     
     
@@ -17,8 +23,10 @@
     
   </div>
   <div class="u-clearfix u-grey-90 u-section-row u-section-row-2" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="" id="sec-9b35">
+    
     <div class="u-align-left u-clearfix u-sheet u-sheet-2">
-      <form id="procura" action="#" method="get" class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-search-1">
+      
+      <form id="procura" action="/procura" method="get" class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-search-1">
         <button class="u-search-button" type="submit">
           <span class="u-search-icon u-spacing-10">
             <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-64f3"></use></svg>
@@ -37,12 +45,15 @@
           </a>
         </div>
         <div class="u-custom-menu u-nav-container">
-          <ul class="u-nav u-unstyled"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/produtos">Produtos</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/produtos">Todos os produtos</a>
-</li></ul>
-</div>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/contato">Contato</a>
-</li></ul>
+          <ul class="u-nav u-unstyled">
+            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a></li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/produtos">Produtos</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/produtos">Todos os produtos</a></li>
+
+            </ul>
+        </div>
+          </li>
+          <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/contato">Contato</a></li></ul>
+          <li style="margin-left: 30px  ;" class="u-nav-item"><a class="u-button-style u-nav-link" href="/contato">Login</a></li>
         </div>
         <div class="u-custom-menu u-nav-container-collapse">
           <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -52,20 +63,23 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/produtos">Produtos</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-4"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/produtos">Todos os produtos</a>
 </li></ul>
 </div>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/contato">Contato</a>
-</li></ul>
+</li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/contato">Contato</a></li>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/contato">Login</a></li>
+            </ul>
             </div>
           </div>
           <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
         </div>
       </nav>
+
     </div>
     
     
     
     
-    
   </div>
+  
 </div>
 
 <script src="/js/jquery.min.js"></script>

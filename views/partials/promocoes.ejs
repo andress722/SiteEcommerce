@@ -1,56 +1,32 @@
+<h1 style="text-align: center;">Promoção!</h1>
+<div class="container-lg my-3" style="max-width: 500px;">
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- Carousel indicators -->
+    <ol class="carousel-indicators">
+      <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+      <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+    </ol>
 
-<section class="d-flex flex-column">
-    <h1 style="font-size: 30px; margin-top: 30PX; margin-top: 30PX;  margin-bottom: 26px;  text-align: center;">PROMOÇÕES</h1>
+    <!-- Wrapper for carousel items -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+              <img src="/uploads/6d7cf3cb96e42a56f54e4a7e35c807e4" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="/uploads/6d7cf3cb96e42a56f54e4a7e35c807e4" class="d-block w-100" alt="Slide 2">
+      </div>
+      <div class="carousel-item">
+        <img src="/uploads/6d7cf3cb96e42a56f54e4a7e35c807e4" class="d-block w-100" alt="Slide 3">
+      </div>
+    </div>
 
-        
-      <div class="container-fluid p-0 d-flex flex-wrap" id="listagem-produto-promo"></div>
-  </section>
-
-
-
-<script>
-  async function promoFetch(){
-
-      const response = await fetch('/api/promo')
-     
-      let json = await response.json()
-     
-      let produtoct = json.products.map(e=>e)
-      console.log(produtoct)
-     
-      let listagem1 = document.getElementById('listagem-produto-promo')
-      
-      for(let i = 0; i<=produtoct.length; i++ ){
-          console.log(produtoct[i].addfavo.nome)
-          let article = document.createElement('article')
-          article.setAttribute('id', 'article-index')
-      
-          let div = document.createElement('div')
-          div.setAttribute('class', 'd-flex')
-          div.setAttribute('id', 'div-pesquisa')
-          let p = document.createElement('p')
-          p.appendChild(document.createTextNode(produtoct[i].addfavo.nome))
-          p.setAttribute('class', 'p-pesuisa')
-          div.appendChild(p)
-          let span = document.createElement('span')
-          span.appendChild(document.createTextNode('R$' + ' ' + produtoct[i].addfavo.valor))
-          span.setAttribute('class', 'span-pesquisa')
-          div.appendChild(span)
-        
-          let img = document.createElement('img')
-          img.setAttribute('src', `/uploads/${produtoct[i].addfavo.imagem}`)
-          img.setAttribute('class', 'img-article')
-          img.setAttribute('href', `/produtos/${produtoct[i].addfavo.id}`)
-          img.onclick = ()=> {
-            window.location.href = `/produtos/${produtoct[i].addfavo.id}`
-          }
-          article.appendChild(img)
-          article.appendChild(div)
-          
-          listagem1.appendChild(article)
-      }
-    }
-    window.addEventListener('load', promoFetch)
-
-
-</script>
+    <!-- Carousel controls -->
+    <a class="carousel-control-prev" href="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+</div>
