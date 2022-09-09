@@ -1612,6 +1612,19 @@ a {
   margin-left: -1px;
   width: calc(100% +  1px);
 }
+
+#namesright{
+  margin-top: -16px;
+  margin-left: 33px
+}
+
+.u-cart{
+    cursor: pointer;
+    
+      margin-top: -68px;
+        margin-left: 1014px;
+}
+
 .u-form-vertical.u-form-spacing-1 .u-form-group {
   margin-bottom: 1px;
   padding-left: 1px;
@@ -5804,6 +5817,16 @@ ul.u-text li:last-child {
   .u-hidden-lg {
     display: none !important;
   }
+  .u-cart{
+    width: 40px;
+    margin-top: -71px;
+    margin-left: 810px;
+  }
+
+  #namesright{
+    margin-top: -14px;
+  }
+
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .u-hidden-md {
@@ -20160,6 +20183,13 @@ a.pswp__share--download:hover {
     flex-grow: 0;
     margin-left: auto;
   }
+
+  .u-cart{
+   width: 40px;
+    margin-top: -72px;
+    margin-left: 531px;
+  }
+
 }
 .u-checkout-button-container {
   display: flex;
@@ -38094,6 +38124,12 @@ a.u-link.u-text-hover-grey-90:hover {
       margin-left: 80%;
     }
 
+    .u-cart{
+width: 40px;
+  margin-top: -68px;
+  margin-left: 610px;
+    }
+
   .u-header .u-text-1 {
     margin-top: 11px;
     margin-right: 636px;
@@ -38249,6 +38285,32 @@ a.u-link.u-text-hover-grey-90:hover {
 
   .u-footer .u-text-1 {
     width: 340px;
+  }
+  .u-cart{
+        width: 40px;
+        margin-top: -71px;
+          margin-left: 300px;
+  }
+}
+
+@media(max-width: 350px){
+  .u-cart{
+        width: 40px;
+          margin-top: -66px;
+          margin-left: 218px;
+  }
+
+  #procura{
+    margin-left: 21% !important;
+  }
+
+  .u-header .u-text-1{
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .u-header .u-text-2{
+    margin-right: 0px;
+      margin-left: 0px;
   }
 }
 
