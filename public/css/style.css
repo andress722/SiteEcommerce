@@ -4760,8 +4760,12 @@ input[type="button"].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+
 }
 
+nav{
+  height:80px!important
+}
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
@@ -11701,9 +11705,7 @@ a.text-dark:focus {
     min-width: 992px !important;
   }
 
-  .navbar {
-    display: none;
-  }
+
 
   .badge {
     border: 1px solid #000;
@@ -11871,6 +11873,10 @@ h5,
   color: #fff;
 }
 
+#ftco-nav{
+  height: 80px;
+}
+
 .ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover:before {
   visibility: visible;
   background-color: #f1bc31;
@@ -11963,7 +11969,7 @@ h5,
 
 @media (max-width: 991.98px) {
   .ftco-navbar-light .navbar-nav>.nav-item.active>a {
-    color: #f1bc31;
+    color: #000;
   }
 
   .ftco-navbar-light .navbar-nav>.nav-item.active>a:before {
@@ -12397,16 +12403,6 @@ main{
 
 /*banner */
 
-.u-nav-item{
-  color: white;
-}
-
-.img-fluid-banner{
- 
-  width: 100%;
-  min-width: auto;
-  min-height: 100px;
-}
 
 
 .botao-compra{
@@ -12417,117 +12413,6 @@ main{
 section.produtos .container {
   display: flex;
   flex-direction: column;
-}
-
-.keen-slider{
-  height: 500px;
-}
-
-.keen-slider__slide img{
-width: 100%;
-  height: 500px
-   
-}
-
-.slider{
-  margin: 0px auto;
-  width: 800px;
-  height: 400px;
-  overflow: hidden;
-}
-
-.slides{
-  width: 400%;
-  height: 400px;
-  display: flex;
-}
-
-.slides input{  
-  display: none;
-}
-
-.slide{
-  width: 25%;
-  position: relative;
-  transition: 1s ;
-}
-
-.slide img{
-  width: 800px;
-}
-
-.manual-navigation{
-  position: absolute;
-  width: 800px;
-  margin-top: -40px;
-  display: flex;
-  justify-content: center;
-}
-.manual-btn{
-  border: 2px solid #fff;
-  padding: 5px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 1s;
-}
-
-.manual-btn:not(:last-child){
-  margin-right: 40px;
-}
-
-.manual-btn:hover{
-  background-color: #fff;
-
-}
-
-#radio1:checked ~ .first{
-  margin-left: 0;
-}
-
-#radio2:checked ~ .first {
-  margin-left: -25%;
-}
-#radio3:checked ~ .first {
-  margin-left: 50%;
-}
-#radio4:checked ~ .first {
-  margin-left: 75%;
-}
-
-.navigation-auto div{
-  border: 2px solid #20a6ff;
-  padding: 5px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 1s;
-
-}
-
-.navigation-auto  {
-  position: absolute;
-  width: 800px;
-  margin-top: 360px;
-  display: flex;
-  justify-content: center;
-
-}
-
-.navigation-auto div:not(:last-child){
-  margin-right: 40px;
-}
-
-#radio1:checked ~ .navigation-auto .auto.btn1 {
-  background-color: #fff;
-}
-
-#radio2:checked ~ .navigation-auto .auto.btn2 {
-  background-color: #fff;
-}
-#radio3:checked ~ .navigation-auto .auto.btn3 {
-  background-color: #fff;
-}
-#radio4:checked ~ .navigation-auto .auto.btn4 {
-  background-color: #fff;
 }
 
 
@@ -12599,24 +12484,28 @@ width: 100%;
 
 #article-index{
   display: flex;
+    background: #ececf6;
+    height: 242px;
+    flex-direction: column;
 
-  height: 195px;
-  flex-direction: column;
-  margin-left: 27px;
-  margin-bottom: 16px;
-  justify-content: space-between;
-  min-width: 140px;
-
-  border-radius: 11px;
-  align-items: center;
+    min-width: 196px;
+    max-width: 335px;
+    border-radius: 11px;
+    align-items: center;
+    margin-bottom: 31px;
 }
 .ul-categorias{
  
+  margin-top: 8px!important;
   color: white;
   display: flex;
   justify-content: space-around;
   list-style-type: none
 
+}
+
+.ul-categorias ul{
+  
 }
 .categorias-produtos li{
   justify-content: space-around;
@@ -12936,16 +12825,15 @@ width: 95%;
 
 .span-pesquisa{
   font-weight: bold;
-  font-size: 14px;
+  font-size: 20px;
+  color: red;
 }
 
 #div-pesquisa{
 
-  display: flex;
-  flex-wrap: wrap;
-    justify-content: space-evenly;
-
-    width: 134px;
+  width: 134px;
+  flex-direction: column;
+  align-items: center;
     
 
 }
@@ -13023,9 +12911,12 @@ article{
 }
 
 .img-article{
-  width: 136px;
-  height: 146px;
+
+  width: 158px;
+  height: 164px;
   border-radius: 9px;
+  margin-top: 14px;
+
 }
 .img-article:hover{
   cursor: pointer;
@@ -13054,26 +12945,3 @@ pre:hover{
   margin-top: 10px;
 }
 
-@media (max-width: 688px) {
-  body{
-    max-width: 688px;
-  }
-
-    .keen-slider {
-      height: 303px;
-    }
-        .keen-slider:not([data-keen-slider-disabled]) .keen-slider__slide {
-          min-height: 77%;
-          overflow: hidden;
-          position: relative;
-          width: 100%;
-
-          
-}
-
-.keen-slider__slide img {
-  width: 100%;
-  height: 382px;
-}
-
-}

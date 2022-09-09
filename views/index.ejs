@@ -70,13 +70,6 @@
           span.appendChild(document.createTextNode('R$' + ' ' + produtoc[i].valor))
           span.setAttribute('class', 'span-pesquisa')
           div.appendChild(span)
-          let pre = document.createElement('pre')
-          pre.setAttribute('class', 'btn bi bi-cart btn-primary active p-0')
-          pre.appendChild(document.createTextNode(' Adicionar'))
-          pre.onclick = ()=> {
-            window.location.href = `/produtos/${produtoc[i].id}`
-          }
-          div.appendChild(pre)
           let img = document.createElement('img')
           img.setAttribute('src', `/uploads/${produtoc[i].imagem}`)
           img.setAttribute('class', 'img-article')
