@@ -38295,23 +38295,54 @@ width: 40px;
 
 @media(max-width: 350px){
   .u-cart{
-        width: 40px;
-          margin-top: -66px;
-          margin-left: 218px;
+      margin-top: -66px;
+        margin-left: 219px;
+  }
+
+  .u-
+
+  .u-header{
+    width: 100%;
+  }
+
+  .u-header .u-section-row-2{
+    width: 100%;
   }
 
   #procura{
-    margin-left: 21% !important;
+    margin-left: 22% !important;
+  }
+
+  .u-section-rows{
+    
   }
 
   .u-header .u-text-1{
+   
     margin-right: 0px;
     margin-left: 0px;
   }
   .u-header .u-text-2{
+    width: 100% !important;
     margin-right: 0px;
       margin-left: 0px;
   }
+  .u-header .u-sheet-1{
+    width: 100% !important;
+  }
+    .u-header .u-sheet-2 {
+      width: 100% !important;
+    }
+
+  .u-body .u-sheet .u-sheet{
+    width: 100%!important;
+  }
+
+  .u-header .u-menu-1{
+    margin-left: 28px;
+  }
+
+
 }
 
  /*begin-variables base-font-size*/ 
