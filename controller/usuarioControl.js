@@ -102,12 +102,30 @@ const usuario = {
 
 	procura: async function (req, res, next) {
 		let produtos = await Produto.findAll();
+		const nome = req.params.search;
+
 		return res.render('pesquisa', { produtos });
 	},
 	procuraParam: async function (req, res, next) {
-		const nome = req.params.nome;
+		var nome = req.params.nome;
 		let produtos = await Produto.findAll();
-		return res.render('pesquisa', { nome, produtos });
+		let mProduct = [];
+
+		if (nome != undefined) {
+			for (let i = 0; i < produtos.length; i++) {
+				nome = nome.toUpperCase();
+				if (nome != undefined) {
+					if (nome == produtos[i].nome.toUpperCase()) {
+						mProduct.push(produtos[i]);
+					}
+				}
+			}
+			console.log(mProduct);
+			return res.render('pesquisa-id', { nome, mProduct });
+		} else {
+			console.log(nome);
+			return res.render('pesquisa', { nome, produtos });
+		}
 	},
 
 	forgetPassword: async function (req, res, next) {

@@ -5,15 +5,82 @@
   <%- include("./partials/header")%>
 
 
-    <main class="container-fluid p-1" style="height: 500px;    margin-top: 88px;">
-
-
-        <section>
-            <h2>A pesquisa retornou...</h2>
-            <div class="container-fluid p-0" id="listagem-produto"></div>
+    <h2>Voce pesquisou...</h2>
+    <main class="bg-light">
+    
+      <section style="margin-top: 5px">
+        <section class="produtos bg-light">
+    
+          <div class="container d-flex justify-content-center mt-50 mb-50">
+    
+            <div class="row">
+              <% mProduct.forEach(function(element){ %>
+                <div class="col-md-4 mt-2">
+    
+    
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-img-actions">
+    
+                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
+                          class="card-img img-fluid" width="96" height="350" alt="">
+    
+    
+                      </div>
+                    </div>
+    
+                    <div class="card-body bg-light text-center">
+                      <div class="mb-2">
+                        <h6 class="font-weight-semibold mb-2">
+                          <a href="/produtos/<%= element.id %> " class="text-default mb-2" data-abc="true">
+                            <%= element.nome %>
+                          </a>
+                        </h6>
+    
+                        <a href="/produtos/<%= element.id %>" class="text-muted" data-abc="true">Laptops & Notebooks</a>
+                      </div>
+    
+                      <div>
+                        QTD: <input style="text-align: center;" class="bg-light" type="number" value="1" min="1" max="10"
+                          id="qtd">
+    
+                        <h3 class="mb-0 font-weight-semibold">R$ <%= element.valor %>
+                        </h3>
+                      </div>
+    
+                      <div>
+                        <i class="fa fa-star star"></i>
+                        <i class="fa fa-star star"></i>
+                        <i class="fa fa-star star"></i>
+                        <i class="fa fa-star star"></i>
+                      </div>
+    
+                      <div class="text-muted mb-3">34 reviews</div>
+    
+                      <button type="button"
+                        onclick="addProduto('<%= element.nome %>', document.getElementById('qtd').value, '<%= element.valor %>','<%= element.id %>')"
+                        class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+    
+    
+                    </div>
+    
+                  </div>
+    
+    
+    
+    
+                </div>
+    
+                <% }) %>
+    
+    
+            </div>
+          </div>
+    
+    
         </section>
-
     </main>
+
 
     <%- include("./partials/footer")%>
 
@@ -21,7 +88,7 @@
 </body>
 
 <script>
-    let lista = []
+    /*let lista = []
     
    async function pesquisar(){
         
@@ -85,7 +152,7 @@
 
 
     window.addEventListener('load', pesquisar)
-    
+    */
 
 </script>
 </html>

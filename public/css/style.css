@@ -12188,7 +12188,7 @@ h5,
 
 #admin-main{
   
-  height: 700px!important;
+  height: auto;
     border: solid 1px;
     border-color: black;
     border-radius: 6px;
@@ -12224,8 +12224,8 @@ element{
 
 main{
   max-width: 100%;
-  height: 100%;
-  min-height: 500px;
+      height: auto;
+  
   background-color: var(--main-bg-color);
 }
 
