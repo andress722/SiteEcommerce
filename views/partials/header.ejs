@@ -73,7 +73,11 @@
 
 
               <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/contato">Contato</a></li>
+              <% if( usuarioLogado ){ %>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/login"><%= usuarioLogado.nome %></a></li>
+              <% }else{ %> 
               <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/login">Login</a></li>
+              <% } %>
             </ul>
             </div>
           </div>
@@ -94,7 +98,10 @@
   function cartGo(){
     window.location.href = '/pedidos/vercarrinho'
   }
+
+  
 </script>
+
 
 <script src="/js/jquery.min.js"></script>
 <script src="js/popper.js"></script>

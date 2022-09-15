@@ -141,30 +141,85 @@
       }
     }
        
-        function errorValidate(e){  
-          let login = document.getElementById('login').innerText
+        async function errorValidate(e){  
+          limpaErros()
           let btnConfirm = document.getElementById('btn-confirm')
-          console.log(login)
-          
-          if(login != 'Login'){
-            console.log('diferente')
 
-          let main = document.getElementById('main')
-            btnConfirm.setAttribute('style', 'display: flex')
+          if (login != 'Login') {
+            let login = document.getElementById('login').innerText
+
+            //analise de item
+            const fetchProducts = await fetch('/api/produtos')
+            const jFetchProducts = await fetchProducts.json()
+            var erros = []
+            //const mapFetch = jFetchProducts.map(elemento => elemento)
+            var localProducts = JSON.parse(localStorage.getItem("produtos"))
+            let forProduct = [localProducts][0].map(elemento => elemento.produto)
+            let arrayPro = []
+
+            for (let i = 0; i < forProduct.length; i++) {
+                jFetchProducts.produtos.findIndex(e=>{
+                  if(e.nome == forProduct[i]){
+                    if(e.quantidade >=1){
+                      console.log('OK') 
+                    }else{
+                      erros.push(forProduct[i])
+                      
+                    }
+                  }
+                })
+                
+                
+            }
+            console.log(erros)
+            if(erros.length){
+             
+              e.preventDefault()
+              erros.forEach(element => {
+                let ul = document.createElement('ul')
+                let errorList = document.getElementById('lista-erro')
+                let li = document.createElement('li')
+                li.classList.add('has-error')
+                li.appendChild(document.createTextNode(`${erros}.`))
+                ul.appendChild(li)
+                errorList.appendChild(ul)
+              })
+             
+              
+            }else{
+              let main = document.getElementById('main')
+              btnConfirm.setAttribute('style', 'display: flex')
+
+              main.setAttribute('style', 'display:none')
+            }
+
             
-            main.setAttribute('style', 'display:none')
-      
 
-
-            
-
-          }else{
+          } else {
             e.preventDefault()
             console.log('faça a login')
-            
+
             window.location.href = '/login'
           }
+          
+          
+                    
+          
         }
+
+        function limpaErros() {
+            document.querySelectorAll('li').forEach(i => {
+              i.classList.remove('has-error')
+            })
+            const listaErros = document.getElementById('lista-erro')
+            if (listaErros) {
+              const limpaGenerate = document.createElement('ul')
+              listaErros.replaceChildren(limpaGenerate)
+              listaErros.innerHtml = ''
+              console.log(listaErros)
+            }
+          }
+
         let erro = document.getElementById('lista-erro')
 
 
@@ -610,34 +665,53 @@ console.log(order)
   function confirmDetails(){
    
       let checkout = document.getElementById('checkout')
-            checkout.setAttribute('style', 'display: block')
+          checkout.setAttribute('style', 'display: block')
       let confirm = document.getElementById('btn-confirm')
       confirm.setAttribute('style', 'display:none')  
+         
   }
 
     async function enviar(){
+      updateQuantity()
       alert('Pedido Criado! Clique em Ok para prosseguir com pagamento!')
-      localStorage.clear()
+      
+         
+      
+      
                 let settings = {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(order)
-                    
-                }
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(order)
+
+      }
+      
+         await fetch('/pedidos/detalhes-pedido', settings)
+      
+                      localStorage.clear()
+
                 
-                   await fetch('/pedidos/detalhes-pedido', settings)
-                             
-                        const ok = response.ok
-                        console.log(ok)
-                        response.json()
-                        
-                      
 }  
    window.addEventListener('load', total)
 
+async function updateQuantity(){
 
+  const orderData1 = comP.map((e) => ({
+    id: e.id,
+    quantity: e.quantidade,
+
+  }));
+   let set = {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json"
+    },
+    body: JSON.stringify(orderData1)
+
+  }
+  await fetch('/pedidos/update', set)
+}
 
 
 </script>

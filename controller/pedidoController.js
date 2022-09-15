@@ -52,6 +52,19 @@ const pedidoController = {
 		}
 	},
 
+	refreshQuantaty: async (req, res) => {
+		const body = req.body;
+		const product = body.map((element) => element.id);
+		const productQuantity = body.map((element) => element.quantidade);
+		const pro = await Produto.findAll();
+
+		for (let i = 0; i < body.length; i++) {
+			await Produto.update({ quantidade: 12 }, { where: { id: body[i].id } });
+		}
+
+		console.log('sucesso');
+	},
+
 	verCarrinho: async function (req, res) {
 		try {
 			let usuario = req.session.usuarioLogado.id;

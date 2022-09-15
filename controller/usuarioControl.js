@@ -115,7 +115,7 @@ const usuario = {
 			for (let i = 0; i < produtos.length; i++) {
 				nome = nome.toUpperCase();
 				if (nome != undefined) {
-					if (nome == produtos[i].nome.toUpperCase()) {
+					if (produtos[i].nome.toUpperCase().indexOf(nome) !== -1) {
 						mProduct.push(produtos[i]);
 					}
 				}

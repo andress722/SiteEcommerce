@@ -20187,7 +20187,7 @@ a.pswp__share--download:hover {
   .u-cart{
    width: 40px;
     margin-top: -72px;
-    margin-left: 531px;
+    margin-left: 450px;
   }
 
 }
@@ -38124,7 +38124,7 @@ a.u-link.u-text-hover-grey-90:hover {
     .u-cart{
 width: 40px;
   margin-top: -68px;
-  margin-left: 610px;
+  margin-left: 661px;
     }
 
   .u-header .u-text-1 {
@@ -38173,6 +38173,10 @@ width: 40px;
   .u-header .u-text-1 {
     margin-right: 460px;
     margin-left: 0;
+  }
+
+  .u-cart{
+    margin-left: 450px
   }
 
   .u-header .u-list-1 {
