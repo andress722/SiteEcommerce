@@ -202,13 +202,12 @@ sup {
 }
 
 a {
-  color: #007bff;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #0056b3;
+  color: yellow;
   text-decoration: underline;
 }
 
@@ -4392,6 +4391,20 @@ input[type="button"].btn-block {
   padding-left: 2.25rem;
 }
 
+#side{
+  color: white;
+  border: solid;
+    display: flex;
+    width: 236px;
+    border-radius: 30px;
+    flex-direction: column;
+    align-items: center;
+    height: 209px;
+}
+#side ul li strong a {
+  color: white !important;
+}
+
 .custom-switch .custom-control-label::before {
   left: -2.25rem;
   width: 1.75rem;
@@ -5659,14 +5672,24 @@ nav{
 }
 
 .pagination {
-  display: -webkit-box;
-  display: -ms-flexbox;
+
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem;
+  
+  
 }
 
+.pagination ul{
+  
+      margin: 0px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    
+}
 .page-link {
   position: relative;
   display: block;
@@ -12202,10 +12225,6 @@ h5,
 
 }
 
-#side{
-  width: 200;
-  height: 1024;
-}
 
 .d-flex-search{
   margin-top: 19px;
@@ -12513,9 +12532,7 @@ section.produtos .container {
 
 }
 
-.ul-categorias ul{
-  
-}
+
 .categorias-produtos li{
   justify-content: space-around;
   display: flex;
@@ -12801,13 +12818,14 @@ width: 95%;
 
 #btn-confirm{
   width: 100%;
-  height: auto;
+
   align-items: center;
   display: flex;
-  margin-top: 140px;
+
   flex-direction: column;
   justify-content: center;
       flex-wrap: wrap;
+  
 }
 
 .organizar-search-login{

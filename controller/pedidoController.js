@@ -103,7 +103,7 @@ const pedidoController = {
 		} catch (error) {
 			return res.render('form-servico-erro', {
 				mensagemErro:
-					'Erro ao criar pedido, tenta novamente ou entre contato conosco',
+					'Erro ao criar pedido, tente novamente ou entre contato conosco',
 			});
 		}
 

@@ -7,11 +7,17 @@
 <body>
     <%- include("../partials/header") %>
     <main id="admin-main"  style="height: 700px;" class="container-fluid bg-light"  >
-        <h2 style="width: 100%;
-        text-align: center;
-        font-size: 30px;"><%= usuarioLogado.nome  %>  </h2>
-        <section style="margin-top: 50px;" class="container-fluid d-flex justify-content-around">
-            <div class="bg-light" id="side">
+       
+        <section style="margin-top: 50px; justify-content: space-evenly; flex-wrap: wrap; margin-left: -5px;" class="container d-flex ">
+            <div class="bg-secondary" id="side">
+                <h2 style="width: 182px;
+                    text-align: center;
+                    font-size: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;"><span style="font-size: 80px;" class="bi bi-person-circle"></span>
+                    <%= usuarioLogado.nome %>
+                </h2>
             
                     <ul style="list-style: none; text-decoration: none; ">
                         <li><strong><a href="/cadastro/edit/<%= usuario %> ">Editar meu perfil</a> </strong> </li>
@@ -21,19 +27,19 @@
 
                 </div>
             </div>
-            <div style="width: 300px;" class="container d-flex flex-column text-align-center p-0">
+            <div style="width: 250px;margin: 0px;" class="container d-flex flex-column text-align-center p-0">
                    
                         <h2 style="font-size: 40px;">Informações de cadastro</h2>
                         <ul style="list-style: none; padding: 0px;">
                             
                              <li >Nome: <%= administrador.nome %> </li>
-                             <li>email: <%= administrador.email %> </li>
-                             <li>cep: <%= administrador.cep %> </li>
-                             <li>endereço: <%= administrador.endereco %> </li>
-                             <li>numero: <%= administrador.numero %> </li>
-                             <li>bairro: <%= administrador.bairro %> </li>
-                             <li>cidade: <%= administrador.cidade %> </li>
-                             <li>estado: <%= administrador.estado %> </li>
+                             <li>Email: <%= administrador.email %> </li>
+                             <li>Cep: <%= administrador.cep %> </li>
+                             <li>Endereço: <%= administrador.endereco %> </li>
+                             <li>Número: <%= administrador.numero %> </li>
+                             <li>Bairro: <%= administrador.bairro %> </li>
+                             <li>Cidade: <%= administrador.cidade %> </li>
+                             <li>Estado: <%= administrador.estado %> </li>
 
                            
                         </ul>

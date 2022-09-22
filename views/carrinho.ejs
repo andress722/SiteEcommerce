@@ -79,8 +79,10 @@
 
  
 <div id="checkout" style="display: none;">
+        <button style="align-items: center;" onclick="backConfirm()" class="btn btn-primary"> Voltar</button>
        <!-- Shopping Cart -->
-       <section  class="shopping-cart dark">
+       <section  class="container d-flex align-items-center shopping-cart dark">
+        
         <div class="container" id="container">
           <div class="block-heading">
             <h2>Shopping Cart</h2>
@@ -88,15 +90,15 @@
           </div>
           <div id="content" class="content">
            
-            
+                
           </div>
-          <div class="col-md-12 col-lg-4">
-            <div class="summary">
-              <h3>Cart</h3>
-              <div class="summary-item"><span class="text">Subtotal</span><span class="price" id="cart-total"></span></div>
-              <button class="btn btn-primary btn-lg btn-block" onclick="enviar()" id="checkout-btn">Checkout</button>
-            </div>
-          </div>
+      <div class="container">
+        <div class="summary">
+          <h3>Cart</h3>
+          <div class="summary-item"><span class="text">Subtotal</span><span class="price" id="cart-total"></span></div>
+          <button class="btn btn-primary btn-lg btn-block" onclick="enviar()" id="checkout-btn">Checkout</button>
+        </div>
+      </div>
         </div>
       </div>
     </section>
@@ -105,7 +107,7 @@
       <div class="container_payment">
         <div class="block-heading">
           <h2>Checkout Payment</h2>
-          <p>This is an example of a Mercado Pago integration</p>
+          <p></p>
         </div>
         <div id="for-pay" class="form-payment">
           <div class="products">
@@ -129,6 +131,13 @@
 </html>
 <script>
 
+    function backConfirm(){
+      let i = 0
+      let checkout = document.getElementById('checkout')
+      checkout.setAttribute('style', 'display:none')
+       let btnConfirm = document.getElementById('btn-confirm')
+      btnConfirm.setAttribute('style', 'display:flex')
+    }
   
 
     function backCart(){

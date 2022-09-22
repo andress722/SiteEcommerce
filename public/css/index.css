@@ -10,6 +10,11 @@ main {
   display: none
 }
 
+#side ul li strong a{
+      color: white !important;
+}
+
+
 /* Shopping Cart Section - Start */
 .shopping-cart {
   padding-bottom: 10px;
@@ -160,7 +165,10 @@ main {
 }
 
 #checkout{
-  margin-top: 160px;
+  margin-top: 30px;
+  align-items: center;
+  
+  display: flex;
 
 }
 

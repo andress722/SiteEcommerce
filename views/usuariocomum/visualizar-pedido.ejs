@@ -7,7 +7,7 @@
 <body>
     <%- include("../partials/header") %>
     <main id="admin-main"  style="height: 700px;" class="container-fluid bg-light"  >
-        <section class="d-flex">
+        <section class="container d-flex flex-wrap justify-content-center ">
             <div class="bg-light" id="side">
             
                 <ul style="list-style: none; text-decoration: none; ">
@@ -18,14 +18,17 @@
 
             </div>
         </div>
-        <div style="width: 300px;" class="container d-flex flex-column text-align-center p-0">
+        <div style="width: 70%;margin: 0px;" class="container d-flex flex-column text-align-center align-items-center p-0">
                
                     <h2 style="font-size: 40px;">Informações do pedido</h2>
                     <% if(order.status === undefined || order.status == null ){ %>
                         <h1>Status <span>Pendente</span></h1>
                     <% }else{ %>
-                        <h1>Status <span><%= order.status %> </span></h1>
-                        <% } %>  
+                        <% if(order.status === 'approved'){ %> 
+                                <h1>Status: Aprovado <span style="font-size: 50px;" class="fa fa-check text-success"></span></h1>
+                        <% }else{ %> 
+                                <h1>Status <span><%= order.status %> </span></h1>
+                        <% }} %>  
                     
                     <ul style="list-style: none; padding: 0px;">
                         
