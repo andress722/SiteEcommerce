@@ -41,20 +41,19 @@
           
           <div class="container d-flex justify-content-center mt-50 mb-50">
          
-            <div class="row">
+            <div id="row" class="row">
               <% produtos.forEach(function(element){ %>
-              <div class="col-md-4 mt-2">
+              <div id="itens-products"  class="col-md-4 mt-2">
           
           
-                <div class="card">
+                <div  class="card">
                   <div class="card-body">
                     <div class="card-img-actions">
           
-                      <img src="/uploads/<%= element.imagem %> " class="card-img img-fluid"
+                      <img id="img-card" src="/uploads/<%= element.imagem %> " class="card-img img-fluid"
                         width="96" height="350" alt="">
           
-          
-                    </div>
+                   </div>
                   </div>
           
                   <div class="card-body bg-light text-center">
@@ -81,7 +80,7 @@
           
                     <div class="text-muted mb-3">34 reviews</div>
           
-                    <button type="button" onclick="addProduto('<%= element.nome %>', document.getElementById('qtd').value, '<%= element.valor %>','<%= element.id %>')" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                    <button id="btn-add-cart" type="button" onclick="addProduto('<%= element.nome %>', document.getElementById('qtd').value, '<%= element.valor %>','<%= element.id %>')" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
           
           
                   </div>

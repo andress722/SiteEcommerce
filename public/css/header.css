@@ -19532,7 +19532,7 @@ a.pswp__share--download:hover {
 
 #login{
   display: flex;
-    margin-top: 5px;
+       margin-top: -10px;
     flex-direction: column;
     align-items: center;
 }

@@ -8,16 +8,24 @@
     <%- include("../partials/header") %>
     <main id="admin-main"  style="height: 700px;" class="container-fluid bg-light"  >
         <section class="container d-flex flex-wrap justify-content-center ">
-            <div class="bg-light" id="side">
+            <div class="bg-secondary" id="side">
+                <h2 style="width: 182px;
+                                text-align: center;
+                                font-size: 30px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;"><span style="font-size: 80px;" class="bi bi-person-circle"></span>
+                    <%= usuarioLogado.nome %>
+                </h2>
             
                 <ul style="list-style: none; text-decoration: none; ">
                     <li><strong><a href="/cadastro/edit/<%= usuario %> ">Editar meu perfil</a> </strong> </li>
                     <li><strong><a href="/api/carrinho?page=0">Meus pedidos </a></strong> </li>
-
+            
                 </ul>
-
+            
             </div>
-        </div>
+            </div>
         <div style="width: 70%;margin: 0px;" class="container d-flex flex-column text-align-center align-items-center p-0">
                
                     <h2 style="font-size: 40px;">Informações do pedido</h2>
@@ -43,7 +51,7 @@
                          
                          <li>Identificador do pagamento: <%= order.payment %> </li>
                         <% if(order.status === undefined || order.status == null){ %>
-                            <h3><a href="https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=<%= order.id_pagamento %>"> Concluir pagamento</a> </h3>
+                            <button class="btn btn-primary" style="height: 50px;align-items: center; width: 200px"><a style="color: white!important;" href="https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=<%= order.id_pagamento %>"> <span>Concluir pagamento</span> </a> </button>
                             <% } %>
 
                          
