@@ -133,7 +133,11 @@ const usuario = {
 	},
 
 	login: function (req, res) {
-		return res.render('login');
+		const error = false;
+		const obj = {
+			error: error,
+		};
+		return res.render('login', obj);
 	},
 
 	loginPost: async function (req, res, next) {
@@ -154,6 +158,13 @@ const usuario = {
 					req.session.usuarioLogado = usuarioLogin;
 
 					return res.redirect('/');
+				} else {
+					const error = true;
+					const obj = {
+						error: error,
+					};
+
+					return res.render('login', obj);
 				}
 			}
 		} catch (erro) {

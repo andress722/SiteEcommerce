@@ -1,110 +1,80 @@
-<body class="u-body u-xl-mode" data-lang="pt">
-  <header class=" u-clearfix u-header u-section-row-container" id="sec-2215" style="background-image: none"><div class="u-section-rows">
-  <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-section-row u-section-row-1" id="sec-72d4">
-    <div class="d-flex u-clearfix u-sheet u-sheet-1">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="d-flex" id="namesright">
-          <p class="d-flex flex-column"><span>CIDRE</span><strong>Informatica</strong>   </p>
-          
-             
-        </div>  
-        <div onclick="cartGo()" class="u-cart">
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-cart2"
-            viewBox="0 0 16 16">
-            <path
-              d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-          </svg>
-          <span id="cart-number" style="margin-left: -26px; color: red;">0</span>
-        </div>
-      </div>
-      
-     
-    
-    
-    
-    
-    
-  </div>
-  <div class="u-clearfix u-grey-90 u-section-row u-section-row-2" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="" id="sec-9b35">
-    
-    <div class="u-align-left u-clearfix u-sheet u-sheet-2">
-     
-      <form onsubmit="searchItem(event,document.getElementById('procurar').value)" id="procura" class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-search-1">
-        <button class="u-search-button" type="submit">
-          <span class="u-search-icon u-spacing-10">
-            <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-64f3"></use></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-64f3" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" class="u-svg-content"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path></svg>
-          </span>
-        </button>
-        <input id="procurar"class="u-search-input" type="search" name="search" value="" placeholder="Search">
-      </form>
-      <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-        <div class="menu-collapse">
-          <a class="u-button-style u-nav-link" href="#">
-            <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-05f2"></use></svg>
-            <svg class="u-svg-content" version="1.1" id="svg-05f2" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</g></svg>
-          </a>
-        </div>
-        <div class="u-custom-menu u-nav-container">
-          <ul class="u-nav u-unstyled">
-            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a></li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/produtos">Produtos</a>
-              <div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/produtos">Todos os produtos</a></li>
-
-            </ul>
-        </div>
-          </li>
-          <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/contato">Contato</a></li></ul>
-        <% if( usuarioLogado ){ %>
-            <li style="margin-left: 30px  ;" class="u-nav-item"><a id="login" class="u-button-style u-nav-link" href="/admin"><span style="display: flex;
-    font-size: 17px;
-    color: white;
-    justify-content: flex-start;
-    align-items: center;" class="bi bi-person-circle"><p style="margin-right: 3px">Acesse seu perfil </p> <%= usuarioLogado.nome %></span> </a>
-      <div class="u-nav-popup">
-        <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-          <li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/cadastro/edit/<%= usuarioLogado.id %> ">Meus dados cadastrais</a></li>
-          <li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="/cadastro/api/carrinho?page=0 ">Meus Pedidos</a></li>
-    </li>
-            <% }else{ %>  
-          <li style="margin-left: 30px  ;" class="u-nav-item"><a id="login" class="u-button-style u-nav-link" href="/login">Login</a></li>
-        <% } %> 
-        </div>
-        <div class="u-custom-menu u-nav-container-collapse">
-          <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-            <div class="u-inner-container-layout u-sidenav-overflow">
-              <div class="u-menu-close"></div>
-              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">Home</a>
-</li>
-
-<li class="u-nav-item"><a class="u-button-style u-nav-link" href="/produtos">Produtos</a></li>
 
 
-              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/contato">Contato</a></li>
-              <% if( usuarioLogado ){ %>
-              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/login"><%= usuarioLogado.nome %></a></li>
-              <% }else{ %> 
-              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/login">Login</a></li>
-              <% } %>
-            </ul>
+  <section class="ftco-section">
+
+  
+    <div class="container-fluid px-md-5">
+      <div class="row justify-content-between">
+        <div class="col-md-8 order-md-last">
+          <div class="row">
+            <div class="col-md-6 text-center">
+              <a class="navbar-brand" href="/">Cidre <span>Informatica</span></a>
+            </div>
+            <div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+              <div class="d-flex" style="width: 100px; cursor: pointer;" onclick="()=>{window.location.href = '/vercarrinho'}"><span><img style="width: 50px;" src="/img/shopping_cart_icon_177373.svg" alt=""> <span id="cart-number">0</span></span></div>
+              <form action="#"  class="searchform order-lg-last">
+                <div class="form-group d-flex">
+                  <input type="text" class="form-control pl-3" id="search"  placeholder="Search">
+                  <button onclick="searchItem(event,document.getElementById('search').value)" type="submit" placeholder="" class="form-control search"><span
+                      class="fa fa-search"></span></button>
+                </div>
+              </form>
             </div>
           </div>
-          <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
         </div>
-      </nav>
-
+        <div class="col-md-4 d-flex">
+          <div class="social-media">
+            <p class="mb-0 d-flex">
+              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i
+                    class="sr-only">Facebook</i></span></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i
+                    class="sr-only">Twitter</i></span></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i
+                    class="sr-only">Instagram</i></span></a>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    
-    
-    
-  </div>
-  </div>
-</header>
-</div>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container-fluid">
+  
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav m-auto">
+          <li class="nav-item "><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/produtos" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Produtos</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown04">
+              <a class="dropdown-item" href="/produtos/">Todos os Produtos</a>
+                       
+            </div>
+          </li>
+          <li class="nav-item  "><a href="/contato" class="nav-link">Contato</a></li>
+          <% if( usuarioLogado ){ %>
+            <li  class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"><%= usuarioLogado.nome %> </a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="/cadastro">Meus dados</a>
+                <a class="dropdown-item" href="/logout">Sair</a>
+              </div>
+            
+            </li>
+          <% }else{ %>
+              <li class="nav-item "><a href="/login" id="login" class="nav-link">Login</a></li>
+            <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- END nav -->
+  
+  </section>
 <script>
   function cartGo(){
     window.location.href = '/pedidos/vercarrinho'
@@ -115,9 +85,10 @@
 
 
 <script src="/js/jquery.min.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/popper.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script src="/js/main.js"></script>
+
 <script src="/js/adicionaCarrinho.js"></script>
 <script src="/js/procura.js"></script>
 

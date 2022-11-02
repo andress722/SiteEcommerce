@@ -2,7 +2,7 @@
 <html lang="en">
   <%- include("./partials/head")%>
 
-  <title>Template Code - Checkout Pro</title>  
+  <title>Checkout - Pagamento Mercado Pago</title>  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/css/index.css">
@@ -103,7 +103,9 @@
       </div>
     </section>
     <!--payment-->
-    <section class="payment-form dark">
+
+    <div id="spinner"></div>
+    <section id="finalCheckout" class="payment-form dark">
       <div class="container_payment">
         <div class="block-heading">
           <h2>Checkout Payment</h2>
@@ -680,12 +682,30 @@ console.log(order)
          
   }
 
+    
+
     async function enviar(){
       updateQuantity()
       alert('Pedido Criado! Clique em Ok para prosseguir com pagamento!')
+      let checkout = document.getElementById('checkout')
+  
+
+        checkout.setAttribute('style', 'display:none')
+            let divLoad = document.createElement('div')
+            let divSpinner = document.createElement('div')
+            let spinner = document.querySelector('spinner')
+                divLoad.setAttribute('id', 'loader-container')
+                divSpinner.setAttribute('class', 'spinner')
+                divLoad.appendChild(divSpinner)
+                spinner.appendChild(divLoad)
+
+      const loaderContainer = document.getElementById('loader-container');
       
-         
       
+        
+     
+   
+        
       
                 let settings = {
         method: "POST",
@@ -696,15 +716,17 @@ console.log(order)
 
       }
       
-         await fetch('/pedidos/detalhes-pedido', settings)
+         await fetch('/pedidos/detalhes-pedido', settings).then(()=> {console.log('Local limpo') 
+                                                                         localStorage.clear()
+                                                                      })
       
-                      localStorage.clear()
+                     
 
-                
+          
 }  
    window.addEventListener('load', total)
 
-async function updateQuantity(){
+async function  updateQuantity(){
 
   const orderData1 = comP.map((e) => ({
     id: e.id,

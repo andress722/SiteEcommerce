@@ -36,7 +36,11 @@
 			<div class="card-body">
 				
 				<form method="post" onsubmit="ValidaLogin(event)" novalidate>
-					<div class="lista-erros"></div>
+					<div class="lista-erros">
+						<% if(error === true){ %> 
+							<h3 style="color: red;">email ou Senha invalidos</h3>
+							<% } %> 
+					</div>
 					<div style="width: 178px;" class="d-flex justify-content-around social_icon">
 						<a href="#"><i  style="color: white; font-size: 50px;" class="fab fa-facebook-square"></i></a>
 						<a href="#"><i style="color: white;font-size: 50px;"class="fab fa-google-plus-square"></i></a>
@@ -76,7 +80,9 @@
 	</div>
 </div>
 </body>
-<script src="/js/validacao.js"></script>
-<script src="/js/loginValida.js"></script>
+
+<script>
+
+</script>
 
 </html>
