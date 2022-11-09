@@ -79,7 +79,7 @@ const superadmin = {
 					email: req.body.email,
 				},
 			});
-			if (usuarioLogin) {
+			if (usuarioLogin != null || undefined) {
 				const usuarioSenha = usuarioLogin.senha;
 
 				let valida = bcrypt.compareSync(req.body.senha, usuarioSenha);
@@ -88,8 +88,12 @@ const superadmin = {
 					req.session.estaLogado = true;
 					req.session.usuarioLogado = usuarioLogin;
 
-					return res.redirect('/');
+					return res.redirect('/superadmin/admin');
 				}
+			} else {
+				return res.render('form-servico-erro', {
+					mensagemErro: 'erro ao tentar login',
+				});
 			}
 		} catch (erro) {
 			return res.render('form-servico-erro', {
