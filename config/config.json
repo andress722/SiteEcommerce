@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "andress722",
-    "password": "and102030",
+    "username": "root",
+    "password": "",
     "database": "cidre",
-    "host": "cidre-info.cwmcwcahjp0c.us-east-1.rds.amazonaws.com",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
-    "username": "andress722",
-    "password": "and102030",
+    "username": "root",
+    "password": "",
     "database": "cidre",
-    "host": "cidre-info.cwmcwcahjp0c.us-east-1.rds.amazonaws.com",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
-    "username": "bd6f2a87caea4f",
-    "password": "3eab5e50",
-    "database": "heroku_fc5ea3d58457205",
-    "host": "us-cdbr-east-06.cleardb.net",
+    "username": "root",
+    "password": "",
+    "database": "cidre",
+    "host": "localhost",
     "dialect": "mysql"
   }
 }

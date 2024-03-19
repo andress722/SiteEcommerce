@@ -13,13 +13,14 @@ body{
 
     #itens-products {
       display: flex !important;
-  
-  
-      justify-content: center !important;
+      width: 560px;
+      margin-bottom: 60px;
+      justify-content: space-evenly !important;
     }
 #row{
   display: flex;
-    justify-content: center;
+  justify-content: center;
+  justify-content: space-evenly;
 }
 
 #main-pedido{
@@ -43,6 +44,7 @@ footer a{
 
 .card-img-actions{
       margin-bottom: 10px;
+      width: 100%;
 }
 
 
@@ -648,6 +650,11 @@ pre code {
 @media (min-width: 768px) {
   .container {
     max-width: 720px;
+  }
+  #itens-products{
+    width: 381px!important;
+    height: 560px!important;
+    margin-bottom: 5px;
   }
   .card{
     width: 377px;
@@ -5434,14 +5441,14 @@ display: flex;
   flex-wrap: wrap;
   flex-direction: row;
 
-
+  margin-top:0px;
  
     align-items: baseline;
     justify-content: space-between;
 }
 
 .card-body .mb-2{
-      margin-top: -45px;
+     
         text-align: start;
         width: 196px;
 }
@@ -6401,14 +6408,16 @@ a.badge-dark.focus {
 
   #itens-products{
     display: flex;
-      width: 381px;
+      width: 481px;
       height: 500px;
       max-width: none;
       /* align-items: center; */
       justify-content: center;
   }
   .card{
-        width: 300px;
+    width: 400px;
+    height: 530px;
+
         
   }
 
@@ -14144,3 +14153,126 @@ pre:hover{
 .form-control:active {
   border-color: #000;
 }
+
+
+
+@media (max-width: 810px){
+ 
+  section{
+    margin-left: 0;
+  }
+  #row{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-left: 0.2%;
+}
+.card{
+  width: 100%;
+}
+#qtd{
+  width: 100px;
+}
+  #description{
+    width: 340px!important;
+  }
+
+  #img-description{
+    margin-top: 30px;
+  width: 321px;
+ 
+  }
+  .thumb-visual-principal{
+    width:  305px;
+  }
+  #itens-products{
+    width: 381px !important;
+    height: 474px !important;
+    max-width: none;
+    margin-bottom: 0.5%;
+  }
+}
+
+@media (max-width: 412px){
+  
+  #itens-products {
+    height: 520px !important;
+    margin-bottom: 10px;
+  }
+  .card {
+    height: 510px !important;
+    width: 700px;
+  }
+  .card-img{
+    width: 100%!important;
+  }
+.card-body{
+  
+  width: 355px !important;
+  border-radius: 5px !important;
+  height: 400px !important;
+}
+#row{
+  padding: 0px!important;
+  margin-left: 3px!important;
+}
+#qtd{
+  width: 110px;
+
+}
+  }
+
+  @media (min-width:360px) and (max-width: 411px){
+  
+    #itens-products{
+      height: 510px !important;
+      margin-bottom: 10px;
+    }
+    .card{
+      height: 400px !important;
+      width: 100%;
+  }
+  .card-img {
+    width: 350px;
+    height: 288px;
+    border-radius: calc(0.25rem - 1px);
+  }
+  .card-body{
+    width: 100%!important;
+    border-radius: 5px!important;
+    height: 400px!important;
+  }
+  #row{
+    padding: 0px!important;
+    margin-left: 3px!important;
+  }
+  #qtd{
+    width: 110px;
+  
+  }
+    }
+
+
+@media (max-width: 320px){
+  
+  #itens-products{
+    height: 470px !important;
+    margin-bottom: 10px;
+  }
+  .card{
+    height: 450px !important;
+}
+.card-body{
+  width: 250px!important;
+  border-radius: 5px!important;
+  height: 400px!important;
+}
+#qtd{
+  width: 110px;
+
+}
+#row{
+  padding: 0px!important;
+  margin-left: 3px!important;
+}
+  }
