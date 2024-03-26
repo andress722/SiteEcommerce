@@ -16,24 +16,44 @@
       <%- include("./partials/promocoes")%>
       <section class="produtos" style="background-color: #eee;" >
         
-        <div class="container-fluid w-100 p-0 bg-dark d-flex justify-content-center" style="height:100px; border-radius: 0px 0px 4px 4px;">
+        <div class="container-fluid w-100 p-0 bg-dark d-flex justify-content-center" style="height:150px; border-radius: 0px 0px 4px 4px;">
           <div class="w-100 p-3">
-            
-            <ul class="ul-categorias">  
-              <% categoria.forEach(function(categorias){ %> 
-                <li >
-                  <div class="categoria-bar">
-                    <img style="width: 55px; border: solid #eee; border-radius: 41px;" 
-                         src="/uploads/<%= categorias.imagem %> " alt="">
-                    
-                        <p><%= categorias.nome %> </p>
-                  </div>
-                  
-                </li>
-              <% }) %> 
-            </ul>
+            <div class="container">
+              <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <% let active = true %>
+                  <% for (let i = 0; i < categoria.length; i += 6) { %>
+                    <div class="carousel-item <%= active ? 'active' : '' %>">
+                      <ul class="ul-categorias row">
+                        <% for (let j = i; j < Math.min(i + 6, categoria.length); j++) { %>
+                          <li class="col-2">
+                            <a class="categoriabar" href="#">
+                            <div class="categoria-bar">
+                              <img class="rounded-circle img-thumbnail" style="width: 70px; height: 70px;" src="/uploads/<%= categoria[j].imagem %>" alt="<%= categoria[j].nome %>">
+                              <p class="text-center"><%= categoria[j].nome %></p>
+                            </div>
+                          </a>
+                          </li>
+                        <% } %>
+                      </ul>
+                    </div>
+                    <% active = false %>
+                  <% } %>
+                </div>
+              </div>
+            </div>
           </div>
+          <!-- Movendo as setas de navegação para fora do carrossel -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
+        
         <section class="container-fluid" style="margin-top: 44px;margin-left: -0.1px;">
           <h3 style="margin-left: 5%;"><span><img src="/img/offer_discount_sales_proc_icon_228008.svg" style="width: 70px;" alt=""></span>Produtos em
             destaques</h3>

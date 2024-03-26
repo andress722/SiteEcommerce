@@ -71,7 +71,11 @@ const passwordNew = {
                 email: email
             }})
             console.log('Este é o email ' + usuario)
-        const token = crypto.randomBytes(20).toString('hex')
+
+            if(usuario === null || undefined){
+                res.render('form-servico-erro', {mensagemErro: 'Erro ao enviar menssagem'})
+            }else{
+                const token = crypto.randomBytes(20).toString('hex')
             if(usuario !== null){
                 if(usuario.token === null){
                     console.log('entrou no if ******')
@@ -114,6 +118,8 @@ const passwordNew = {
         }
         
         res.redirect('/pass/resetpass')
+            }
+        
     
 
         } catch (error) {

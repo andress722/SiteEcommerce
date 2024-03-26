@@ -68,11 +68,12 @@
 <script>
        
         function errorValidate(e){  
-          let login = document.getElementById('login').innerText
+          let login = document.getElementById('login').innerText.toUpperCase()
           let checkout = document.getElementById('checkout')
           let main = document.getElementById('main')
           let btnConfirm = document.getElementById('btn-confirm')
-          if(login != 'Login'){
+          console.log(login)
+          if(login != 'LOGIN'){
             console.log('diferente')
             
             checkout.setAttribute('style', 'display: block')

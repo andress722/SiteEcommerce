@@ -23,6 +23,50 @@ body{
   justify-content: space-evenly;
 }
 
+
+.categoriabar{
+  text-decoration: none; list-style: none; color: white;
+
+}
+
+.categoriabar a:hover{
+  color: red;
+}
+.promo-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(255, 0, 0, 0.8); /* Fundo vermelho com transparência */
+  color: white;
+  padding: 5px 10px; /* Espaçamento interno */
+  font-weight: bold;
+  border-radius: 5px; /* Cantos arredondados */
+  font-size: 14px; /* Tamanho da fonte */
+  z-index: 1; /* Certifica-se de que o texto fique sobre a imagem */
+  opacity: 0; /* Inicialmente, o texto estará transparente */
+  transition: opacity 0.3s; /* Adiciona um efeito de transição */
+}
+
+.card:hover .promo-text {
+  opacity: 1; /* Quando o card é hover, o texto ficará visível */
+}
+
+/* Estilo das setas do carrossel */
+.custom-carousel-prev,
+.custom-carousel-next {
+  color: red; /* Cor das setas */
+  font-size: 30px; /* Tamanho da fonte das setas */
+  background-color: rgba(255, 255, 255, 0.5); /* Fundo das setas */
+  border-radius: 50%; /* Forma circular */
+  width: 50px; /* Largura */
+  height: 50px; /* Altura */
+}
+
+/* Estilo das setas do carrossel quando hover */
+.custom-carousel-prev:hover,
+.custom-carousel-next:hover {
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo das setas quando hover */
+}
 #main-pedido{
 
   display: flex;
@@ -2864,6 +2908,10 @@ textarea.form-control.is-invalid {
     margin-bottom: 0;
   }
 
+  #img-description{
+    width: 50%;
+  }
+
   .form-inline .form-group {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -4064,6 +4112,9 @@ input[type="button"].btn-block {
   -ms-flex-pack: center;
   justify-content: center;
 }
+#description{
+  width: 50%!important;
+}
 
 .btn-group-vertical>.btn,
 .btn-group-vertical>.btn-group {
@@ -4845,6 +4896,15 @@ nav{
   border-bottom: 1px solid #dee2e6;
 }
 
+.has-error {
+  border: 1px solid red;
+  color: red;
+}
+
+.erro-input {
+  border: 2px solid red !important;
+  color: red !important;
+}
 .nav-tabs .nav-item {
   margin-bottom: -1px;
 }
@@ -12151,7 +12211,7 @@ body {
 }
 
 #btn-product{
-  Width: 143px;
+  Width: 10vw;
     Height: 46px;
     font-size: 14px;
     display: flex;
@@ -12466,6 +12526,7 @@ section.produtos .container {
 #btn-qtd{
   font-family: Roboto;
   Size: 6px;
+  width: 8vw;
   align-items: center;
   text-align: center;
   border-radius: 12px;
@@ -14179,11 +14240,11 @@ pre:hover{
 
   #img-description{
     margin-top: 30px;
-  width: 321px;
+  width: 50%;
  
   }
   .thumb-visual-principal{
-    width:  305px;
+    width:  34vw;
   }
   #itens-products{
     width: 381px !important;

@@ -1,37 +1,34 @@
-function validaCadastro(e){ 
-
-    limpaErros(e.target)
+function validaCadastro(e) { 
+    limpaErros(e.target);
     
-    const password = document.getElementsByName('senha')[0]
-    const repeatPassword = document.getElementsByName('repeatPassword')[0]
-   
-
-
-
+    const password = document.getElementsByName('senha')[0];
+    const repeatPassword = document.getElementsByName('repeatPassword')[0];
+  
     let erros = [
         ...validateRequired(e.target),
         ...validaCamposIguais(password, repeatPassword)
-    ]
+    ];
     
-    const erros2 = validaCamposIguais(password, repeatPassword)
-    erros = [...erros, ...erros2]
+    const erros2 = validaCamposIguais(password, repeatPassword);
+    erros = [...erros, ...erros2];
 
-    if(password.value != repeatPassword.value){
-        erros.push('Senhas não conferem')
-       
+    if (password.value != repeatPassword.value) {
+        erros.push('Senhas não conferem');
     }
-
-
     
-    if(erros.length){
-        e.preventDefault()
+    if (password.value === '' || repeatPassword.value === '') {
+        erros.push('Digite as senhas');
     }
-    const listaErros = e.target.querySelector('.lista-erros')
-    const ul = generateErrors(erros)
-    listaErros.replaceChildren(ul)
+    
+    if (erros.length) {
+        e.preventDefault();
+    }
+    
+    const listaErros = e.target.querySelector('.lista-erros');
+    const ul = generateErrors(erros);
+    listaErros.replaceChildren(ul);
 }
 
-
-function exececutaCadastro(e){
-    e.preventDefault()
+function exececutaCadastro(e) {
+    e.preventDefault();
 }

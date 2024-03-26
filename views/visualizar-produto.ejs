@@ -13,7 +13,7 @@
             
                 <div id="img-description"  class=" d-flex flex-column align-items-center bg-light ">
                     <img class="thumb-visual-principal"  src="/uploads/<%= produtos.imagem %>" alt="">
-                    <div class="d-flex justify-content-between" style=" width: 200px; margin-left: -8px;
+                    <div class="d-flex justify-content-between" style=" width: 38vw; margin-left: -8px;
                     Height: 130px;
                     width: 237px;
                     padding: 0px;">
@@ -39,13 +39,13 @@
                             </div>
                            
                         </div>
-                        <span style="font-size: 16px; margin-top: 18px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio, vero officia? Quis quidem, explicabo non natus, architecto aliquam id qui.</span>
+                        <span style="font-size: 16px;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio, vero officia? Quis quidem, explicabo non natus, architecto aliquam id qui.</span>
                         <div class="border-radius: 12px; d-flex flex-column-reverse" style="margin-left: -10px; margin-top: 10px; Height: 95px">
                             <button id="btn-product" class="btn btn-primary" onclick="addProduto('<%= produtos.nome %>', document.getElementById('qtd').value, '<%= produtos.valor %>','<%= produtos.id %>')">Adicionar ao Carrinho</button>
                             <div >
                                 <button id="btn-qtd" class="border d-flex flex-column"> 
                                     QTD: 
-                                 <input  class="bg-light" type="number" value="1" min="1" max="10" id="qtd">
+                                 <input style="width: 5vw;"  class="bg-light" type="number" value="1" min="1" max="10" id="qtd">
                                 </button>
                             
                             </div>  
