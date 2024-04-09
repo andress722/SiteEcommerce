@@ -1,6 +1,4 @@
-const { DataTypes } = require("sequelize");
-
-module.exports = (connection) => {
+module.exports = (connection, DataTypes) => {
     const Carrinho = connection.define('Carrinho', {
         id: {
             type: DataTypes.INTEGER,
@@ -36,25 +34,25 @@ module.exports = (connection) => {
         },
         id_pagamento: {
             type: DataTypes.STRING
+        },
+        id_usuario: {
+            type: DataTypes.INTEGER // Adicione a coluna id_usuario para a chave estrangeira
         }
     }, {
         timestamps: true,
         tableName: 'carrinhos'
     });
 
-    Carrinho.associate = (models) => {
-        Carrinho.belongsTo(models.Produto, {
-            foreignKey: 'id_produto',
-            as: 'produtoCarrinho'
-        });
-        
+    Carrinho.associate = models => {
         Carrinho.belongsTo(models.UsuarioComum, {
             foreignKey: 'id_usuario',
             as: 'usuario'
         });
-
-        // Não é necessário chamar sync dentro do associate
     }
 
+    // Sincronizar o modelo com o banco de dados
+    // Isso irá criar a tabela 'carrinhos' caso ela não exista
+    Carrinho.sync({ alter: true });
+
     return Carrinho;
-}
+};

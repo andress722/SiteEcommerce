@@ -141,32 +141,39 @@ const usuario = {
 	},
 
 	loginPost: async function (req, res, next) {
+		const { email, senha } = req.body;
+		
 		try {
-			const { email, senha } = req.body;
-			const usuarioLogin = await UsuarioComum.findOne({
-				where: {
-					email: req.body.email,
-				},
-			});
-			if (usuarioLogin) {
-				const usuarioSenha = usuarioLogin.senha;
-
-				let valida = bcrypt.compareSync(req.body.senha, usuarioSenha);
-
-				if (usuarioLogin && valida === true) {
-					req.session.estaLogado = true;
-					req.session.usuarioLogado = usuarioLogin;
-
-					return res.redirect('/');
-				} else {
-					const error = true;
-					const obj = {
-						error: error,
-					};
-
-					return res.render('login', obj);
+			console.log(email)
+			if(email && senha ){
+				const usuarioLogin = await UsuarioComum.findOne({
+					where: {
+						email: email
+					},
+				});
+				console.log(usuarioLogin)
+				if (usuarioLogin) {
+					const usuarioSenha = usuarioLogin.senha;
+					console.log(usuarioLogin)
+					let valida = bcrypt.compareSync(req.body.senha, usuarioSenha);
+	
+					if (usuarioLogin && valida === true) {
+						req.session.estaLogado = true;
+						req.session.usuarioLogado = usuarioLogin;
+	
+						return res.redirect('/');
+					} 
 				}
+			}else {
+				const error = true;
+				const obj = {
+					error: error,
+				};
+				
+				return res.render('login', obj);
 			}
+		
+			
 		} catch (erro) {
 			return res.render('form-servico-erro', {
 				mensagemErro: 'Erro ao efetuar login',

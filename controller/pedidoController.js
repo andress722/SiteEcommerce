@@ -53,21 +53,42 @@ const pedidoController = {
 	},
 
 	refreshQuantaty: async (req, res) => {
-		const body = req.body;
-		const product = body.map((element) => element.id);
-		const productQuantity = body.map((element) => element.quantidade);
-		const pro = await Produto.findAll();
-
-		for (let i = 0; i < body.length; i++) {
-			await Produto.update({ quantidade: 12 }, { where: { id: body[i].id } });
+	
+		try {
+			const { id, produto, quantidade, valor, total, pedidos } = req.body;
+			console.log('chamou a rota');
+			const cart = {
+				produto: produto.toString(),
+				id_produto: id.toString(),
+				quantidade: quantidade.toString(),
+				valor: valor.toString(),
+				total: total.toString(),
+				id_usuario: usuario,
+				numero_pedido: pedidos,
+			};
+			console.log(cart);
+			const createdCart = await Carrinho.create(cart);
+    // Verificar se o carrinho foi criado corretamente
+    if (createdCart) {
+        // Carrinho criado com sucesso
+        console.log(createdCart, 'criou');
+    } else {
+        // Algo deu errado ao criar o carrinho
+		console.log('erro' );
+    }
+		} catch (error) {
+			return res.render('form-servico-erro', {
+				mensagemErro:
+					'Erro ao criar pedido, tente novamente ou entre contato conosco',
+			});
 		}
-
-		console.log('sucesso');
+	
 	},
 
 	verCarrinho: async function (req, res) {
 		try {
 			let usuario = req.session.usuarioLogado.id;
+			console.log(usuario)
 			let usuarios = await UsuarioComum.findByPk(usuario);
 			const obj = {
 				usuarios: usuarios,
@@ -86,12 +107,9 @@ const pedidoController = {
 
 	enviarPedido: async function (req, res) {
 		try {
-			const usuario = req.session.usuarioLogado.id;
-
 			const { id, produto, quantidade, valor, total, pedidos } = req.body;
-			const qtd = quantidade.toString();
-			console.log(qtd);
-			await Carrinho.create({
+			console.log('chamou a rota');
+			const cart = {
 				produto: produto.toString(),
 				id_produto: id.toString(),
 				quantidade: quantidade.toString(),
@@ -99,7 +117,17 @@ const pedidoController = {
 				total: total.toString(),
 				id_usuario: usuario,
 				numero_pedido: pedidos,
-			});
+			};
+			console.log(cart, 'chamou');
+			const createdCart = await Carrinho.create(cart);
+    // Verificar se o carrinho foi criado corretamente
+    if (createdCart) {
+        // Carrinho criado com sucesso
+        console.log(createdCart, 'criou');
+    } else {
+        // Algo deu errado ao criar o carrinho
+		console.log('erro' );
+    }
 		} catch (error) {
 			return res.render('form-servico-erro', {
 				mensagemErro:
@@ -107,19 +135,6 @@ const pedidoController = {
 			});
 		}
 
-		// for(let i=0; i < produtos.length; i++){
-		//if(produtos.length){
-		//  console.log(produtos[i])
-
-		// await Carrinho.create({
-		//   produto: produtos[i].produto,
-		//   quantidade: produtos[i].quantidade,
-		//  valor: produtos[i].valor,
-		// total: produtos[i].valor * produtos[i].quantidade,
-		// id_produto: produtos[i].id,
-		//  id_usuario: usuario,
-		//  numero_pedido: produtos[i].pedidos
-		// })
 	},
 };
 

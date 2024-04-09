@@ -155,9 +155,9 @@
         async function errorValidate(e){  
           limpaErros()
           let btnConfirm = document.getElementById('btn-confirm')
-
+          let login = document.getElementById('login').innerText
           if (login != 'Login') {
-            let login = document.getElementById('login').innerText
+           
 
             //analise de item
             const fetchProducts = await fetch('/api/produtos')
@@ -227,7 +227,7 @@
               const limpaGenerate = document.createElement('ul')
               listaErros.replaceChildren(limpaGenerate)
               listaErros.innerHtml = ''
-              console.log(listaErros)
+              console.log(listaErros.innerText)
             }
           }
 
@@ -657,10 +657,10 @@ console.log(order)
         path.setAttribute('id','chevron_left')
         path.setAttribute('d','M7.05 1.4L6.2.552 1.756 4.997l4.449 4.448.849-.848-3.6-3.6z')
         svg.appendChild(path)
-        let a = document.createElement('a')
-        a.setAttribute('id', 'go-back')
-        a.appendChild(svg)
-        a.appendChild(document.createTextNode('Go back to Shopping Cart'))
+        let link = document.createElement('a')
+        link.setAttribute('id', 'go-back')
+        link.appendChild(svg)
+        link.appendChild(document.createTextNode('Go back to Shopping Cart'))
         let divB = document.createElement('div')
         divB.setAttribute('id', 'button-checkout')
         let divForm = document.createElement('div')
@@ -670,7 +670,7 @@ console.log(order)
         divForm.appendChild(divB)
         divForm.appendChild(br)
         payDe.appendChild(divForm)
-        payDe.appendChild(a)
+        payDe.appendChild(link)
         sumI.appendChild(payDe)
 
   function confirmDetails(){
@@ -685,8 +685,22 @@ console.log(order)
     
 
     async function enviar(){
-      updateQuantity()
+      
       alert('Pedido Criado! Clique em Ok para prosseguir com pagamento!')
+      let settings = {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(order)
+
+      }
+      
+         await fetch('/pedidos/detalhes-pedido', settings)
+         .then(()=> {console.log('Local limpo') 
+                      localStorage.clear()                       
+                         })
+      
       let checkout = document.getElementById('checkout')
   
 
@@ -700,26 +714,8 @@ console.log(order)
                 spinner.appendChild(divLoad)
 
       const loaderContainer = document.getElementById('loader-container');
-      
-      
-        
+            
      
-   
-        
-      
-                let settings = {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify(order)
-
-      }
-      
-         await fetch('/pedidos/detalhes-pedido', settings).then(()=> {console.log('Local limpo') 
-                                                                         localStorage.clear()
-                                                                      })
-      
                      
 
           

@@ -43,25 +43,31 @@ const api = {
     },
 
     //pedidos
-    carrinho: async function(req,res,next){
-        
-        const page =  req.query.page
+    carrinho: async(req,res,next) => {
+        console.log('teste')
         try {
-            const usuario = req.session.usuarioLogado.id
-            const {count:total,rows:orders} = await Carrinho.findAndCountAll({
-               limit: 4,
-                offset: page *4
-            })
+            const page = parseInt(req.query.page) || 0; // Garantindo que page seja um número, assumindo 0 se não estiver definido
+            const usuario = req.session.usuarioLogado.id;
         
-         let totalPages = Math.round(total/4)
-    
-           res.render('usuariocomum/admin-usuario-pedido',{totalPages, orders, usuario})
+            const { count: total, rows: orders } = await Carrinho.findAndCountAll({
+                limit: 4,
+                offset: page * 4
+            });
+        
+            console.log(total); // Alterado para 'total' em vez de 'count'
+        
+            if (total >= 0) {
+                let totalPages = Math.ceil(total / 4); // Usando Math.ceil para garantir que arredonde para cima
+                
+                res.render('usuariocomum/admin-usuario-pedido', { totalPages, orders, usuario })
+                
+            } else {
+                res.render('form-servico-error');
+            }
         } catch (error) {
-            return res.send(error)
+            return res.send(error);
         }
-        
     },
-
     //login
     login: async function(req,res,next){
         try {

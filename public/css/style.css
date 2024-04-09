@@ -4896,6 +4896,11 @@ nav{
   border-bottom: 1px solid #dee2e6;
 }
 
+
+footer section .row{
+  height: auto;
+}
+
 .has-error {
   border: 1px solid red;
   color: red;

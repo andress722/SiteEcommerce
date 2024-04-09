@@ -1,54 +1,72 @@
 <html lang="en">
     <%- include("../partials/head")%>
-    <style>a{
-        text-decoration: none;
-    }
-    </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            background-color: #252525;
+            color: #fff;
+            height: 100vh;
+            padding-top: 20px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 20px;
+            border-bottom: 1px solid #252525;
+        }
+        .sidebar ul li:hover {
+            background-color: #555;
+        }
+        .main-content {
+            padding: 20px;
+        }
+    </style>    
 <body>
     <%- include("../partials/header") %>
-    <main id="admin-main"  style="height: 700px;" class="container-fluid bg-light"  >
+    <main id="admin-main"  style="height: 700px; margin-bottom: -25px !important;" class="container-fluid bg-light"  >
        
-        <section style="margin-top: 50px; justify-content: space-evenly; flex-wrap: wrap; margin-left: -5px;" class="container d-flex ">
-            <div class="bg-secondary" id="side">
-                <h2 style="width: 182px;
-                    text-align: center;
-                    font-size: 30px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;"><span style="font-size: 80px;" class="bi bi-person-circle"></span>
-                    <%= usuarioLogado.nome %>
-                </h2>
-            
-                    <ul style="list-style: none; text-decoration: none; ">
-                        <li><strong><a href="/cadastro/edit/<%= usuario %> ">Editar meu perfil</a> </strong> </li>
-                        <li><strong><a href="/api/carrinho?page=0">Meus pedidos </a></strong> </li>
-
+        <div class="container-fluid"  style="height: 100% !important; margin-bottom: -24.5px!important;">
+            <div class="row" style="height: 100% !important;;">
+                <nav class="col-md-2 d-none d-md-block sidebar" style="height: 100% !important;;">
+                    <ul class="nav flex-column " style="background-color: #252525;">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#meus-dados">Meus Dados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/api/carrinho">Meus Pedidos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#alterar-senha">Alterar Senha</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sair">Sair</a>
+                        </li>
                     </ul>
-
+                </nav>
+                <div role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
+                    <div id="meus-dados">
+                        <h2>Meus Dados</h2>
+                        <p>Aqui estão os seus dados pessoais...</p>
+                    </div>
+                    <div id="meus-pedidos" style="display: none;">
+                        <h2>Meus Pedidos</h2>
+                        <p>Aqui estão seus pedidos anteriores...</p>
+                    </div>
+                    <div id="alterar-senha" style="display: none;">
+                        <h2>Alterar Senha</h2>
+                        <p>Aqui você pode alterar sua senha...</p>
+                    </div>
+                    <div id="sair" style="display: none;">
+                        <h2>Sair</h2>
+                        <p>Você saiu da sua conta...</p>
+                    </div>
                 </div>
-            </div>
-            <div style="width: 250px;margin: 0px;" class="container d-flex flex-column text-align-center p-0">
-                   
-                        <h2 style="font-size: 40px;">Informações de cadastro</h2>
-                        <ul style="list-style: none; padding: 0px;">
-                            
-                             <li >Nome: <%= administrador.nome %> </li>
-                             <li>Email: <%= administrador.email %> </li>
-                             <li>Cep: <%= administrador.cep %> </li>
-                             <li>Endereço: <%= administrador.endereco %> </li>
-                             <li>Número: <%= administrador.numero %> </li>
-                             <li>Bairro: <%= administrador.bairro %> </li>
-                             <li>Cidade: <%= administrador.cidade %> </li>
-                             <li>Estado: <%= administrador.estado %> </li>
-
-                           
-                        </ul>
-                
-                </div>
-                
             </div>
         </div>
-        </section>
         
     </main>
    <%- include('../partials/footer') %> 

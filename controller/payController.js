@@ -38,7 +38,6 @@ const creaOrder = {
 
 	createPrefer: async (req, res) => {
 		const body = req.body;
-		console.log(body);
 
 		var preference = {
 			items: body.map((e) => ({
@@ -49,15 +48,15 @@ const creaOrder = {
 			})),
 
 			back_urls: {
-				success: 'https://cidreinfo.herokuapp.com/pedidos/feedback',
-				failure: 'https://cidreinfo.herokuapp.com/pedidos/feedback',
-				pending: 'https://cidreinfo.herokuapp.com/pedidos/feedback',
+				success: '/pedidos/feedback',
+				failure: '/pedidos/feedback',
+				pending: '/pedidos/feedback',
 			},
 			auto_return: 'approved',
 		};
-		console.log(preference);
+	
 		const pedido = body.map((e) => e.pedido);
-		console.log(pedido);
+		
 		mercadopago.preferences
 			.create(preference)
 			.then(async function (response) {
@@ -67,7 +66,7 @@ const creaOrder = {
 
 				console.log(pedido);
 				let idPagamento = response.body.id;
-				console.log(response);
+				
 				await Carrinho.update(
 					{
 						id_pagamento: idPagamento,
@@ -82,7 +81,7 @@ const creaOrder = {
 			.catch(function (error) {
 				console.log(error);
 			});
-		console.log(json);
+	
 	},
 	feedback: async (req, res) => {
 		const param = req.query;

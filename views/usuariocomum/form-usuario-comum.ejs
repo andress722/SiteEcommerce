@@ -11,7 +11,7 @@
             <div class="container">
                 <h1>Cadastro de Usuario</h1>
                 <div class="align-row align-middle" style="align-items: center;">
-                    <form id="cadastroForm" method="POST" novalidate>
+                    <form id="cadastroForm" method="post" action="/cadastro" novalidate>
                         <div class="form-group" style="align-items: center;" id="estilo-form">
                             <div class="lista-erros"></div>
                         </div>
@@ -34,11 +34,11 @@
                             </div>
                             <div class="card d-flex flex-column" style="margin-right: 50px; width: 300px; height: 89px;">
                                 <label for="cep">CEP</label>
-                                <input type="text" class="form-control" name="cep" placeholder="CEP" data-required>
+                                <input type="text" class="form-control" onblur="pesquisarCep()" id="cep" name="cep" placeholder="CEP" data-required>
                             </div>
                             <div class="card d-flex flex-column" style="margin-right: 50px; width: 300px; height: 89px;">
                                 <label for="endereco">Endereço</label>
-                                <input type="text" class="form-control" name="endereco" placeholder="Endereço" data-required>
+                                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço" data-required>
                             </div>
                             <div class="card d-flex flex-column" style="margin-right: 50px; width: 300px; height: 89px;">
                                 <label for="numero">Número</label>
@@ -46,23 +46,23 @@
                             </div>
                             <div class="card d-flex flex-column" style="margin-right: 50px; width: 300px; height: 89px;">
                                 <label for="bairro">Bairro</label>
-                                <input type="text" class="form-control" name="bairro" placeholder="Bairro" data-required>
+                                <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" data-required>
                             </div>
                             <div class="card d-flex flex-column" style="margin-right: 50px; width: 300px; height: 89px;">
                                 <label for="cidade">Cidade</label>
-                                <input type="text" class="form-control" name="cidade" placeholder="Cidade" data-required>
+                                <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" data-required>
                             </div>
                             <div class="card d-flex flex-column" style="margin-right: 50px; width: 300px; height: 89px;">
                                 <label for="estado">Estado</label>
-                                <input type="text" class="form-control" name="estado" placeholder="Estado" data-required>
+                                <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" data-required>
                             </div>
                             <div class="card d-flex flex-column" style="margin-right: 50px; width: 300px; height: 89px;">
                                 <label for="senha">Senha</label>
-                                <input type="password" class="form-control" name="senha" placeholder="Senha" data-required>
+                                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" data-required>
                             </div>
                             <div class="card d-flex flex-column" style="margin-right: 50px; width: 300px; height: 89px;">
                                 <label for="repeatPassword">Repita a senha</label>
-                                <input type="password" class="form-control" name="repeatPassword" placeholder="Repita a senha" data-required>
+                                <input type="password" class="form-control" id="repeatSenha" name="repeatPassword" placeholder="Repita a senha" data-required>
                             </div>
                             <button type="submit" id="botao-usuario" class="btn btn-primary">Enviar</button>
                         </div>
