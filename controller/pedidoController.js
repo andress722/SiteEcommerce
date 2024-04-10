@@ -105,37 +105,48 @@ const pedidoController = {
 		return res.render('mercado-pago');
 	},
 
-	enviarPedido: async function (req, res) {
-		try {
-			const { id, produto, quantidade, valor, total, pedidos } = req.body;
-			console.log('chamou a rota');
-			const cart = {
-				produto: produto.toString(),
-				id_produto: id.toString(),
-				quantidade: quantidade.toString(),
-				valor: valor.toString(),
-				total: total.toString(),
-				id_usuario: usuario,
-				numero_pedido: pedidos,
-			};
-			console.log(cart, 'chamou');
-			const createdCart = await Carrinho.create(cart);
-    // Verificar se o carrinho foi criado corretamente
-    if (createdCart) {
-        // Carrinho criado com sucesso
-        console.log(createdCart, 'criou');
-    } else {
-        // Algo deu errado ao criar o carrinho
-		console.log('erro' );
-    }
-		} catch (error) {
-			return res.render('form-servico-erro', {
-				mensagemErro:
-					'Erro ao criar pedido, tente novamente ou entre contato conosco',
-			});
-		}
 
-	},
+		enviarPedido: async function (req, res) {
+			try {
+				const { produto, quantidade, id, valor, total, pedidos } = req.body;
+		
+				console.log('começo');
+		
+				// Verifica se todas as arrays têm o mesmo comprimento
+				if (
+					produto.length !== quantidade.length ||
+					produto.length !== id.length ||
+					produto.length !== valor.length ||
+					produto.length !== total.length
+				) {
+					throw new Error('As arrays de dados do pedido não têm o mesmo comprimento.');
+				}
+		
+				// Itera sobre cada item do pedido e o salva no banco de dados
+				for (let i = 0; i < produto.length; i++) {
+					await Carrinho.create({
+						produto: produto[i],
+						quantidade: quantidade[i],
+						valor: valor[i],
+						total: total[i],
+						id_usuario: usuario, // Certifique-se de definir corretamente o id do usuário
+						numero_pedido: pedidos, // Se necessário
+						id_produto: id[i]
+					});
+				}
+		
+				console.log('fim');
+		
+				// Se você chegou aqui, significa que todos os itens do pedido foram salvos com sucesso
+				// Retorne uma resposta adequada para o cliente
+			} catch (error) {
+				// Se ocorrer algum erro durante o processo, retorne uma mensagem de erro
+				return res.render('form-servico-erro', {
+					mensagemErro:
+						'Erro ao criar pedido, tente novamente ou entre em contato conosco',
+				});
+			}
+		}
 };
 
 module.exports = pedidoController;
